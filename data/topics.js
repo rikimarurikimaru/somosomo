@@ -27,7 +27,8 @@ window.ZUKAN = {
 
     { no: 7,  slug: "roman-aqueducts",     cat: "history", q: "古代ローマ人は、どうやって水を街まで運んだ？",         tags: ["古代", "建築", "水"],       related: ["pyramids", "bridge-strength"] },
     { no: 8,  slug: "pyramids",            cat: "history", q: "ピラミッドは、どうやって建てられた？",                 tags: ["古代", "建築"],             related: ["roman-aqueducts", "wooden-architecture"] },
-    { no: 9,  slug: "singapore",           cat: "history", q: "シンガポールは、なぜ豊かな国になった？",               tags: ["国", "地図", "お金", "アジア"], related: ["global-shipping", "city-rent", "silk-road"] },
+    { no: 9,  slug: "singapore",           cat: "history", q: "シンガポールは、なぜ豊かな国になった？",               tags: ["国", "地図", "お金", "アジア"], related: ["global-shipping", "city-rent", "silk-road"], status: "published", date: "2026-10-21",
+      cover: { src: "images/singapore/cover.jpg", small: "images/singapore/cover_s.jpg", title: "Skyline of the Central Business District of Singapore", artist: "Jason Goh", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Skyline_of_the_Central_Business_District_of_Singapore_seen_from_across_Marina_Bay_-_20140129.jpg" } },
     { no: 10, slug: "silk-road",           cat: "history", q: "シルクロードでは、何が運ばれていた？",                 tags: ["古代", "交易", "地図"],     related: ["coffee", "global-shipping"] },
 
     { no: 11, slug: "konbini-restock",     cat: "society", q: "コンビニは、なぜ毎日商品を補充できる？",               tags: ["お店", "物流", "コンビニ"],  related: ["global-shipping", "pricing"], status: "published", date: "2026-10-21",
@@ -39,7 +40,8 @@ window.ZUKAN = {
 
     { no: 16, slug: "forgetting",          cat: "mind",    q: "人は、なぜ忘れるようにできている？",                   tags: ["脳", "記憶"],               related: ["overlooking", "sns-time"] },
     { no: 17, slug: "overlooking",         cat: "mind",    q: "目の前にあるのに、なぜ見落とす？",                     tags: ["脳", "目"],                 related: ["forgetting", "color-vision"] },
-    { no: 18, slug: "sns-time",            cat: "mind",    q: "SNSを見ていると、時間があっという間に過ぎるのはなぜ？", tags: ["脳", "スマホ"],             related: ["too-many-choices", "forgetting", "inside-smartphone"] },
+    { no: 18, slug: "sns-time",            cat: "mind",    q: "SNSを見ていると、時間があっという間に過ぎるのはなぜ？", tags: ["脳", "スマホ", "SNS", "時間"], related: ["too-many-choices", "forgetting", "inside-smartphone"], status: "published", date: "2026-10-21",
+      cover: { src: "images/sns-time/cover.jpg", small: "images/sns-time/cover_s.jpg", title: "Hands, coffee, smartphone", artist: "Pixel.la Free Stock Photos", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Hands-coffee-smartphone-technology_(23698591814).jpg" } },
     { no: 19, slug: "easy-to-talk",        cat: "mind",    q: "初対面なのに、話しやすい人がいるのはなぜ？",           tags: ["人間関係", "脳"],           related: ["sns-time", "overlooking"] },
     { no: 20, slug: "too-many-choices",    cat: "mind",    q: "選択肢が多いと、なぜ決められなくなる？",               tags: ["脳", "お店"],               related: ["pricing", "sns-time"] },
 

@@ -174,7 +174,7 @@
 .bar { display: grid; grid-template-columns: 6.5em 1fr; gap: 4px 10px; align-items: center; }
 .bar .k { font-size: 13px; font-weight: 700; line-height: 1.4; }
 .bar .track { position: relative; height: 22px; background: color-mix(in srgb, var(--ink) 6%, transparent); }
-.bar .track i { position: absolute; inset: 0 auto 0 0; width: calc(var(--v) * 1%); background: #8b8d93; }
+.bar .track i { position: absolute; inset: 0 auto 0 0; width: calc(var(--v) * 1%); background: color-mix(in srgb, var(--ink) 45%, transparent); }
 .bar.hl .track i { background: var(--red); }
 .bar .n { grid-column: 2; font-family: var(--latin); font-weight: 700; font-size: 15px; line-height: 1; }
 .bar.hl .n, .bar.hl .k { color: var(--red); }
