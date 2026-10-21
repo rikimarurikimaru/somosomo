@@ -40,7 +40,8 @@ window.ZUKAN = {
     { no: 14, slug: "pricing",             cat: "society", q: "商品の値段は、どうやって決まる？",                     tags: ["お金", "お店"],             related: ["bank-money", "too-many-choices"] },
     { no: 15, slug: "city-rent",           cat: "society", q: "都会の家賃は、なぜ高い？",                             tags: ["お金", "都市"],             related: ["singapore", "pricing"] },
 
-    { no: 16, slug: "forgetting",          cat: "mind",    q: "人は、なぜ忘れるようにできている？",                   tags: ["脳", "記憶"],               related: ["overlooking", "sns-time"] },
+    { no: 16, slug: "forgetting",          cat: "mind",    q: "人は、なぜ忘れるようにできている？",                   tags: ["脳", "記憶"],               related: ["overlooking", "sns-time"], status: "published", date: "2026-10-22",
+      cover: { src: "images/forgetting/cover.jpg", small: "images/forgetting/cover_s.jpg", title: "Morning fog", artist: "Ted Moravec", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Morning_fog_(51636862816).jpg" } },
     { no: 17, slug: "overlooking",         cat: "mind",    q: "目の前にあるのに、なぜ見落とす？",                     tags: ["脳", "目"],                 related: ["forgetting", "color-vision"] },
     { no: 18, slug: "sns-time",            cat: "mind",    q: "SNSを見ていると、時間があっという間に過ぎるのはなぜ？", tags: ["脳", "スマホ", "SNS", "時間"], related: ["too-many-choices", "forgetting", "inside-smartphone"], status: "published", date: "2026-10-21",
       cover: { src: "images/sns-time/cover.jpg", small: "images/sns-time/cover_s.jpg", title: "Hands, coffee, smartphone", artist: "Pixel.la Free Stock Photos", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Hands-coffee-smartphone-technology_(23698591814).jpg" } },
