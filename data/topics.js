@@ -43,7 +43,8 @@ window.ZUKAN = {
     { no: 19, slug: "easy-to-talk",        cat: "mind",    q: "初対面なのに、話しやすい人がいるのはなぜ？",           tags: ["人間関係", "脳"],           related: ["sns-time", "overlooking"] },
     { no: 20, slug: "too-many-choices",    cat: "mind",    q: "選択肢が多いと、なぜ決められなくなる？",               tags: ["脳", "お店"],               related: ["pricing", "sns-time"] },
 
-    { no: 21, slug: "airplane-flight",     cat: "tech",    q: "飛行機は、どうやって空を飛ぶ？",                       tags: ["乗り物", "空"],             related: ["global-shipping", "bridge-strength"] },
+    { no: 21, slug: "airplane-flight",     cat: "tech",    q: "飛行機は、どうやって空を飛ぶ？",                       tags: ["乗り物", "空", "物理"],     related: ["global-shipping", "bridge-strength"], status: "published", date: "2026-10-21",
+      cover: { src: "images/airplane-flight/cover.jpg", small: "images/airplane-flight/cover_s.jpg", title: "A wing tip of an airplane", artist: "U.S. Department of Agriculture", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:A_wing_tip_of_an_airplane_(40118125441).jpg" } },
     { no: 22, slug: "inside-smartphone",   cat: "tech",    q: "スマホの中には、何が入っている？",                     tags: ["スマホ"],                   related: ["internet-delivery", "sns-time"] },
     { no: 23, slug: "global-shipping",     cat: "tech",    q: "世界の荷物は、どうやって運ばれている？",               tags: ["物流", "乗り物", "地図"],   related: ["konbini-restock", "airplane-flight", "silk-road"] },
     { no: 24, slug: "bridge-strength",     cat: "tech",    q: "大きな橋は、なぜ自分の重さで崩れない？",               tags: ["建築"],                     related: ["roman-aqueducts", "wooden-architecture"] },
