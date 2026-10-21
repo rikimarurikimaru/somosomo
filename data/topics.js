@@ -58,7 +58,8 @@ window.ZUKAN = {
     { no: 25, slug: "internet-delivery",   cat: "tech",    q: "インターネットの情報は、どうやって届く？",             tags: ["スマホ", "通信"],           related: ["inside-smartphone", "train-punctuality"] },
 
     { no: 26, slug: "ramen",               cat: "culture", q: "ラーメンは、どうやって日本の国民食になった？",         tags: ["食べ物", "日本"],           related: ["coffee", "konbini-restock"] },
-    { no: 27, slug: "coffee",              cat: "culture", q: "コーヒーは、どうやって世界中に広まった？",             tags: ["食べ物", "交易"],           related: ["silk-road", "ramen"] },
+    { no: 27, slug: "coffee",              cat: "culture", q: "コーヒーは、どうやって世界中に広まった？",             tags: ["食べ物", "交易", "コーヒー"], related: ["silk-road", "ramen"], status: "published", date: "2026-10-22",
+      cover: { src: "images/coffee/cover.jpg", small: "images/coffee/cover_s.jpg", title: "Coffee cherries", artist: "Scot Nelson", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Coffee_cherries.jpg" } },
     { no: 28, slug: "jeans",               cat: "culture", q: "ジーンズは、なぜ世界中で履かれるようになった？",       tags: ["ファッション"],             related: ["coffee", "global-shipping"] },
     { no: 29, slug: "wooden-architecture", cat: "culture", q: "日本の木造建築は、なぜ長く残る？",                     tags: ["建築", "日本"],             related: ["bridge-strength", "pyramids"] },
     { no: 30, slug: "time-zones",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"] }
