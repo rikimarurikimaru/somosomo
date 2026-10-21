@@ -36,7 +36,8 @@ window.ZUKAN = {
     { no: 11, slug: "konbini-restock",     cat: "society", q: "コンビニは、なぜ毎日商品を補充できる？",               tags: ["お店", "物流", "コンビニ"],  related: ["global-shipping", "pricing"], status: "published", date: "2026-10-21",
       cover: { src: "images/konbini-restock/cover.jpg", small: "images/konbini-restock/cover_s.jpg", title: "Seven-Eleven Oita Matsubaramachi Store", artist: "MaedaAkihiko", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:7-Eleven_Oita-Matsubaramachi-Store.jpg" } },
     { no: 12, slug: "bank-money",          cat: "society", q: "銀行は、預かったお金をどう使っている？",               tags: ["お金"],                     related: ["pricing", "city-rent"] },
-    { no: 13, slug: "train-punctuality",   cat: "society", q: "電車は、なぜ秒単位で運行できる？",                     tags: ["乗り物", "鉄道"],           related: ["konbini-restock", "internet-delivery"] },
+    { no: 13, slug: "train-punctuality",   cat: "society", q: "電車は、なぜ秒単位で運行できる？",                     tags: ["乗り物", "鉄道"],           related: ["konbini-restock", "internet-delivery"], status: "published", date: "2026-10-22",
+      cover: { src: "images/train-punctuality/cover.jpg", small: "images/train-punctuality/cover_s.jpg", title: "Chuo Line E233 series T27 Tokyo", artist: "KibaShinichi", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Chuo_Line_E233_series_T27_Tokyo_20091218.jpg" } },
     { no: 14, slug: "pricing",             cat: "society", q: "商品の値段は、どうやって決まる？",                     tags: ["お金", "お店"],             related: ["bank-money", "too-many-choices"] },
     { no: 15, slug: "city-rent",           cat: "society", q: "都会の家賃は、なぜ高い？",                             tags: ["お金", "都市"],             related: ["singapore", "pricing"] },
 
