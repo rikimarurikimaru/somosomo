@@ -1,0 +1,234 @@
+/* SOMOSOMO（そもそも） — 記事ページ（articles/*.html）のスタイル。site.css の上に重ねる。
+   Layout: 雑誌の特集記事。全面写真の扉 → 結論 → 地図 → 年表 → 今昔比較 → 数字 → 「ここが面白い！」。
+   本文は細い段（約34字）、図はそれより広く。 */
+.story { display: flex; flex-direction: column; gap: 40px; }
+.measure { width: 100%; max-width: 680px; margin: 0 auto; }
+.wide { width: 100%; max-width: 980px; margin: 0 auto; }
+
+/* 読んだ量を示す細い線 */
+.progress { position: fixed; left: 0; top: 0; z-index: 60; height: 3px; width: 100%; background: var(--red); transform-origin: left; transform: scaleX(0); }
+
+/* ===== 扉（全面写真） ===== */
+.story-hero { position: relative; overflow: hidden; min-height: 620px; margin: 0 -16px; display: flex; flex-direction: column; justify-content: flex-end; color: #ffffff; background: var(--night); }
+.story-hero img.bg { animation: kb 20s ease-out both; }
+.story-hero .shade { background: linear-gradient(to top, rgba(10, 10, 12, .92) 0%, rgba(10, 10, 12, .55) 45%, rgba(10, 10, 12, .1) 75%, rgba(10, 10, 12, .35) 100%); }
+.story-hero-in { position: relative; padding: 24px 20px 18px; display: flex; flex-direction: column; gap: 14px; }
+.story-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--latin); font-weight: 600; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
+.story-kicker b { font-family: var(--body); font-weight: 700; letter-spacing: .06em; background: var(--red); color: #ffffff; padding: 2px 8px; text-transform: none; }
+.story-hero h1 { font-size: 32px; line-height: 1.42; text-shadow: 0 2px 18px rgba(0, 0, 0, .35); }
+.story-hero .dek { font-size: 14px; line-height: 1.85; opacity: .92; max-width: 34em; }
+.byline { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11.5px; color: rgba(255, 255, 255, .78); border-top: 1px solid rgba(255, 255, 255, .25); padding-top: 12px; }
+.story-hero .photo-credit { position: relative; padding: 0 20px 12px; color: rgba(255, 255, 255, .55); }
+.story-no { position: absolute; z-index: 1; right: 14px; top: 10px; font-family: var(--latin); font-style: italic; font-weight: 600; font-size: 96px; line-height: 1; color: rgba(255, 255, 255, .9); text-shadow: 0 2px 20px rgba(0, 0, 0, .35); }
+
+/* ===== 本文 ===== */
+.body-text { display: flex; flex-direction: column; gap: 20px; font-size: 16.5px; line-height: 2; }
+.body-text p { text-align: justify; }
+.lead-in::first-letter { float: left; font-family: var(--display); font-weight: 800; font-size: 64px; line-height: 1; margin: 6px 10px 0 0; color: var(--red); }
+.body-text strong { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--red) 22%, transparent) 62%); font-weight: 700; }
+
+/* 結論 */
+.answer { border-block: 2px solid var(--ink); padding: 22px 0 20px; display: flex; flex-direction: column; gap: 8px; }
+.answer .en { font-size: 11px; color: var(--red); }
+.answer p { font-family: var(--display); font-weight: 800; font-size: 25px; line-height: 1.6; }
+.answer p em { font-style: normal; color: var(--red); }
+
+/* 章見出し */
+.chapter { display: flex; flex-direction: column; gap: 6px; padding-top: 8px; }
+.chapter .no { font-family: var(--latin); font-style: italic; font-weight: 600; font-size: 56px; line-height: .8; color: var(--red); }
+.chapter .en { font-size: 11px; color: var(--muted); }
+.chapter h2 { font-size: 25px; line-height: 1.45; }
+
+/* 3つの理由 */
+.reasons { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: r; }
+.reasons li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.reasons li::before { counter-increment: r; content: counter(r); font-family: var(--latin); font-style: italic; font-weight: 600; font-size: 40px; line-height: 1; color: var(--red); }
+.reasons b { display: block; font-family: var(--display); font-weight: 800; font-size: 18px; line-height: 1.5; margin-bottom: 2px; }
+.reasons p { font-size: 15px; line-height: 1.85; color: var(--muted); }
+
+/* 引用（大きく抜き出す一文） */
+.pull { margin: 8px 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--red); font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.6; }
+
+/* ===== 図 ===== */
+.fig { display: flex; flex-direction: column; gap: 10px; }
+.fig-label { display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--ink); padding-bottom: 6px; }
+.fig-label .en { font-size: 12px; color: var(--red); }
+.fig-label b { font-family: var(--display); font-weight: 800; font-size: 16px; }
+.fig figcaption { font-size: 12px; line-height: 1.7; color: var(--muted); }
+.fig-box { background: var(--surface); border: 1px solid var(--line); padding: 12px; }
+.fig-box svg { width: 100%; max-width: 560px; height: auto; margin: 0 auto; }
+.map-text { font-family: var(--body); font-size: 11px; font-weight: 700; }
+.map-sub { font-family: var(--latin); font-style: italic; font-size: 11px; font-weight: 600; }
+
+/* 年表の帯（長さは年数に比例） */
+.strip { display: flex; height: 54px; width: 100%; overflow: hidden; }
+.strip span { position: relative; height: 100%; flex: none; }
+.strip span.indep { background: var(--red); }
+.strip-axis { position: relative; height: 18px; font-family: var(--latin); font-weight: 600; font-size: 11px; color: var(--muted); }
+.strip-axis i { position: absolute; top: 2px; transform: translateX(-50%); font-style: normal; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.legend li { display: grid; grid-template-columns: 14px 90px 1fr; gap: 10px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.legend li::before { content: ""; width: 12px; height: 12px; background: var(--sw); transform: translateY(1px); }
+.legend .yrs { font-family: var(--latin); font-weight: 700; font-size: 14px; white-space: nowrap; }
+.legend .who b { font-weight: 700; }
+.legend .who span { display: block; font-size: 12px; color: var(--muted); }
+.legend li.indep .who b { color: var(--red); }
+
+/* 今と昔をくらべるスライダー */
+.compare { position: relative; overflow: hidden; aspect-ratio: 3 / 2; background: var(--night); user-select: none; touch-action: pan-y; max-width: 100%; }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.compare .then { clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0); }
+.compare .handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; margin-left: -1px; background: #ffffff; pointer-events: none; }
+.compare .handle::after { content: "⇆"; position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; background: #ffffff; color: var(--ink); display: grid; place-items: center; font-size: 16px; box-shadow: 0 2px 10px rgba(0, 0, 0, .3); }
+.compare .tag { position: absolute; top: 10px; font-family: var(--latin); font-weight: 700; font-size: 12px; letter-spacing: .14em; color: #ffffff; background: rgba(0, 0, 0, .55); padding: 3px 8px; pointer-events: none; }
+.compare .tag.l { left: 10px; } .compare .tag.r { right: 10px; }
+.compare input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+
+/* 数字 */
+.stats { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--ink); }
+.stat { display: grid; grid-template-columns: 132px 1fr; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.stat .v { font-family: var(--latin); font-weight: 700; font-size: 46px; line-height: 1; color: var(--red); white-space: nowrap; }
+.stat .v small { font-family: var(--body); font-size: 14px; font-weight: 700; color: var(--ink); margin-left: 2px; }
+.stat p { font-size: 14px; line-height: 1.75; }
+.stat p small { display: block; font-size: 11.5px; color: var(--muted); }
+
+/* ここが面白い！ */
+.fun { position: relative; background: var(--night); color: var(--on-dark); padding: 30px 20px 26px; margin: 0 -16px; width: auto; max-width: none; display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+.fun::before { content: "!"; position: absolute; right: -6px; top: -40px; font-family: var(--latin); font-style: italic; font-weight: 700; font-size: 260px; line-height: 1; color: rgba(245, 242, 235, .07); }
+.fun .en { font-size: 12px; color: #e0646c; }
+.fun h2 { font-size: 26px; line-height: 1.5; }
+.fun p { font-size: 15px; line-height: 1.95; color: rgba(245, 242, 235, .86); }
+.fun strong { color: #ffffff; }
+
+/* 出典 */
+.sources { border-top: 1px solid var(--ink); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.sources h2 { font-family: var(--body); font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+.sources ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.sources a { color: var(--ink); }
+
+@media (min-width: 768px) {
+  .story { gap: 56px; }
+  .story-hero { margin: 0; min-height: 680px; }
+  .story-hero-in { padding: 44px 48px 22px; max-width: 820px; }
+  .story-hero h1 { font-size: 46px; }
+  .story-hero .dek { font-size: 15.5px; }
+  .story-hero .photo-credit { padding: 0 48px 14px; }
+  .story-no { right: 32px; top: 18px; font-size: 140px; }
+  .answer p { font-size: 30px; }
+  .chapter h2 { font-size: 30px; }
+  .fun { margin: 0 auto; width: 100%; max-width: 980px; padding: 44px 48px 40px; }
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+  .stat { grid-template-columns: 1fr; gap: 6px; }
+  .stat .v { font-size: 60px; }
+  .then-now-text { columns: 2; column-gap: 36px; }
+}
+
+/* ---------- 記事の流れ（目次。UOMO・madameFIGARO.jp 風） ---------- */
+.story-toc { border: 1px solid var(--ink); padding: 18px 18px 8px; }
+.toc-head { display: flex; align-items: baseline; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.toc-head .en { font-family: var(--latin); font-style: italic; font-weight: 700; font-size: 18px; color: var(--red); }
+.toc-head b { font-size: 12.5px; letter-spacing: .08em; }
+.story-toc ol { list-style: none; margin: 0; padding: 0; }
+.story-toc li + li { border-top: 1px dashed var(--line); }
+.story-toc a { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: baseline; padding: 11px 0; text-decoration: none; font-size: 14px; line-height: 1.6; }
+.story-toc i { font-family: var(--latin); font-weight: 700; font-size: 20px; color: var(--red); line-height: 1; }
+.story-toc a:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.story .chapter, .story .fun { scroll-margin-top: 80px; }
+@media (prefers-reduced-motion: no-preference) { html:has(.story-toc) { scroll-behavior: smooth; } }
+
+/* ---------- シェア（HOUYHNHNM・UOMO 風） ---------- */
+.share { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; padding-top: 8px; }
+.share .en { font-family: var(--latin); font-style: italic; font-weight: 700; font-size: 22px; color: var(--red); line-height: 1; }
+.share b { font-family: var(--display); font-weight: 800; font-size: 17px; }
+.share-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 8px; }
+.share-btns a, .share-btns button { font: inherit; font-size: 13px; font-weight: 700; min-height: 44px; padding: 0 20px; border: 1px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink); display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; transition: background .25s, color .25s; }
+.share-btns [data-share] { background: var(--ink); color: var(--paper); }
+.share-btns a:hover, .share-btns button:hover { background: var(--ink); color: var(--paper); }
+
+/* ===== 図の部品（2026-10-22 追加。使い方は articles/_template.html） ===== */
+
+/* 流れ図：モノや情報が進む順番（コンビニの補充・荷物の旅など）。スマホは縦、PCは横に並ぶ */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: f; }
+.flow li { position: relative; display: grid; grid-template-columns: 46px 1fr; gap: 4px 12px; padding: 14px 0 14px; }
+.flow li::before { counter-increment: f; content: counter(f, decimal-leading-zero); grid-row: span 3; font-family: var(--latin); font-style: italic; font-weight: 700; font-size: 34px; line-height: 1; color: var(--red); }
+.flow li + li { border-top: 1px solid var(--line); }
+.flow li + li::after { content: ""; position: absolute; left: 14px; top: -9px; width: 16px; height: 16px; background: var(--paper); border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg) scale(.7); }
+.flow .when { font-family: var(--latin); font-weight: 700; font-size: 12px; letter-spacing: .1em; color: var(--muted); }
+.flow b { font-family: var(--display); font-weight: 800; font-size: 17px; line-height: 1.45; }
+.flow span:not(.when) { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+
+/* 輪の図：ぐるぐる繰り返すしくみ（SNSのループ・水の循環など）。右の線で「最初に戻る」を示す */
+.loop { position: relative; padding-right: 52px; }
+.loop ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; counter-reset: l; }
+.loop li { position: relative; background: var(--surface); border: 1px solid var(--ink); padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+.loop li::before { counter-increment: l; content: counter(l); position: absolute; left: -1px; top: -1px; width: 22px; height: 22px; background: var(--ink); color: var(--paper); font-family: var(--latin); font-weight: 700; font-size: 13px; display: grid; place-items: center; }
+.loop li + li::after { content: ""; position: absolute; left: 50%; top: -19px; width: 2px; height: 16px; background: var(--ink); }
+.loop b { font-family: var(--display); font-weight: 800; font-size: 16px; padding-left: 18px; }
+.loop span { font-size: 13px; line-height: 1.7; color: var(--muted); }
+.loop::after { content: ""; position: absolute; right: 14px; top: 22px; bottom: 22px; width: 38px; border: 2px solid var(--red); border-left: 0; border-radius: 0 18px 18px 0; }
+.loop::before { content: ""; position: absolute; right: 44px; top: 16px; border: 7px solid transparent; border-right: 10px solid var(--red); border-left: 0; }
+.loop-note { position: absolute; right: -4px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--latin); font-style: italic; font-weight: 700; font-size: 13px; letter-spacing: .14em; color: var(--red); white-space: nowrap; background: var(--paper); padding: 0 6px; }
+
+/* 棒グラフ：数をくらべる。--v は一番大きい値を100とした割合。注目させる棒に .hl */
+.bars { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: 6.5em 1fr; gap: 4px 10px; align-items: center; }
+.bar .k { font-size: 13px; font-weight: 700; line-height: 1.4; }
+.bar .track { position: relative; height: 22px; background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.bar .track i { position: absolute; inset: 0 auto 0 0; width: calc(var(--v) * 1%); background: #8b8d93; }
+.bar.hl .track i { background: var(--red); }
+.bar .n { grid-column: 2; font-family: var(--latin); font-weight: 700; font-size: 15px; line-height: 1; }
+.bar.hl .n, .bar.hl .k { color: var(--red); }
+
+/* 折れ線グラフ：時代による変化。data-points="年:値 年:値…" から site.js がSVGを描く */
+.line-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.line-chart .ax { font-family: var(--latin); font-weight: 600; font-size: 11px; fill: var(--muted); }
+.line-chart .grid { stroke: var(--line); stroke-width: 1; }
+.line-chart .area { fill: color-mix(in srgb, var(--red) 12%, transparent); }
+.line-chart .ln { fill: none; stroke: var(--red); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.line-chart .mk { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 3; }
+.line-chart .mk-t { font-family: var(--body); font-weight: 700; font-size: 11px; fill: var(--ink); }
+.line-chart .end { fill: var(--red); }
+.line-chart .end-t { font-family: var(--latin); font-weight: 700; font-size: 15px; fill: var(--red); }
+.line-chart .unit { font-family: var(--body); font-size: 10.5px; fill: var(--muted); }
+
+/* 番号つきの解説図：写真や断面図に番号を打ち、下で説明する（飛行機・スマホの中身など） */
+.callouts { display: grid; gap: 14px; }
+.callout-art { position: relative; background: var(--surface); border: 1px solid var(--line); }
+.callout-art > img, .callout-art > svg { display: block; width: 100%; height: auto; }
+.pin { position: absolute; left: var(--x); top: var(--y); width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: var(--red); color: #ffffff; border: 2px solid #ffffff; font-family: var(--latin); font-weight: 700; font-size: 14px; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+.callout-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: c; }
+.callout-list li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.7; }
+.callout-list li::before { counter-increment: c; content: counter(c); width: 22px; height: 22px; border-radius: 50%; background: var(--red); color: #ffffff; font-family: var(--latin); font-weight: 700; font-size: 12.5px; display: grid; place-items: center; transform: translateY(2px); }
+.callout-list b { font-weight: 700; margin-right: .4em; }
+
+@media (min-width: 768px) {
+  .flow { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); grid-auto-flow: column; gap: 0 18px; }
+  .flow li { grid-template-columns: 1fr; padding: 0 0 0 0; align-content: start; }
+  .flow li::before { grid-row: auto; font-size: 40px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); margin-bottom: 6px; }
+  .flow li + li { border-top: 0; }
+  .flow li + li::after { left: -16px; top: 12px; }
+  .loop { max-width: 560px; }
+  .line-chart { max-width: 720px; }
+  .bar { grid-template-columns: 9em 1fr 7em; }
+  .bar .n { grid-column: auto; }
+  .callouts { grid-template-columns: 3fr 2fr; gap: 28px; align-items: start; }
+}
+
+/* ===== 写真（2026-10-22 追加。本人「画像が少ない」）：本文のあいだに挟む。スマホは画面の端まで広げる ===== */
+.photo, .gallery { margin: 0 -16px; display: flex; flex-direction: column; gap: 8px; }
+.photo img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--line); }
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.gallery-grid img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: var(--line); }
+.gallery.g3 .gallery-grid img:first-child { grid-column: span 2; aspect-ratio: 3 / 2; }
+.photo figcaption, .gallery figcaption { padding: 0 16px; font-size: 12.5px; line-height: 1.75; color: var(--muted); }
+.photo figcaption b, .gallery figcaption b { display: block; font-family: var(--display); font-weight: 800; font-size: 15px; color: var(--ink); margin-bottom: 2px; }
+.photo .credit, .gallery .credit { display: block; font-size: 10.5px; margin-top: 4px; opacity: .85; }
+.photo .credit a, .gallery .credit a { color: inherit; }
+
+@media (min-width: 768px) {
+  .photo, .gallery { margin: 0 auto; width: 100%; max-width: 980px; }
+  .photo figcaption, .gallery figcaption { padding: 0; max-width: 680px; }
+  .gallery.g3 .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery.g3 .gallery-grid img, .gallery.g3 .gallery-grid img:first-child { grid-column: auto; aspect-ratio: 4 / 5; }
+  .gallery.g2 .gallery-grid img { aspect-ratio: 3 / 2; }
+}
