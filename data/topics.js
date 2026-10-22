@@ -19,7 +19,8 @@ window.ZUKAN = {
   keywords: ["宇宙", "脳", "お金", "地図", "建築", "食べ物", "乗り物", "スマホ", "古代"],
 
   topics: [
-    { no: 1,  slug: "bee-vision",          cat: "nature",  q: "ハチは、世界をどう見ている？",                         tags: ["生き物", "目"],             related: ["color-vision", "overlooking", "whale-size"] },
+    { no: 1,  slug: "bee-vision",          cat: "nature",  q: "ハチは、世界をどう見ている？",                         tags: ["生き物", "目", "ハチ"],       related: ["color-vision", "overlooking", "whale-size"], status: "published", date: "2026-10-22",
+      cover: { src: "images/bee-vision/cover.jpg", small: "images/bee-vision/cover_s.jpg", title: "European honey bee extracts nectar", artist: "John Severns", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:European_honey_bee_extracts_nectar.jpg" } },
     { no: 2,  slug: "whale-size",          cat: "nature",  q: "クジラは、なぜあんなに大きいのか？",                   tags: ["生き物", "海"],             related: ["bee-vision", "bridge-strength"] },
     { no: 3,  slug: "color-vision",        cat: "nature",  q: "目は、どうやって色を見分けている？",                   tags: ["目", "体", "脳"],           related: ["bee-vision", "overlooking", "forgetting"] },
     { no: 4,  slug: "lightning",           cat: "nature",  q: "雷は、どうやって空から落ちてくる？",                   tags: ["天気", "空", "電気"],       related: ["saturn-rings", "time-zones"], status: "published", date: "2026-10-22",
@@ -28,7 +29,8 @@ window.ZUKAN = {
 
     { no: 7,  slug: "roman-aqueducts",     cat: "history", q: "古代ローマ人は、どうやって水を街まで運んだ？",         tags: ["古代", "建築", "水"],       related: ["pyramids", "bridge-strength"], status: "published", date: "2026-10-22",
       cover: { src: "images/roman-aqueducts/cover.jpg", small: "images/roman-aqueducts/cover_s.jpg", title: "Pont du Gard", artist: "Pixabay ユーザー 2990108", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Pont_Du_Gard_Nimes_Arles_Ales_Viaduct_Aqueduct.jpg" } },
-    { no: 8,  slug: "pyramids",            cat: "history", q: "ピラミッドは、どうやって建てられた？",                 tags: ["古代", "建築"],             related: ["roman-aqueducts", "wooden-architecture"] },
+    { no: 8,  slug: "pyramids",            cat: "history", q: "ピラミッドは、どうやって建てられた？",                 tags: ["古代", "建築", "エジプト"],   related: ["roman-aqueducts", "wooden-architecture"], status: "published", date: "2026-10-22",
+      cover: { src: "images/pyramids/cover.jpg", small: "images/pyramids/cover_s.jpg", title: "Great Pyramid (Pyramid of Cheops Khufu)", artist: "Warren LeMay", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Great_Pyramid_(Pyramid_of_Cheops_Khufu),_Giza,_GG,_EGY_(40936203693).jpg" } },
     { no: 9,  slug: "singapore",           cat: "history", q: "シンガポールは、なぜ豊かな国になった？",               tags: ["国", "地図", "お金", "アジア"], related: ["global-shipping", "city-rent", "silk-road"], status: "published", date: "2026-10-21",
       cover: { src: "images/singapore/cover.jpg", small: "images/singapore/cover_s.jpg", title: "Skyline of the Central Business District of Singapore", artist: "Jason Goh", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Skyline_of_the_Central_Business_District_of_Singapore_seen_from_across_Marina_Bay_-_20140129.jpg" } },
     { no: 10, slug: "silk-road",           cat: "history", q: "シルクロードでは、何が運ばれていた？",                 tags: ["古代", "交易", "地図"],     related: ["coffee", "global-shipping"] },
