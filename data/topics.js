@@ -55,13 +55,15 @@ window.ZUKAN = {
 
     { no: 21, slug: "airplane-flight",     cat: "tech",    q: "飛行機は、どうやって空を飛ぶ？",                       tags: ["乗り物", "空", "物理"],     related: ["global-shipping", "bridge-strength"], status: "published", date: "2026-10-21",
       cover: { src: "images/airplane-flight/cover.jpg", small: "images/airplane-flight/cover_s.jpg", title: "A wing tip of an airplane", artist: "U.S. Department of Agriculture", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:A_wing_tip_of_an_airplane_(40118125441).jpg" } },
-    { no: 22, slug: "inside-smartphone",   cat: "tech",    q: "スマホの中には、何が入っている？",                     tags: ["スマホ"],                   related: ["internet-delivery", "sns-time"] },
+    { no: 22, slug: "inside-smartphone",   cat: "tech",    q: "スマホの中には、何が入っている？",                     tags: ["スマホ"],                   related: ["internet-delivery", "sns-time"], status: "published", date: "2026-10-22",
+      cover: { src: "images/inside-smartphone/cover.jpg", small: "images/inside-smartphone/cover_s.jpg", title: "samsung phone", artist: "Techbubble", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:17456805020661182164462740776729_samsung_phone.jpg" } },
     { no: 23, slug: "global-shipping",     cat: "tech",    q: "世界の荷物は、どうやって運ばれている？",               tags: ["物流", "乗り物", "地図"],   related: ["konbini-restock", "airplane-flight", "silk-road"] },
     { no: 24, slug: "bridge-strength",     cat: "tech",    q: "大きな橋は、なぜ自分の重さで崩れない？",               tags: ["建築", "橋"],               related: ["roman-aqueducts", "wooden-architecture"], status: "published", date: "2026-10-22",
       cover: { src: "images/bridge-strength/cover.jpg", small: "images/bridge-strength/cover_s.jpg", title: "Akashi Kaikyo Ohashi", artist: "Pinqui", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Akashi_Kaikyo_Ohashi_01.jpg" } },
     { no: 25, slug: "internet-delivery",   cat: "tech",    q: "インターネットの情報は、どうやって届く？",             tags: ["スマホ", "通信"],           related: ["inside-smartphone", "train-punctuality"] },
 
-    { no: 26, slug: "ramen",               cat: "culture", q: "ラーメンは、どうやって日本の国民食になった？",         tags: ["食べ物", "日本"],           related: ["coffee", "konbini-restock"] },
+    { no: 26, slug: "ramen",               cat: "culture", q: "ラーメンは、どうやって日本の国民食になった？",         tags: ["食べ物", "日本"],           related: ["coffee", "konbini-restock"], status: "published", date: "2026-10-22",
+      cover: { src: "images/ramen/cover.jpg", small: "images/ramen/cover_s.jpg", title: "Tsugaru ramen 001", artist: "Ocdp", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Tsugaru_ramen_001.jpg" } },
     { no: 27, slug: "coffee",              cat: "culture", q: "コーヒーは、どうやって世界中に広まった？",             tags: ["食べ物", "交易", "コーヒー"], related: ["silk-road", "ramen"], status: "published", date: "2026-10-22",
       cover: { src: "images/coffee/cover.jpg", small: "images/coffee/cover_s.jpg", title: "Coffee cherries", artist: "Scot Nelson", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Coffee_cherries.jpg" } },
     { no: 28, slug: "jeans",               cat: "culture", q: "ジーンズは、なぜ世界中で履かれるようになった？",       tags: ["ファッション"],             related: ["coffee", "global-shipping"] },
