@@ -27,7 +27,8 @@ window.ZUKAN = {
       cover: { src: "images/color-vision/cover.jpg", small: "images/color-vision/cover_s.jpg", title: "Prism flat rainbow (cropped)", artist: "Kelvinsong", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Prism_flat_rainbow_(cropped).jpg" } },
     { no: 4,  slug: "lightning",           cat: "nature",  q: "雷は、どうやって空から落ちてくる？",                   tags: ["天気", "空", "電気"],       related: ["saturn-rings", "time-zones"], status: "published", date: "2026-10-22",
       cover: { src: "images/lightning/cover.jpg", small: "images/lightning/cover_s.jpg", title: "Lightning in Dallas", artist: "NOAA Photo Library", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Lightning_in_Dallas_2015.jpg" } },
-    { no: 5,  slug: "saturn-rings",        cat: "nature",  q: "土星の輪は、何でできている？",                         tags: ["宇宙"],                     related: ["lightning", "time-zones"] },
+    { no: 5,  slug: "saturn-rings",        cat: "nature",  q: "土星の輪は、何でできている？",                         tags: ["宇宙"],                     related: ["lightning", "time-zones"], status: "published", date: "2026-10-24",
+      cover: { src: "images/saturn-rings/cover.jpg", small: "images/saturn-rings/cover_s.jpg", title: "Top view of the rings of Saturn by Cassini - October 10, 2013", artist: "NASA/JPL-Caltech/SSI/Cornell", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Top_view_of_the_rings_of_Saturn_by_Cassini_-_October_10,_2013.jpg" } },
 
     { no: 7,  slug: "roman-aqueducts",     cat: "history", q: "古代ローマ人は、どうやって水を街まで運んだ？",         tags: ["古代", "建築", "水"],       related: ["pyramids", "bridge-strength"], status: "published", date: "2026-10-22",
       cover: { src: "images/roman-aqueducts/cover.jpg", small: "images/roman-aqueducts/cover_s.jpg", title: "Pont du Gard", artist: "Pixabay ユーザー 2990108", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Pont_Du_Gard_Nimes_Arles_Ales_Viaduct_Aqueduct.jpg" } },
@@ -77,7 +78,8 @@ window.ZUKAN = {
       cover: { src: "images/coffee/cover.jpg", small: "images/coffee/cover_s.jpg", title: "Coffee cherries", artist: "Scot Nelson", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Coffee_cherries.jpg" } },
     { no: 28, slug: "jeans",               cat: "culture", q: "ジーンズは、なぜ世界中ではかれるようになった？",       tags: ["ファッション"],             related: ["coffee", "global-shipping"], status: "published", date: "2026-10-23",
       cover: { src: "images/jeans/cover.jpg", small: "images/jeans/cover_s.jpg", title: "Denim jeans wrinkled", artist: "Deb Tremper", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Denim_jeans_wrinkled.jpg" } },
-    { no: 29, slug: "wooden-architecture", cat: "culture", q: "日本の木造建築は、なぜ長く残る？",                     tags: ["建築", "日本"],             related: ["bridge-strength", "pyramids"] },
+    { no: 29, slug: "wooden-architecture", cat: "culture", q: "日本の木造建築は、なぜ長く残る？",                     tags: ["建築", "日本"],             related: ["bridge-strength", "pyramids"], status: "published", date: "2026-10-24",
+      cover: { src: "images/wooden-architecture/cover.jpg", small: "images/wooden-architecture/cover_s.jpg", title: "Horyu-ji Kondo and Five-story Pagoda 2022", artist: "ONO Masanobu", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Horyu-ji_Kondo_and_Five-story_Pagoda_2022.jpg" } },
     { no: 30, slug: "time-zones",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"] }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };
