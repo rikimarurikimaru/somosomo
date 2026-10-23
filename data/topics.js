@@ -39,7 +39,8 @@ window.ZUKAN = {
 
     { no: 11, slug: "konbini-restock",     cat: "society", q: "コンビニは、なぜ毎日商品を補充できる？",               tags: ["お店", "物流", "コンビニ"],  related: ["global-shipping", "pricing"], status: "published", date: "2026-10-21",
       cover: { src: "images/konbini-restock/cover.jpg", small: "images/konbini-restock/cover_s.jpg", title: "Seven-Eleven Oita Matsubaramachi Store", artist: "MaedaAkihiko", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:7-Eleven_Oita-Matsubaramachi-Store.jpg" } },
-    { no: 12, slug: "bank-money",          cat: "society", q: "銀行は、預かったお金をどう使っている？",               tags: ["お金"],                     related: ["pricing", "city-rent"] },
+    { no: 12, slug: "bank-money",          cat: "society", q: "銀行は、預かったお金をどう使っている？",               tags: ["お金"],                     related: ["pricing", "city-rent"], status: "published", date: "2026-10-23",
+      cover: { src: "images/bank-money/cover.jpg", small: "images/bank-money/cover_s.jpg", title: "春の日本銀行", artist: "Souka Kinmei", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:%E6%98%A5%E3%81%AE%E6%97%A5%E6%9C%AC%E9%8A%80%E8%A1%8C.jpg" } },
     { no: 13, slug: "train-punctuality",   cat: "society", q: "電車は、なぜ秒単位で運行できる？",                     tags: ["乗り物", "鉄道"],           related: ["konbini-restock", "internet-delivery"], status: "published", date: "2026-10-22",
       cover: { src: "images/train-punctuality/cover.jpg", small: "images/train-punctuality/cover_s.jpg", title: "Chuo Line E233 series T27 Tokyo", artist: "KibaShinichi", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Chuo_Line_E233_series_T27_Tokyo_20091218.jpg" } },
     { no: 14, slug: "pricing",             cat: "society", q: "商品の値段は、どうやって決まる？",                     tags: ["お金", "お店"],             related: ["bank-money", "too-many-choices"], status: "published", date: "2026-10-22",
@@ -52,7 +53,8 @@ window.ZUKAN = {
       cover: { src: "images/overlooking/cover.jpg", small: "images/overlooking/cover_s.jpg", title: "Shibuya crossing", artist: "Syced", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Shibuya_crossing_(12214).jpg" } },
     { no: 18, slug: "sns-time",            cat: "mind",    q: "SNSを見ていると、時間があっという間に過ぎるのはなぜ？", tags: ["脳", "スマホ", "SNS", "時間"], related: ["too-many-choices", "forgetting", "inside-smartphone"], status: "published", date: "2026-10-21",
       cover: { src: "images/sns-time/cover.jpg", small: "images/sns-time/cover_s.jpg", title: "Hands, coffee, smartphone", artist: "Pixel.la Free Stock Photos", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Hands-coffee-smartphone-technology_(23698591814).jpg" } },
-    { no: 19, slug: "easy-to-talk",        cat: "mind",    q: "初対面なのに、話しやすい人がいるのはなぜ？",           tags: ["人間関係", "脳"],           related: ["sns-time", "overlooking"] },
+    { no: 19, slug: "easy-to-talk",        cat: "mind",    q: "初対面なのに、話しやすい人がいるのはなぜ？",           tags: ["人間関係", "脳"],           related: ["sns-time", "overlooking"], status: "published", date: "2026-10-23",
+      cover: { src: "images/easy-to-talk/cover.jpg", small: "images/easy-to-talk/cover_s.jpg", title: "Coffee Talks", artist: "Joshua Ness", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Coffee_Talks_(Unsplash).jpg" } },
     { no: 20, slug: "too-many-choices",    cat: "mind",    q: "選択肢が多いと、なぜ決められなくなる？",               tags: ["脳", "お店"],               related: ["pricing", "sns-time"] },
 
     { no: 21, slug: "airplane-flight",     cat: "tech",    q: "飛行機は、どうやって空を飛ぶ？",                       tags: ["乗り物", "空", "物理"],     related: ["global-shipping", "bridge-strength"], status: "published", date: "2026-10-21",
