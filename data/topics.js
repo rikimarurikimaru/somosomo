@@ -64,13 +64,15 @@ window.ZUKAN = {
     { no: 23, slug: "global-shipping",     cat: "tech",    q: "世界の荷物は、どうやって運ばれている？",               tags: ["物流", "乗り物", "地図"],   related: ["konbini-restock", "airplane-flight", "silk-road"] },
     { no: 24, slug: "bridge-strength",     cat: "tech",    q: "大きな橋は、なぜ自分の重さで崩れない？",               tags: ["建築", "橋"],               related: ["roman-aqueducts", "wooden-architecture"], status: "published", date: "2026-10-22",
       cover: { src: "images/bridge-strength/cover.jpg", small: "images/bridge-strength/cover_s.jpg", title: "Akashi Kaikyo Ohashi", artist: "Pinqui", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Akashi_Kaikyo_Ohashi_01.jpg" } },
-    { no: 25, slug: "internet-delivery",   cat: "tech",    q: "インターネットの情報は、どうやって届く？",             tags: ["スマホ", "通信"],           related: ["inside-smartphone", "train-punctuality"] },
+    { no: 25, slug: "internet-delivery",   cat: "tech",    q: "インターネットの情報は、どうやって届く？",             tags: ["スマホ", "通信"],           related: ["inside-smartphone", "train-punctuality"], status: "published", date: "2026-10-23",
+      cover: { src: "images/internet-delivery/cover.jpg", small: "images/internet-delivery/cover_s.jpg", title: "Fiber Optics Cables", artist: "Donald Huebler / NASA", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:FIBER_OPTICS_CABLES_-_NARA_-_17496514.jpg" } },
 
     { no: 26, slug: "ramen",               cat: "culture", q: "ラーメンは、どうやって日本の国民食になった？",         tags: ["食べ物", "日本"],           related: ["coffee", "konbini-restock"], status: "published", date: "2026-10-22",
       cover: { src: "images/ramen/cover.jpg", small: "images/ramen/cover_s.jpg", title: "Tsugaru ramen 001", artist: "Ocdp", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Tsugaru_ramen_001.jpg" } },
     { no: 27, slug: "coffee",              cat: "culture", q: "コーヒーは、どうやって世界中に広まった？",             tags: ["食べ物", "交易", "コーヒー"], related: ["silk-road", "ramen"], status: "published", date: "2026-10-22",
       cover: { src: "images/coffee/cover.jpg", small: "images/coffee/cover_s.jpg", title: "Coffee cherries", artist: "Scot Nelson", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Coffee_cherries.jpg" } },
-    { no: 28, slug: "jeans",               cat: "culture", q: "ジーンズは、なぜ世界中で履かれるようになった？",       tags: ["ファッション"],             related: ["coffee", "global-shipping"] },
+    { no: 28, slug: "jeans",               cat: "culture", q: "ジーンズは、なぜ世界中ではかれるようになった？",       tags: ["ファッション"],             related: ["coffee", "global-shipping"], status: "published", date: "2026-10-23",
+      cover: { src: "images/jeans/cover.jpg", small: "images/jeans/cover_s.jpg", title: "Denim jeans wrinkled", artist: "Deb Tremper", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Denim_jeans_wrinkled.jpg" } },
     { no: 29, slug: "wooden-architecture", cat: "culture", q: "日本の木造建築は、なぜ長く残る？",                     tags: ["建築", "日本"],             related: ["bridge-strength", "pyramids"] },
     { no: 30, slug: "time-zones",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"] }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
