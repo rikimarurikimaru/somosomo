@@ -80,6 +80,7 @@ window.ZUKAN = {
       cover: { src: "images/jeans/cover.jpg", small: "images/jeans/cover_s.jpg", title: "Denim jeans wrinkled", artist: "Deb Tremper", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Denim_jeans_wrinkled.jpg" } },
     { no: 29, slug: "wooden-architecture", cat: "culture", q: "日本の木造建築は、なぜ長く残る？",                     tags: ["建築", "日本"],             related: ["bridge-strength", "pyramids"], status: "published", date: "2026-10-24",
       cover: { src: "images/wooden-architecture/cover.jpg", small: "images/wooden-architecture/cover_s.jpg", title: "Horyu-ji Kondo and Five-story Pagoda 2022", artist: "ONO Masanobu", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Horyu-ji_Kondo_and_Five-story_Pagoda_2022.jpg" } },
-    { no: 30, slug: "time-zones",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"] }
+    { no: 30, slug: "time-zones",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"], status: "published", date: "2026-10-24",
+      cover: { src: "images/time-zones/cover.jpg", small: "images/time-zones/cover_s.jpg", title: "Artemis II Captures the Terminator Line", artist: "Reid Wiseman (NASA)", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Artemis_II_Captures_the_Terminator_Line_(art002e000190).jpg" } }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };
