@@ -140,6 +140,7 @@ window.ZUKAN = {
     { no: 81, slug: "israel-palestine", cat: "history", q: "イスラエルとパレスチナは、なぜずっと争っている？", tags: ["世界", "地図", "ニュース"], related: ["russia-ukraine", "india-caste"] },
     { no: 82, slug: "russia-ukraine", cat: "history", q: "ロシアとウクライナは、なぜ戦争になった？", tags: ["世界", "地図", "ニュース"], related: ["israel-palestine", "japan-name"] },
     { no: 83, slug: "india-caste", cat: "history", q: "インドでは、いまも生まれで結婚相手が決まる？", tags: ["世界", "人間関係"], related: ["israel-palestine", "indian-curry-shops"] },
-    { no: 84, slug: "mcdonalds-fries", cat: "society", q: "マクドナルドのポテトは、なぜあんなにおいしい？", tags: ["食べ物", "お店", "会社"], related: ["sukiya-yoshinoya", "misdo-america"] }
+    { no: 84, slug: "mcdonalds-fries", cat: "society", q: "マクドナルドのポテトは、なぜあんなにおいしい？", tags: ["食べ物", "お店", "会社"], related: ["sukiya-yoshinoya", "misdo-america"] },
+    { no: 85, slug: "simulation-hypothesis", cat: "mind", q: "この世界がゲームの中ではないと、言い切れる？", tags: ["脳", "宇宙", "ゲーム"], related: ["forgetting-dreams", "elon-musk"] }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };
