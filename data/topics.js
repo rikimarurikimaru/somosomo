@@ -9,7 +9,8 @@ window.ZUKAN = {
     { id: "society", no: "03", name: "社会・経済",   en: "SOCIETY & ECONOMY",   desc: "お金、お店、交通、都市。暮らしを支える社会のしくみ。" },
     { id: "mind",    no: "04", name: "人間・心理",   en: "HUMAN & MIND",        desc: "記憶、注意、人間関係。脳と心のクセを知る。" },
     { id: "tech",    no: "05", name: "技術・発明",   en: "TECHNOLOGY",          desc: "飛行機、スマホ、橋、ネット。未来をつくる技術。" },
-    { id: "culture", no: "06", name: "文化・暮らし", en: "CULTURE & LIFE",      desc: "食、服、建物、時間。暮らしを彩るものの由来。" }
+    { id: "culture", no: "06", name: "文化・暮らし", en: "CULTURE & LIFE",      desc: "食、服、建物、時間。暮らしを彩るものの由来。" },
+    { id: "ent",     no: "07", name: "エンタメ",     en: "ENTERTAINMENT",       desc: "アニメ、映画、マンガ、ゲーム。作品の裏側と、作者が込めたもの。" }
   ],
 
   /* 最初に制作する5本（この順で公開する） */
@@ -81,6 +82,48 @@ window.ZUKAN = {
     { no: 29, slug: "wooden-architecture", cat: "culture", q: "日本の木造建築は、なぜ長く残る？",                     tags: ["建築", "日本"],             related: ["bridge-strength", "pyramids"], status: "published", date: "2026-10-24",
       cover: { src: "images/wooden-architecture/cover.jpg", small: "images/wooden-architecture/cover_s.jpg", title: "Horyu-ji Kondo and Five-story Pagoda 2022", artist: "ONO Masanobu", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Horyu-ji_Kondo_and_Five-story_Pagoda_2022.jpg" } },
     { no: 30, slug: "time-zones",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"], status: "published", date: "2026-10-24",
-      cover: { src: "images/time-zones/cover.jpg", small: "images/time-zones/cover_s.jpg", title: "Artemis II Captures the Terminator Line", artist: "Reid Wiseman (NASA)", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Artemis_II_Captures_the_Terminator_Line_(art002e000190).jpg" } }
+      cover: { src: "images/time-zones/cover.jpg", small: "images/time-zones/cover_s.jpg", title: "Artemis II Captures the Terminator Line", artist: "Reid Wiseman (NASA)", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Artemis_II_Captures_the_Terminator_Line_(art002e000190).jpg" } },
+
+    /* 2026-10-29 決めた次の40本（題名のルールは CLAUDE.md の「題名の決まり」） */
+    { no: 31, slug: "sunset-red", cat: "nature", q: "夕焼けは、なぜ赤い？", tags: ["空", "光"], related: ["color-vision", "cat-falling"] },
+    { no: 32, slug: "cat-falling", cat: "nature", q: "猫は、なぜ高い所から落ちても平気？", tags: ["生き物", "体"], related: ["sunset-red", "mosquito-bites"] },
+    { no: 33, slug: "onion-tears", cat: "nature", q: "玉ねぎを切ると、なぜ涙が出る？", tags: ["食べ物", "体"], related: ["hiccups", "mosquito-bites"] },
+    { no: 34, slug: "mosquito-bites", cat: "nature", q: "蚊は、なぜ同じ人ばかり刺す？", tags: ["生き物", "体"], related: ["onion-tears", "cat-falling"] },
+    { no: 35, slug: "hiccups", cat: "nature", q: "しゃっくりは、なぜ出る？", tags: ["体", "脳"], related: ["onion-tears", "tickling"] },
+    { no: 36, slug: "golden-week", cat: "history", q: "ゴールデンウィークは、なぜ「ゴールデン」？", tags: ["日本", "映画"], related: ["seven-day-week", "otoshidama"] },
+    { no: 37, slug: "seven-day-week", cat: "history", q: "1週間は、なぜ7日？", tags: ["宇宙", "古代"], related: ["golden-week", "time-zones"] },
+    { no: 38, slug: "japan-name", cat: "history", q: "日本は、なぜ「ジャパン」と呼ばれる？", tags: ["日本", "地図"], related: ["yen-name", "silk-road"] },
+    { no: 39, slug: "otoshidama", cat: "history", q: "お年玉は、なぜ「玉」？", tags: ["日本", "お金"], related: ["yen-name", "golden-week"] },
+    { no: 40, slug: "yen-name", cat: "history", q: "日本のお金は、なぜ「円」？", tags: ["お金", "日本"], related: ["otoshidama", "weak-yen"] },
+    { no: 41, slug: "weak-yen", cat: "society", q: "円安になると、なぜマクドナルドが値上げする？", tags: ["お金", "お店"], related: ["pricing", "yen-name"] },
+    { no: 42, slug: "daiso-100yen", cat: "society", q: "ダイソーは、なぜ100円で売ってやっていける？", tags: ["お金", "お店"], related: ["pricing", "limited-time"] },
+    { no: 43, slug: "furusato-nozei", cat: "society", q: "ふるさと納税は、なぜ得をするの？", tags: ["お金", "税金"], related: ["eat-in-tax", "lottery"] },
+    { no: 44, slug: "eat-in-tax", cat: "society", q: "店内で食べると、なぜ消費税が高くなる？", tags: ["お金", "税金", "お店"], related: ["furusato-nozei", "daiso-100yen"] },
+    { no: 45, slug: "lottery", cat: "society", q: "宝くじは、なぜ当たらないのに売れる？", tags: ["お金", "脳"], related: ["limited-time", "furusato-nozei"] },
+    { no: 46, slug: "tickling", cat: "mind", q: "自分でくすぐっても、なぜくすぐったくない？", tags: ["脳", "体"], related: ["recorded-voice", "hiccups"] },
+    { no: 47, slug: "recorded-voice", cat: "mind", q: "録音した自分の声は、なぜ変に聞こえる？", tags: ["脳", "音"], related: ["tickling", "chalkboard-sound"] },
+    { no: 48, slug: "forgetting-dreams", cat: "mind", q: "見た夢は、なぜ起きるとすぐ忘れる？", tags: ["脳", "記憶"], related: ["forgetting", "tickling"] },
+    { no: 49, slug: "limited-time", cat: "mind", q: "「期間限定」に、なぜ弱い？", tags: ["脳", "お店"], related: ["too-many-choices", "lottery"] },
+    { no: 50, slug: "chalkboard-sound", cat: "mind", q: "黒板をひっかく音は、なぜゾッとする？", tags: ["脳", "音"], related: ["recorded-voice", "tickling"] },
+    { no: 51, slug: "suica", cat: "tech", q: "Suica は、なぜかざすだけで通れる？", tags: ["電車", "スマホ"], related: ["train-punctuality", "microwave-cold-center"] },
+    { no: 52, slug: "microwave-cold-center", cat: "tech", q: "電子レンジで温めると、なぜ真ん中だけ冷たい？", tags: ["家電", "食べ物"], related: ["suica", "chatgpt"] },
+    { no: 53, slug: "chatgpt", cat: "tech", q: "ChatGPT は、言葉の意味をわかって話している？", tags: ["AI", "スマホ"], related: ["internet-delivery", "inside-smartphone"] },
+    { no: 54, slug: "round-windows", cat: "tech", q: "飛行機の窓は、なぜ丸い？", tags: ["乗り物", "空"], related: ["airplane-flight", "shinkansen-nose"] },
+    { no: 55, slug: "shinkansen-nose", cat: "tech", q: "新幹線の先頭は、なぜあんなに長い？", tags: ["乗り物", "電車"], related: ["round-windows", "train-punctuality"] },
+    { no: 56, slug: "kfc-christmas", cat: "culture", q: "ケンタッキーは、なぜクリスマスに食べる？", tags: ["食べ物", "日本"], related: ["valentine-chocolate", "conveyor-sushi"] },
+    { no: 57, slug: "valentine-chocolate", cat: "culture", q: "バレンタインは、なぜ女性がチョコを贈る日になった？", tags: ["食べ物", "日本"], related: ["kfc-christmas", "limited-time"] },
+    { no: 58, slug: "conveyor-sushi", cat: "culture", q: "回転寿司は、だれが思いついた？", tags: ["食べ物", "日本"], related: ["kfc-christmas", "ramen"] },
+    { no: 59, slug: "blue-signal", cat: "culture", q: "緑色なのに、なぜ「青信号」？", tags: ["日本", "言葉"], related: ["color-vision", "japan-name"] },
+    { no: 60, slug: "randoseru", cat: "culture", q: "ランドセルは、なぜ日本だけ？", tags: ["日本", "学校"], related: ["blue-signal", "jeans"] },
+    { no: 61, slug: "kaonashi", cat: "ent", q: "『千と千尋の神隠し』のカオナシは、何を表している？", tags: ["アニメ", "ジブリ", "映画"], related: ["totoro-sisters", "your-name-swap"] },
+    { no: 62, slug: "totoro-sisters", cat: "ent", q: "『となりのトトロ』は、なぜサツキとメイの姉妹2人なの？", tags: ["アニメ", "ジブリ", "映画"], related: ["kaonashi", "doraemon-cat"] },
+    { no: 63, slug: "your-name-swap", cat: "ent", q: "『君の名は。』の入れ替わりは、どこから思いついた？", tags: ["アニメ", "映画"], related: ["kaonashi", "star-wars-droids"] },
+    { no: 64, slug: "doraemon-cat", cat: "ent", q: "ドラえもんは、なぜネコ型ロボット？", tags: ["マンガ", "アニメ"], related: ["anpanman-face", "pokemon-origin"] },
+    { no: 65, slug: "goku-tail", cat: "ent", q: "孫悟空は、なぜ途中でしっぽがなくなった？", tags: ["マンガ", "アニメ"], related: ["doraemon-cat", "kimetsu-origin"] },
+    { no: 66, slug: "pokemon-origin", cat: "ent", q: "ポケモンは、どんな遊びから生まれた？", tags: ["ゲーム", "アニメ"], related: ["goku-tail", "doraemon-cat"] },
+    { no: 67, slug: "star-wars-droids", cat: "ent", q: "『スター・ウォーズ』の R2-D2 と C-3PO は、どこから生まれた？", tags: ["映画"], related: ["your-name-swap", "kaonashi"] },
+    { no: 68, slug: "shingeki-walls", cat: "ent", q: "『進撃の巨人』の壁は、何を表している？", tags: ["マンガ", "アニメ"], related: ["kimetsu-origin", "goku-tail"] },
+    { no: 69, slug: "anpanman-face", cat: "ent", q: "アンパンマンは、なぜ自分の顔を食べさせるヒーロー？", tags: ["アニメ", "マンガ"], related: ["doraemon-cat", "totoro-sisters"] },
+    { no: 70, slug: "kimetsu-origin", cat: "ent", q: "『鬼滅の刃』は、最初はどんな話だった？", tags: ["マンガ", "アニメ"], related: ["shingeki-walls", "goku-tail"] }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };

@@ -395,5 +395,71 @@ window.ZUKAN_PHOTOS = {
    "license": "Public domain",
    "page": "https://commons.wikimedia.org/wiki/File:Rose_O%27Neill_-_When_We_All_Believe_(Santa_Claus_and_children_illustration_from_the_1903_December_2_issue_of_Puck).jpg"
   }
+ ],
+ "ent": [
+  {
+   "src": "images/bg/ent/01.jpg",
+   "small": "images/bg/ent/01_s.jpg",
+   "title": "Alhambra Cinema Keswick main auditorium",
+   "artist": "Back ache",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Alhambra_Cinema_Keswick_main_auditorium.jpg"
+  },
+  {
+   "src": "images/bg/ent/02.jpg",
+   "small": "images/bg/ent/02_s.jpg",
+   "title": "Bell & Howell film projector Recreation Hall The Retreat Hospital Aug25 01",
+   "artist": "Malcolmxl5",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Bell_%26_Howell_film_projector_Recreation_Hall_The_Retreat_Hospital_Aug25_01.jpg"
+  },
+  {
+   "src": "images/bg/ent/03.jpg",
+   "small": "images/bg/ent/03_s.jpg",
+   "title": "Akishima Municipal Baseball Stadium baseball field 2022-10-20",
+   "artist": "Asanagi",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Akishima_Municipal_Baseball_Stadium_baseball_field_2022-10-20.jpg"
+  },
+  {
+   "src": "images/bg/ent/04.jpg",
+   "small": "images/bg/ent/04_s.jpg",
+   "title": "Keys-piano-sh",
+   "artist": "Maciej Korsan",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Keys-piano-sh.jpg"
+  },
+  {
+   "src": "images/bg/ent/05.jpg",
+   "small": "images/bg/ent/05_s.jpg",
+   "title": "Tokyo Dome (December 24, 2024)",
+   "artist": "AmadeusPrower",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Tokyo_Dome_(December_24,_2024).jpg"
+  },
+  {
+   "src": "images/bg/ent/06.jpg",
+   "small": "images/bg/ent/06_s.jpg",
+   "title": "Vinyl Store",
+   "artist": "Celsoazevedo",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Vinyl_Store.jpg"
+  },
+  {
+   "src": "images/bg/ent/07.jpg",
+   "small": "images/bg/ent/07_s.jpg",
+   "title": "Arcade game station",
+   "artist": "Sarasa95",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Arcade_game_station.jpg"
+  },
+  {
+   "src": "images/bg/ent/08.jpg",
+   "small": "images/bg/ent/08_s.jpg",
+   "title": "Championship-Soccer-Stadium-SE-Field-View-2024-08-03",
+   "artist": "Haruhi8",
+   "license": "CC0",
+   "page": "https://commons.wikimedia.org/wiki/File:Championship-Soccer-Stadium-SE-Field-View-2024-08-03.jpg"
+  }
  ]
 };
