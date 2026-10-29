@@ -124,6 +124,21 @@ window.ZUKAN = {
     { no: 67, slug: "star-wars-droids", cat: "ent", q: "『スター・ウォーズ』の R2-D2 と C-3PO は、どこから生まれた？", tags: ["映画"], related: ["your-name-swap", "kaonashi"] },
     { no: 68, slug: "shingeki-walls", cat: "ent", q: "『進撃の巨人』の壁は、何を表している？", tags: ["マンガ", "アニメ"], related: ["kimetsu-origin", "goku-tail"] },
     { no: 69, slug: "anpanman-face", cat: "ent", q: "アンパンマンは、なぜ自分の顔を食べさせるヒーロー？", tags: ["アニメ", "マンガ"], related: ["doraemon-cat", "totoro-sisters"] },
-    { no: 70, slug: "kimetsu-origin", cat: "ent", q: "『鬼滅の刃』は、最初はどんな話だった？", tags: ["マンガ", "アニメ"], related: ["shingeki-walls", "goku-tail"] }
+    { no: 70, slug: "kimetsu-origin", cat: "ent", q: "『鬼滅の刃』は、最初はどんな話だった？", tags: ["マンガ", "アニメ"], related: ["shingeki-walls", "goku-tail"] },
+
+    /* 2026-10-29 本人の持ちこみ題材 */
+    { no: 71, slug: "sukiya-yoshinoya", cat: "society", q: "すき家は、吉野家から生まれた？", tags: ["食べ物", "お店", "会社"], related: ["daiso-100yen", "conveyor-sushi"] },
+    { no: 72, slug: "misdo-america", cat: "society", q: "ミスタードーナツは、アメリカに1店しか残っていない？", tags: ["食べ物", "お店", "会社"], related: ["starbucks-australia", "sukiya-yoshinoya"] },
+    { no: 73, slug: "red-bull-origin", cat: "society", q: "レッドブルは、タイの栄養ドリンクから生まれた？", tags: ["飲み物", "会社"], related: ["starbucks-australia", "misdo-america"] },
+    { no: 74, slug: "starbucks-australia", cat: "society", q: "スタバは、なぜオーストラリアでは失敗した？", tags: ["飲み物", "お店", "会社"], related: ["coffee", "misdo-america"] },
+    { no: 75, slug: "pachinko-exchange", cat: "society", q: "パチンコの景品交換所は、なぜいつも店のすぐ隣にある？", tags: ["お金", "お店"], related: ["lottery", "donki-narrow"] },
+    { no: 76, slug: "indian-curry-shops", cat: "society", q: "インドカレー屋は、なぜガラガラでもつぶれない？", tags: ["食べ物", "お店"], related: ["sukiya-yoshinoya", "donki-narrow"] },
+    { no: 77, slug: "donki-narrow", cat: "society", q: "ドン・キホーテの店内は、なぜあんなに狭い？", tags: ["お店", "脳"], related: ["limited-time", "indian-curry-shops"] },
+    { no: 78, slug: "elon-musk", cat: "tech", q: "イーロン・マスクって、何者？", tags: ["人物", "宇宙", "AI"], related: ["chatgpt", "amazon-next-day"] },
+    { no: 79, slug: "amazon-next-day", cat: "tech", q: "Amazon は、なぜ注文した翌日に届く？", tags: ["物流", "会社"], related: ["global-shipping", "elon-musk"] },
+    { no: 80, slug: "gta5", cat: "ent", q: "GTA5 は、なぜ10年以上も売れ続けている？", tags: ["ゲーム"], related: ["pokemon-origin", "star-wars-droids"] },
+    { no: 81, slug: "israel-palestine", cat: "history", q: "イスラエルとパレスチナは、なぜずっと争っている？", tags: ["世界", "地図", "ニュース"], related: ["russia-ukraine", "india-caste"] },
+    { no: 82, slug: "russia-ukraine", cat: "history", q: "ロシアとウクライナは、なぜ戦争になった？", tags: ["世界", "地図", "ニュース"], related: ["israel-palestine", "japan-name"] },
+    { no: 83, slug: "india-caste", cat: "history", q: "インドでは、いまも生まれで結婚相手が決まる？", tags: ["世界", "人間関係"], related: ["israel-palestine", "indian-curry-shops"] }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };
