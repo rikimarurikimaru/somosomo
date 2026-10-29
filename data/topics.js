@@ -103,7 +103,8 @@ window.ZUKAN = {
     { no: 68, slug: "shingeki-walls", cat: "ent", q: "『進撃の巨人』の壁は、何を表している？", tags: ["マンガ", "アニメ"], related: ["goku-tail"] },
 
     /* 2026-10-29 本人の持ちこみ題材 */
-    { no: 71, slug: "sukiya-yoshinoya", cat: "society", q: "すき家は、吉野家から生まれた？", tags: ["食べ物", "お店", "会社"], related: ["conveyor-sushi"] },
+    { no: 71, slug: "sukiya-yoshinoya", cat: "society", q: "すき家は、吉野家から生まれた？", tags: ["食べ物", "お店", "会社"], related: ["conveyor-sushi"], status: "published", date: "2026-10-29",
+      cover: { src: "images/sukiya-yoshinoya/cover.jpg", small: "images/sukiya-yoshinoya/cover_s.jpg", title: "Sukiya Restaurant, Kyoto", artist: "HAGAT hOMSZE", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:JP_%E6%97%A5%E6%9C%AC_Japan_%E4%BA%AC%E9%83%BD_Kyoto_tourism_Sukiya_Restaurant_1953pm_night_June_2026_N13P_09.jpg" } },
     { no: 72, slug: "misdo-america", cat: "society", q: "ミスタードーナツは、アメリカに1店しか残っていない？", tags: ["食べ物", "お店", "会社"], related: ["starbucks-australia", "sukiya-yoshinoya"] },
     { no: 73, slug: "red-bull-origin", cat: "society", q: "レッドブルは、タイの栄養ドリンクから生まれた？", tags: ["飲み物", "会社"], related: ["starbucks-australia", "misdo-america"] },
     { no: 74, slug: "starbucks-australia", cat: "society", q: "スタバは、なぜオーストラリアでは失敗した？", tags: ["飲み物", "お店", "会社"], related: ["coffee", "misdo-america"] },
