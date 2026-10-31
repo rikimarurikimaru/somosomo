@@ -105,7 +105,8 @@ window.ZUKAN = {
     { no: 65, slug: "goku-tail", cat: "ent", q: "孫悟空は、なぜ途中でしっぽがなくなった？", tags: ["マンガ", "アニメ"], related: ["kaonashi", "pokemon-origin", "shingeki-walls"], status: "published", date: "2026-10-31",
       cover: { src: "images/goku-tail/cover.jpg", small: "images/goku-tail/cover_s.jpg", title: "月百姿 玉兎 孫悟空", artist: "月岡芳年", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Tsukioka_Yoshitoshi_(c._1885%E2%80%9390)_Tsuki_hyaku_shi_-_Tamausagi_songok%C5%AB-.jpg" } },
     { no: 66, slug: "pokemon-origin", cat: "ent", q: "ポケモンは、どんな遊びから生まれた？", tags: ["ゲーム", "アニメ"], related: ["goku-tail"] },
-    { no: 68, slug: "shingeki-walls", cat: "ent", q: "『進撃の巨人』の壁は、何を表している？", tags: ["マンガ", "アニメ"], related: ["goku-tail"] },
+    { no: 68, slug: "shingeki-walls", cat: "ent", q: "『進撃の巨人』の壁は、何を表している？", tags: ["マンガ", "アニメ"], related: ["goku-tail"], status: "published", date: "2026-11-01",
+      cover: { src: "images/shingeki-walls/cover.jpg", small: "images/shingeki-walls/cover_s.jpg", title: "NoerdlingenStadtmauer", artist: "Ramessos", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:NoerdlingenStadtmauer.jpg" } },
 
     /* 2026-10-29 本人の持ちこみ題材 */
     { no: 71, slug: "sukiya-yoshinoya", cat: "society", q: "すき家は、吉野家から生まれた？", tags: ["食べ物", "お店", "会社"], related: ["conveyor-sushi"], status: "published", date: "2026-10-29",
