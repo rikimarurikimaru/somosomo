@@ -87,7 +87,8 @@ window.ZUKAN = {
     /* 2026-10-29 決めた次の40本（題名のルールは CLAUDE.md の「題名の決まり」） */
     { no: 32, slug: "cat-falling", cat: "nature", q: "猫は、なぜ高い所から落ちても平気？", tags: ["生き物", "体"], related: ["mosquito-bites"], status: "published", date: "2026-10-29",
       cover: { src: "images/cat-falling/cover.jpg", small: "images/cat-falling/cover_s.jpg", title: "Cats on roof 02", artist: "Judgefloro", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Cats_on_roof_02.jpg" } },
-    { no: 33, slug: "onion-tears", cat: "nature", q: "玉ねぎを切ると、なぜ涙が出る？", tags: ["食べ物", "体"], related: ["mosquito-bites"] },
+    { no: 33, slug: "onion-tears", cat: "nature", q: "玉ねぎを切ると、なぜ涙が出る？", tags: ["食べ物", "体"], related: ["mosquito-bites"], status: "published", date: "2026-10-31",
+      cover: { src: "images/onion-tears/cover.jpg", small: "images/onion-tears/cover_s.jpg", title: "Onions 002", artist: "Ocdp", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Onions_002.jpg" } },
     { no: 34, slug: "mosquito-bites", cat: "nature", q: "蚊は、なぜ同じ人ばかり刺す？", tags: ["生き物", "体"], related: ["onion-tears", "cat-falling"] },
     { no: 46, slug: "tickling", cat: "mind", q: "自分でくすぐっても、なぜくすぐったくない？", tags: ["脳", "体"], related: ["recorded-voice"] },
     { no: 47, slug: "recorded-voice", cat: "mind", q: "録音した自分の声は、なぜ変に聞こえる？", tags: ["脳", "音"], related: ["tickling", "chalkboard-sound"] },
