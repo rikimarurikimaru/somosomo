@@ -100,7 +100,7 @@ window.ZUKAN = {
     { no: 59, slug: "blue-signal", cat: "culture", q: "緑色なのに、なぜ「青信号」？", tags: ["日本", "言葉"], related: ["color-vision"] },
     { no: 61, slug: "kaonashi", cat: "ent", q: "『千と千尋の神隠し』のカオナシは、何を表している？", tags: ["アニメ", "ジブリ", "映画"], related: ["goku-tail", "shingeki-walls", "pokemon-origin"], status: "published", date: "2026-10-31",
       cover: { src: "images/kaonashi/cover.jpg", small: "images/kaonashi/cover_s.jpg", title: "Japanese communal bathhouse SENTO（子宝湯の男湯）", artist: "ウィキ太郎(WikiTaro)", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Japanese_communal_bathhouse_SENTO_Sent%C5%8D_%E9%8A%AD%E6%B9%AF%E3%81%AE%E6%B5%B4%E5%AE%A4.jpg" } },
-    { no: 65, slug: "goku-tail", cat: "ent", q: "孫悟空は、なぜ途中でしっぽがなくなった？", tags: ["マンガ", "アニメ"], related: [] },
+    { no: 65, slug: "goku-tail", cat: "ent", q: "孫悟空は、なぜ途中でしっぽがなくなった？", tags: ["マンガ", "アニメ"], related: ["kaonashi", "pokemon-origin", "shingeki-walls"] },
     { no: 66, slug: "pokemon-origin", cat: "ent", q: "ポケモンは、どんな遊びから生まれた？", tags: ["ゲーム", "アニメ"], related: ["goku-tail"] },
     { no: 68, slug: "shingeki-walls", cat: "ent", q: "『進撃の巨人』の壁は、何を表している？", tags: ["マンガ", "アニメ"], related: ["goku-tail"] },
 
@@ -113,7 +113,8 @@ window.ZUKAN = {
     { no: 74, slug: "starbucks-australia", cat: "society", q: "スタバは、なぜオーストラリアでは失敗した？", tags: ["飲み物", "お店", "会社"], related: ["coffee", "misdo-america"] },
     { no: 75, slug: "pachinko-exchange", cat: "society", q: "パチンコの景品交換所は、なぜいつも店のすぐ隣にある？", tags: ["お金", "お店"], related: ["donki-narrow"] },
     { no: 76, slug: "indian-curry-shops", cat: "society", q: "インドカレー屋は、なぜガラガラでもつぶれない？", tags: ["食べ物", "お店"], related: ["sukiya-yoshinoya", "donki-narrow"] },
-    { no: 77, slug: "donki-narrow", cat: "society", q: "ドン・キホーテの店内は、なぜあんなに狭い？", tags: ["お店", "脳"], related: ["indian-curry-shops"] },
+    { no: 77, slug: "donki-narrow", cat: "society", q: "ドン・キホーテの店内は、なぜあんなに狭い？", tags: ["お店", "脳"], related: ["indian-curry-shops"], status: "published", date: "2026-10-31",
+      cover: { src: "images/donki-narrow/cover.jpg", small: "images/donki-narrow/cover_s.jpg", title: "Mega Don Quijote Shinsekai Shop and Tsūtenkaku", artist: "FelixM", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Mega_Don_Quijote_Shinsekai_Shop_and_Ts%C5%ABtenkaku_-_Aug_29,_2018.jpg" } },
     { no: 78, slug: "elon-musk", cat: "tech", q: "イーロン・マスクって、何者？", tags: ["人物", "宇宙", "AI"], related: ["amazon-next-day"] },
     { no: 79, slug: "amazon-next-day", cat: "tech", q: "Amazon は、なぜ注文した翌日に届く？", tags: ["物流", "会社"], related: ["global-shipping", "elon-musk"] },
     { no: 80, slug: "gta5", cat: "ent", q: "GTA5 は、なぜ10年以上も売れ続けている？", tags: ["ゲーム"], related: ["pokemon-origin"] },
