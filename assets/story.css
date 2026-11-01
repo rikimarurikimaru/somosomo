@@ -16,6 +16,7 @@
 .story-kicker { display: flex; align-items: center; gap: 10px; font-family: var(--latin); font-weight: 600; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
 .story-kicker b { font-family: var(--body); font-weight: 700; letter-spacing: .06em; background: var(--red); color: #ffffff; padding: 2px 8px; text-transform: none; }
 .story-hero h1 { font-size: 32px; line-height: 1.42; text-shadow: 0 2px 18px rgba(0, 0, 0, .35); }
+.nw { display: inline-block; }
 .story-hero .dek { font-size: 14px; line-height: 1.85; opacity: .92; max-width: 34em; }
 .byline { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11.5px; color: rgba(255, 255, 255, .78); border-top: 1px solid rgba(255, 255, 255, .25); padding-top: 12px; }
 .story-hero .photo-credit { position: relative; padding: 0 20px 12px; color: rgba(255, 255, 255, .55); }
