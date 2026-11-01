@@ -105,7 +105,8 @@ window.ZUKAN = {
       cover: { src: "images/kaonashi/cover.jpg", small: "images/kaonashi/cover_s.jpg", title: "Japanese communal bathhouse SENTO（子宝湯の男湯）", artist: "ウィキ太郎(WikiTaro)", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Japanese_communal_bathhouse_SENTO_Sent%C5%8D_%E9%8A%AD%E6%B9%AF%E3%81%AE%E6%B5%B4%E5%AE%A4.jpg" } },
     { no: 65, slug: "goku-tail", cat: "ent", q: "孫悟空は、なぜ途中でしっぽがなくなった？", tags: ["マンガ", "アニメ"], related: ["kaonashi", "pokemon-origin", "shingeki-walls"], status: "published", date: "2026-10-31",
       cover: { src: "images/goku-tail/cover.jpg", small: "images/goku-tail/cover_s.jpg", title: "月百姿 玉兎 孫悟空", artist: "月岡芳年", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Tsukioka_Yoshitoshi_(c._1885%E2%80%9390)_Tsuki_hyaku_shi_-_Tamausagi_songok%C5%AB-.jpg" } },
-    { no: 66, slug: "pokemon-origin", cat: "ent", q: "ポケモンは、どんな遊びから生まれた？", tags: ["ゲーム", "アニメ"], related: ["goku-tail"] },
+    { no: 66, slug: "pokemon-origin", cat: "ent", q: "ポケモンは、どんな遊びから生まれた？", tags: ["ゲーム", "アニメ"], related: ["goku-tail"], status: "published", date: "2026-11-01",
+      cover: { src: "images/pokemon-origin/cover.jpg", small: "images/pokemon-origin/cover_s.jpg", title: "Sayama Hill Flora and Fauna Interaction Area 2026-05-05（狭山丘陵 虫たちの森）", artist: "Asanagi", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Sayama_Hill_Flora_and_Fauna_Interaction_Area_2026-05-05.jpg" } },
     { no: 68, slug: "shingeki-walls", cat: "ent", q: "『進撃の巨人』の壁は、何を表している？", tags: ["マンガ", "アニメ"], related: ["goku-tail"], status: "published", date: "2026-11-01",
       cover: { src: "images/shingeki-walls/cover.jpg", small: "images/shingeki-walls/cover_s.jpg", title: "NoerdlingenStadtmauer", artist: "Ramessos", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:NoerdlingenStadtmauer.jpg" } },
 
