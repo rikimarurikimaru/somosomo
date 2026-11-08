@@ -141,8 +141,10 @@ window.ZUKAN = {
     { no: 85, slug: "simulation-hypothesis", cat: "mind", q: "この世界がゲームの中ではないと、言い切れる？", tags: ["脳", "宇宙", "ゲーム"], related: ["elon-musk"] },
     /* 特集「世界史の流れ」の本線（36話）。series・ep で順番、sub はサブタイトル（時代区分 ― 年代・地域）。,
        枝の記事は、その記事に trunk: "<本線の slug>" を書くと、本線の記事の下に「いまにつながる話」として並ぶ */
-    { no: 86, slug: "wh01-river-civilizations", cat: "history", series: "world-history", ep: 1, q: "最初の文明は、なぜ大きな川のそばで生まれた？", sub: "古代 ― 前3500年ごろ・メソポタミア", minutes: 8, tags: ["世界史", "古代"], related: ["wh02-egypt"] },
-    { no: 87, slug: "wh02-egypt", cat: "history", series: "world-history", ep: 2, q: "エジプト文明は、なぜ3000年も続いた？", sub: "古代 ― 前3000〜前30年・エジプト", minutes: 8, tags: ["世界史", "古代"], related: ["wh01-river-civilizations", "wh03-kanji-origin"] },
+    { no: 86, slug: "wh01-river-civilizations", cat: "history", series: "world-history", ep: 1, q: "最初の文明は、なぜ大きな川のそばで生まれた？", sub: "古代 ― 前3500年ごろ・メソポタミア", minutes: 8, tags: ["世界史", "古代"], related: ["wh02-egypt"], status: "published", date: "2026-11-09",
+      cover: { src: "images/wh01-river-civilizations/cover.jpg", small: "images/wh01-river-civilizations/cover_s.jpg", title: "Ziggurat of Ur", artist: "Tla2006", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Ziggarat_of_Ur_001.jpg" } },
+    { no: 87, slug: "wh02-egypt", cat: "history", series: "world-history", ep: 2, q: "エジプト文明は、なぜ3,000年も続いた？", sub: "古代 ― 前3000〜前30年・エジプト", minutes: 8, tags: ["世界史", "古代"], related: ["wh01-river-civilizations", "wh03-kanji-origin"], status: "published", date: "2026-11-09",
+      cover: { src: "images/wh02-egypt/cover.jpg", small: "images/wh02-egypt/cover_s.jpg", title: "Karnak Hypostyle Hall", artist: "Gary Todd", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Karnak_Hypostyle_Hall_(9794679144).jpg" } },
     { no: 88, slug: "wh03-kanji-origin", cat: "history", series: "world-history", ep: 3, q: "漢字は、占いから生まれた？", sub: "古代 ― 前1600〜前256年・中国", minutes: 8, tags: ["世界史", "古代"], related: ["wh02-egypt", "wh04-alphabet"] },
     { no: 89, slug: "wh04-alphabet", cat: "history", series: "world-history", ep: 4, q: "アルファベットは、だれが作った？", sub: "古代 ― 前1200〜前146年・地中海", minutes: 8, tags: ["世界史", "古代"], related: ["wh03-kanji-origin", "wh05-persia"] },
     { no: 90, slug: "wh05-persia", cat: "history", series: "world-history", ep: 5, q: "ペルシアは、なぜ世界初の大帝国になれた？", sub: "古代 ― 前550〜前330年・ペルシア", minutes: 8, tags: ["世界史", "古代"], related: ["wh04-alphabet", "wh06-axial-age"] },
