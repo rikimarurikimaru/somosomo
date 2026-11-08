@@ -233,3 +233,15 @@
   .gallery.g3 .gallery-grid img, .gallery.g3 .gallery-grid img:first-child { grid-column: auto; aspect-ratio: 4 / 5; }
   .gallery.g2 .gallery-grid img { aspect-ratio: 3 / 2; }
 }
+
+/* ===== 連載（世界史の流れ）：サブタイトル・前回のあらすじ・次の話へ ===== */
+.story-sub { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .04em; color: rgba(255, 255, 255, .85); border-left: 3px solid var(--red); padding-left: 10px; margin-top: -4px; }
+.recap, .to-next { display: flex; flex-direction: column; gap: 10px; background: var(--surface); border: 1px solid var(--line); padding: 18px 18px 16px; }
+.recap .en, .to-next .en { font-size: 11px; color: var(--red); }
+.recap p, .to-next p { font-size: 14.5px; line-height: 1.9; }
+.to-next { border-color: var(--ink); }
+.ep-link { display: grid; grid-template-columns: 1fr 20px; gap: 2px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 12px; text-decoration: none; }
+.ep-link small { grid-column: 1; font-size: 11px; color: var(--muted); }
+.ep-link b { grid-column: 1; font-family: var(--display); font-weight: 800; font-size: 16px; line-height: 1.5; }
+.ep-link svg { grid-column: 2; grid-row: 1 / 3; width: 20px; height: 20px; color: var(--red); transition: transform .3s var(--ease); }
+.ep-link:hover svg { transform: translateX(4px); }

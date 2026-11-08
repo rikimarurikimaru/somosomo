@@ -17,7 +17,7 @@ window.ZUKAN = {
   picks: ["konbini-restock", "airplane-flight", "sns-time", "singapore"],
 
   /* 検索ページに出す人気のキーワード */
-  keywords: ["宇宙", "脳", "お金", "地図", "建築", "食べ物", "乗り物", "スマホ", "古代"],
+  keywords: ["宇宙", "脳", "お金", "地図", "建築", "食べ物", "乗り物", "スマホ", "古代", "世界史"],
 
   topics: [
     { no: 1,  slug: "bee-vision",          cat: "nature",  q: "ハチは、世界をどう見ている？",                         tags: ["生き物", "目", "ハチ"],       related: ["color-vision", "overlooking", "whale-size"], status: "published", date: "2026-10-22",
@@ -31,13 +31,13 @@ window.ZUKAN = {
     { no: 5,  slug: "saturn-rings",        cat: "nature",  q: "土星の輪は、何でできている？",                         tags: ["宇宙"],                     related: ["lightning", "time-zones"], status: "published", date: "2026-10-24",
       cover: { src: "images/saturn-rings/cover.jpg", small: "images/saturn-rings/cover_s.jpg", title: "Top view of the rings of Saturn by Cassini - October 10, 2013", artist: "NASA/JPL-Caltech/SSI/Cornell", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Top_view_of_the_rings_of_Saturn_by_Cassini_-_October_10,_2013.jpg" } },
 
-    { no: 7,  slug: "roman-aqueducts",     cat: "history", q: "古代ローマ人は、どうやって水を街まで運んだ？",         tags: ["古代", "建築", "水"],       related: ["pyramids", "bridge-strength"], status: "published", date: "2026-10-22",
+    { no: 7,  slug: "roman-aqueducts", trunk: "wh09-rome-rise",     cat: "history", q: "古代ローマ人は、どうやって水を街まで運んだ？",         tags: ["古代", "建築", "水"],       related: ["pyramids", "bridge-strength"], status: "published", date: "2026-10-22",
       cover: { src: "images/roman-aqueducts/cover.jpg", small: "images/roman-aqueducts/cover_s.jpg", title: "Pont du Gard", artist: "Pixabay ユーザー 2990108", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Pont_Du_Gard_Nimes_Arles_Ales_Viaduct_Aqueduct.jpg" } },
-    { no: 8,  slug: "pyramids",            cat: "history", q: "ピラミッドは、どうやって建てられた？",                 tags: ["古代", "建築", "エジプト"],   related: ["roman-aqueducts", "wooden-architecture"], status: "published", date: "2026-10-22",
+    { no: 8,  slug: "pyramids", trunk: "wh02-egypt",            cat: "history", q: "ピラミッドは、どうやって建てられた？",                 tags: ["古代", "建築", "エジプト"],   related: ["roman-aqueducts", "wooden-architecture"], status: "published", date: "2026-10-22",
       cover: { src: "images/pyramids/cover.jpg", small: "images/pyramids/cover_s.jpg", title: "Great Pyramid (Pyramid of Cheops Khufu)", artist: "Warren LeMay", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Great_Pyramid_(Pyramid_of_Cheops_Khufu),_Giza,_GG,_EGY_(40936203693).jpg" } },
     { no: 9,  slug: "singapore",           cat: "history", q: "シンガポールは、なぜ豊かな国になった？",               tags: ["国", "地図", "お金", "アジア"], related: ["global-shipping", "city-rent", "silk-road"], status: "published", date: "2026-10-21",
       cover: { src: "images/singapore/cover.jpg", small: "images/singapore/cover_s.jpg", title: "Skyline of the Central Business District of Singapore", artist: "Jason Goh", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Skyline_of_the_Central_Business_District_of_Singapore_seen_from_across_Marina_Bay_-_20140129.jpg" } },
-    { no: 10, slug: "silk-road",           cat: "history", q: "シルクロードでは、何が運ばれていた？",                 tags: ["古代", "交易", "地図"],     related: ["coffee", "global-shipping"], status: "published", date: "2026-10-23",
+    { no: 10, slug: "silk-road", trunk: "wh11-han-and-rome",           cat: "history", q: "シルクロードでは、何が運ばれていた？",                 tags: ["古代", "交易", "地図"],     related: ["coffee", "global-shipping"], status: "published", date: "2026-10-23",
       cover: { src: "images/silk-road/cover.jpg", small: "images/silk-road/cover_s.jpg", title: "Caravane sur la Route de la soie（カタルーニャ地図の部分）", artist: "アブラハム・クレスケス", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Caravane_sur_la_Route_de_la_soie_-_Atlas_catalan.jpg" } },
 
     { no: 11, slug: "konbini-restock",     cat: "society", q: "コンビニは、なぜ毎日商品を補充できる？",               tags: ["お店", "物流", "コンビニ"],  related: ["global-shipping", "pricing"], status: "published", date: "2026-10-21",
@@ -70,18 +70,18 @@ window.ZUKAN = {
       cover: { src: "images/global-shipping/cover.jpg", small: "images/global-shipping/cover_s.jpg", title: "Shipping containers in a port", artist: "Igor Ovsyannykov", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Shipping_containers_in_a_port_(Unsplash).jpg" } },
     { no: 24, slug: "bridge-strength",     cat: "tech",    q: "大きな橋は、なぜ自分の重さで崩れない？",               tags: ["建築", "橋"],               related: ["roman-aqueducts", "wooden-architecture"], status: "published", date: "2026-10-22",
       cover: { src: "images/bridge-strength/cover.jpg", small: "images/bridge-strength/cover_s.jpg", title: "Akashi Kaikyo Ohashi", artist: "Pinqui", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Akashi_Kaikyo_Ohashi_01.jpg" } },
-    { no: 25, slug: "internet-delivery",   cat: "tech",    q: "インターネットの情報は、どうやって届く？",             tags: ["スマホ", "通信"],           related: ["inside-smartphone", "train-punctuality"], status: "published", date: "2026-10-23",
+    { no: 25, slug: "internet-delivery", trunk: "wh36-after-cold-war",   cat: "tech",    q: "インターネットの情報は、どうやって届く？",             tags: ["スマホ", "通信"],           related: ["inside-smartphone", "train-punctuality"], status: "published", date: "2026-10-23",
       cover: { src: "images/internet-delivery/cover.jpg", small: "images/internet-delivery/cover_s.jpg", title: "Fiber Optics Cables", artist: "Donald Huebler / NASA", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:FIBER_OPTICS_CABLES_-_NARA_-_17496514.jpg" } },
 
     { no: 26, slug: "ramen",               cat: "culture", q: "ラーメンは、どうやって日本の国民食になった？",         tags: ["食べ物", "日本"],           related: ["coffee", "konbini-restock"], status: "published", date: "2026-10-22",
       cover: { src: "images/ramen/cover.jpg", small: "images/ramen/cover_s.jpg", title: "Tsugaru ramen 001", artist: "Ocdp", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Tsugaru_ramen_001.jpg" } },
-    { no: 27, slug: "coffee",              cat: "culture", q: "コーヒーは、どうやって世界中に広まった？",             tags: ["食べ物", "交易", "コーヒー"], related: ["silk-road", "ramen"], status: "published", date: "2026-10-22",
+    { no: 27, slug: "coffee", trunk: "wh24-edo-silver",              cat: "culture", q: "コーヒーは、どうやって世界中に広まった？",             tags: ["食べ物", "交易", "コーヒー"], related: ["silk-road", "ramen"], status: "published", date: "2026-10-22",
       cover: { src: "images/coffee/cover.jpg", small: "images/coffee/cover_s.jpg", title: "Coffee cherries", artist: "Scot Nelson", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Coffee_cherries.jpg" } },
     { no: 28, slug: "jeans",               cat: "culture", q: "ジーンズは、なぜ世界中ではかれるようになった？",       tags: ["ファッション"],             related: ["coffee", "global-shipping"], status: "published", date: "2026-10-23",
       cover: { src: "images/jeans/cover.jpg", small: "images/jeans/cover_s.jpg", title: "Denim jeans wrinkled", artist: "Deb Tremper", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Denim_jeans_wrinkled.jpg" } },
     { no: 29, slug: "wooden-architecture", cat: "culture", q: "日本の木造建築は、なぜ長く残る？",                     tags: ["建築", "日本"],             related: ["bridge-strength", "pyramids"], status: "published", date: "2026-10-24",
       cover: { src: "images/wooden-architecture/cover.jpg", small: "images/wooden-architecture/cover_s.jpg", title: "Horyu-ji Kondo and Five-story Pagoda 2022", artist: "ONO Masanobu", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Horyu-ji_Kondo_and_Five-story_Pagoda_2022.jpg" } },
-    { no: 30, slug: "time-zones",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"], status: "published", date: "2026-10-24",
+    { no: 30, slug: "time-zones", trunk: "wh28-industrial-revolution",          cat: "culture", q: "世界には、なぜ時差がある？",                           tags: ["地図", "宇宙"],             related: ["train-punctuality", "saturn-rings"], status: "published", date: "2026-10-24",
       cover: { src: "images/time-zones/cover.jpg", small: "images/time-zones/cover_s.jpg", title: "Artemis II Captures the Terminator Line", artist: "Reid Wiseman (NASA)", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Artemis_II_Captures_the_Terminator_Line_(art002e000190).jpg" } },
 
     /* 2026-10-29 決めた次の40本（題名のルールは CLAUDE.md の「題名の決まり」） */
@@ -138,6 +138,44 @@ window.ZUKAN = {
     { no: 83, slug: "india-caste", cat: "history", q: "インドでは、いまも生まれで結婚相手が決まる？", tags: ["世界", "人間関係"], related: ["israel-palestine", "indian-curry-shops"] },
     { no: 84, slug: "mcdonalds-fries", cat: "society", q: "マクドナルドのポテトは、なぜあんなにおいしい？", tags: ["食べ物", "お店", "会社"], related: ["sukiya-yoshinoya", "misdo-america"], status: "published", date: "2026-11-01",
       cover: { src: "images/mcdonalds-fries/cover.jpg", small: "images/mcdonalds-fries/cover_s.jpg", title: "French fries", artist: "Fumikas Sagisavas", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:French_fries_%F0%9F%8D%9F.jpg" } },
-    { no: 85, slug: "simulation-hypothesis", cat: "mind", q: "この世界がゲームの中ではないと、言い切れる？", tags: ["脳", "宇宙", "ゲーム"], related: ["elon-musk"] }
+    { no: 85, slug: "simulation-hypothesis", cat: "mind", q: "この世界がゲームの中ではないと、言い切れる？", tags: ["脳", "宇宙", "ゲーム"], related: ["elon-musk"] },
+    /* 特集「世界史の流れ」の本線（36話）。series・ep で順番、sub はサブタイトル（時代区分 ― 年代・地域）。,
+       枝の記事は、その記事に trunk: "<本線の slug>" を書くと、本線の記事の下に「いまにつながる話」として並ぶ */
+    { no: 86, slug: "wh01-river-civilizations", cat: "history", series: "world-history", ep: 1, q: "最初の文明は、なぜ大きな川のそばで生まれた？", sub: "古代 ― 前3500年ごろ・メソポタミア", minutes: 8, tags: ["世界史", "古代"], related: ["wh02-egypt"] },
+    { no: 87, slug: "wh02-egypt", cat: "history", series: "world-history", ep: 2, q: "エジプト文明は、なぜ3000年も続いた？", sub: "古代 ― 前3000〜前30年・エジプト", minutes: 8, tags: ["世界史", "古代"], related: ["wh01-river-civilizations", "wh03-kanji-origin"] },
+    { no: 88, slug: "wh03-kanji-origin", cat: "history", series: "world-history", ep: 3, q: "漢字は、占いから生まれた？", sub: "古代 ― 前1600〜前256年・中国", minutes: 8, tags: ["世界史", "古代"], related: ["wh02-egypt", "wh04-alphabet"] },
+    { no: 89, slug: "wh04-alphabet", cat: "history", series: "world-history", ep: 4, q: "アルファベットは、だれが作った？", sub: "古代 ― 前1200〜前146年・地中海", minutes: 8, tags: ["世界史", "古代"], related: ["wh03-kanji-origin", "wh05-persia"] },
+    { no: 90, slug: "wh05-persia", cat: "history", series: "world-history", ep: 5, q: "ペルシアは、なぜ世界初の大帝国になれた？", sub: "古代 ― 前550〜前330年・ペルシア", minutes: 8, tags: ["世界史", "古代"], related: ["wh04-alphabet", "wh06-axial-age"] },
+    { no: 91, slug: "wh06-axial-age", cat: "history", series: "world-history", ep: 6, q: "ブッダ・孔子・ソクラテスは、なぜ同じころに現れた？", sub: "古代 ― 前500年ごろ・インド、中国、ギリシャ", minutes: 8, tags: ["世界史", "古代"], related: ["wh05-persia", "wh07-athens-democracy"] },
+    { no: 92, slug: "wh07-athens-democracy", cat: "history", series: "world-history", ep: 7, q: "民主主義は、なぜアテネで生まれた？", sub: "古代 ― 前508〜前338年・ギリシャ", minutes: 8, tags: ["世界史", "古代"], related: ["wh06-axial-age", "wh08-alexander"] },
+    { no: 93, slug: "wh08-alexander", cat: "history", series: "world-history", ep: 8, q: "アレクサンドロスは、なぜ10年でインドまで進めた？", sub: "古代 ― 前336〜前30年・ギリシャからインド", minutes: 8, tags: ["世界史", "古代"], related: ["wh07-athens-democracy", "wh09-rome-rise"] },
+    { no: 94, slug: "wh09-rome-rise", cat: "history", series: "world-history", ep: 9, q: "ローマは、なぜ地中海をまるごと手に入れた？", sub: "古代 ― 前509〜後180年・ローマ", minutes: 8, tags: ["世界史", "古代"], related: ["wh08-alexander", "wh10-qin-han"] },
+    { no: 95, slug: "wh10-qin-han", cat: "history", series: "world-history", ep: 10, q: "秦の始皇帝は、中国をどうやって1つにした？", sub: "古代 ― 前221〜後220年・中国", minutes: 8, tags: ["世界史", "古代"], related: ["wh09-rome-rise", "wh11-han-and-rome"] },
+    { no: 96, slug: "wh11-han-and-rome", cat: "history", series: "world-history", ep: 11, q: "漢とローマは、おたがいを知っていた？", sub: "古代 ― 前2〜後2世紀・ユーラシア", minutes: 8, tags: ["世界史", "古代"], related: ["wh10-qin-han", "wh12-fall-of-rome"] },
+    { no: 97, slug: "wh12-fall-of-rome", cat: "history", series: "world-history", ep: 12, q: "ローマ帝国は、なぜ滅びた？", sub: "古代 ― 3〜5世紀・ヨーロッパ", minutes: 8, tags: ["世界史", "古代"], related: ["wh11-han-and-rome", "wh13-islam"] },
+    { no: 98, slug: "wh13-islam", cat: "history", series: "world-history", ep: 13, q: "イスラム教は、なぜ100年で大帝国を築けた？", sub: "中世 ― 7〜8世紀・アラビア半島", minutes: 8, tags: ["世界史", "中世"], related: ["wh12-fall-of-rome", "wh14-tang-changan"] },
+    { no: 99, slug: "wh14-tang-changan", cat: "history", series: "world-history", ep: 14, q: "唐の長安は、なぜ世界一の国際都市になった？", sub: "中世 ― 618〜907年・中国と日本", minutes: 8, tags: ["世界史", "中世"], related: ["wh13-islam", "wh15-medieval-church"] },
+    { no: 100, slug: "wh15-medieval-church", cat: "history", series: "world-history", ep: 15, q: "中世ヨーロッパでは、なぜ王より教会が強かった？", sub: "中世 ― 5〜11世紀・ヨーロッパ", minutes: 8, tags: ["世界史", "中世"], related: ["wh14-tang-changan", "wh16-song-china"] },
+    { no: 101, slug: "wh16-song-china", cat: "history", series: "world-history", ep: 16, q: "紙幣と羅針盤は、なぜ宋の中国で生まれた？", sub: "中世 ― 960〜1279年・中国", minutes: 8, tags: ["世界史", "中世"], related: ["wh15-medieval-church", "wh17-crusades"] },
+    { no: 102, slug: "wh17-crusades", cat: "history", series: "world-history", ep: 17, q: "十字軍は、何のために戦った？", sub: "中世 ― 1096〜1291年・地中海東部", minutes: 8, tags: ["世界史", "中世"], related: ["wh16-song-china", "wh18-mongol-empire"] },
+    { no: 103, slug: "wh18-mongol-empire", cat: "history", series: "world-history", ep: 18, q: "モンゴル帝国は、なぜあれほど大きくなれた？", sub: "中世 ― 1206〜1368年・ユーラシア", minutes: 8, tags: ["世界史", "中世"], related: ["wh17-crusades", "wh19-plague-renaissance"] },
+    { no: 104, slug: "wh19-plague-renaissance", cat: "history", series: "world-history", ep: 19, q: "ペストのあと、なぜルネサンスが花開いた？", sub: "中世 ― 1347〜1500年・ヨーロッパ", minutes: 8, tags: ["世界史", "中世"], related: ["wh18-mongol-empire", "wh20-inca-aztec"] },
+    { no: 105, slug: "wh20-inca-aztec", cat: "history", series: "world-history", ep: 20, q: "インカ帝国は、なぜわずかなスペイン人に滅ぼされた？", sub: "近世 ― 1400〜1533年・アメリカ大陸", minutes: 8, tags: ["世界史", "近世"], related: ["wh19-plague-renaissance", "wh21-columbus"] },
+    { no: 106, slug: "wh21-columbus", cat: "history", series: "world-history", ep: 21, q: "コロンブスは、なぜ西へ向かった？", sub: "近世 ― 1492〜1600年・大西洋", minutes: 8, tags: ["世界史", "近世"], related: ["wh20-inca-aztec", "wh22-reformation"] },
+    { no: 107, slug: "wh22-reformation", cat: "history", series: "world-history", ep: 22, q: "キリスト教は、なぜ2つに割れた？", sub: "近世 ― 1517〜1648年・ヨーロッパ", minutes: 8, tags: ["世界史", "近世"], related: ["wh21-columbus", "wh23-asian-empires"] },
+    { no: 108, slug: "wh23-asian-empires", cat: "history", series: "world-history", ep: 23, q: "そのころ、世界でいちばん豊かだったのはどこ？", sub: "近世 ― 16〜17世紀・オスマン、ムガル、明", minutes: 8, tags: ["世界史", "近世"], related: ["wh22-reformation", "wh24-edo-silver"] },
+    { no: 109, slug: "wh24-edo-silver", cat: "history", series: "world-history", ep: 24, q: "江戸の日本は、なぜ国を閉じた？", sub: "近世 ― 1550〜1700年・世界と日本", minutes: 8, tags: ["世界史", "近世"], related: ["wh23-asian-empires", "wh25-scientific-revolution"] },
+    { no: 110, slug: "wh25-scientific-revolution", cat: "history", series: "world-history", ep: 25, q: "「地球が回っている」と、なぜ言えなかった？", sub: "近世 ― 1543〜1789年・ヨーロッパ", minutes: 8, tags: ["世界史", "近世"], related: ["wh24-edo-silver", "wh26-revolutions"] },
+    { no: 111, slug: "wh26-revolutions", cat: "history", series: "world-history", ep: 26, q: "王さまのいない国は、どうやって生まれた？", sub: "近代 ― 1776〜1799年・アメリカとフランス", minutes: 8, tags: ["世界史", "近代"], related: ["wh25-scientific-revolution", "wh27-nations"] },
+    { no: 112, slug: "wh27-nations", cat: "history", series: "world-history", ep: 27, q: "国のために戦う「国民」は、いつ生まれた？", sub: "近代 ― 1799〜1871年・ヨーロッパ", minutes: 8, tags: ["世界史", "近代"], related: ["wh26-revolutions", "wh28-industrial-revolution"] },
+    { no: 113, slug: "wh28-industrial-revolution", cat: "history", series: "world-history", ep: 28, q: "産業革命は、なぜイギリスで起きた？", sub: "近代 ― 1760〜1900年・イギリスから世界へ", minutes: 8, tags: ["世界史", "近代"], related: ["wh27-nations", "wh29-imperialism"] },
+    { no: 114, slug: "wh29-imperialism", cat: "history", series: "world-history", ep: 29, q: "世界の大部分は、なぜ植民地にされた？", sub: "近代 ― 1870〜1914年・アフリカとアジア", minutes: 8, tags: ["世界史", "近代"], related: ["wh28-industrial-revolution", "wh30-meiji-opium"] },
+    { no: 115, slug: "wh30-meiji-opium", cat: "history", series: "world-history", ep: 30, q: "日本は、なぜ植民地にされなかった？", sub: "近代 ― 1840〜1912年・中国と日本", minutes: 8, tags: ["世界史", "近代"], related: ["wh29-imperialism", "wh31-ww1"] },
+    { no: 116, slug: "wh31-ww1", cat: "history", series: "world-history", ep: 31, q: "第一次世界大戦は、なぜ止められなかった？", sub: "現代 ― 1914〜1918年・ヨーロッパ", minutes: 8, tags: ["世界史", "現代"], related: ["wh30-meiji-opium", "wh32-depression"] },
+    { no: 117, slug: "wh32-depression", cat: "history", series: "world-history", ep: 32, q: "大恐慌から、なぜ独裁者が生まれた？", sub: "現代 ― 1917〜1939年・世界", minutes: 8, tags: ["世界史", "現代"], related: ["wh31-ww1", "wh33-ww2"] },
+    { no: 118, slug: "wh33-ww2", cat: "history", series: "world-history", ep: 33, q: "第二次世界大戦は、なぜ世界中に広がった？", sub: "現代 ― 1939〜1945年・世界", minutes: 8, tags: ["世界史", "現代"], related: ["wh32-depression", "wh34-cold-war"] },
+    { no: 119, slug: "wh34-cold-war", cat: "history", series: "world-history", ep: 34, q: "冷戦は、なぜ「冷たい」まま終わった？", sub: "現代 ― 1945〜1991年・世界", minutes: 8, tags: ["世界史", "現代"], related: ["wh33-ww2", "wh35-decolonization"] },
+    { no: 120, slug: "wh35-decolonization", cat: "history", series: "world-history", ep: 35, q: "植民地は、どうやって独立した？", sub: "現代 ― 1945〜1975年・アジアとアフリカ", minutes: 8, tags: ["世界史", "現代"], related: ["wh34-cold-war", "wh36-after-cold-war"] },
+    { no: 121, slug: "wh36-after-cold-war", cat: "history", series: "world-history", ep: 36, q: "冷戦のあと、世界はなぜいまの形になった？", sub: "現代 ― 1991年〜現在・世界", minutes: 8, tags: ["世界史", "現代"], related: ["wh35-decolonization"] }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };

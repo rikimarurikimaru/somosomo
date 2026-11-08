@@ -37,5 +37,21 @@ window.ZUKAN_FEATURES = [
     title: "世界をめぐった、食べ物と服",
     lead: "コーヒー、ラーメン、ジーンズ。今では当たり前のものも、長い旅をして私たちのもとに届きました。",
     articles: ["coffee", "ramen", "jeans", "silk-road"]
+  },
+  {
+    id: "world-history", no: "07", en: "WORLD HISTORY", cover: "history",
+    title: "世界史の流れ　36話で読む通史",
+    lead: "メソポタミアの最初の都市から、冷戦のあとの今まで。1話に1つの「なぜ？」を追いながら、順番に読めば世界史の流れが1本につながります。",
+    note: "時代区分（古代・中世・近世・近代・現代）は、日本の世界史の教科書でよく使われる分け方にならったこのサイトの区分です。境目は地域や学者によって異なります。",
+    /* parts：6部の区切り。count は各部の話数（articles の順に割り当てる） */
+    parts: [
+      { no: "01", en: "THE FIRST CIVILIZATIONS", era: "古代", title: "文明のはじまり", span: "前3500〜前500年", count: 6 },
+      { no: "02", en: "CLASSICAL EMPIRES", era: "古代", title: "古典の帝国", span: "前500〜後500年", count: 6 },
+      { no: "03", en: "FAITH & TRADE", era: "中世", title: "信仰と交易", span: "500〜1300年", count: 6 },
+      { no: "04", en: "THE WORLD CONNECTS", era: "中世〜近世", title: "世界がつながる", span: "1300〜1700年", count: 6 },
+      { no: "05", en: "THE MODERN AGE", era: "近世〜近代", title: "近代の誕生", span: "1550〜1912年", count: 6 },
+      { no: "06", en: "THE 20TH CENTURY TO NOW", era: "現代", title: "20世紀から今へ", span: "1914年〜現在", count: 6 }
+    ],
+    articles: ["wh01-river-civilizations", "wh02-egypt", "wh03-kanji-origin", "wh04-alphabet", "wh05-persia", "wh06-axial-age", "wh07-athens-democracy", "wh08-alexander", "wh09-rome-rise", "wh10-qin-han", "wh11-han-and-rome", "wh12-fall-of-rome", "wh13-islam", "wh14-tang-changan", "wh15-medieval-church", "wh16-song-china", "wh17-crusades", "wh18-mongol-empire", "wh19-plague-renaissance", "wh20-inca-aztec", "wh21-columbus", "wh22-reformation", "wh23-asian-empires", "wh24-edo-silver", "wh25-scientific-revolution", "wh26-revolutions", "wh27-nations", "wh28-industrial-revolution", "wh29-imperialism", "wh30-meiji-opium", "wh31-ww1", "wh32-depression", "wh33-ww2", "wh34-cold-war", "wh35-decolonization", "wh36-after-cold-war"]
   }
 ];
