@@ -182,9 +182,18 @@
   var main = document.getElementById("main");
 
   /* ---------- ホーム ---------- */
+  /* 表紙（Cover Story）：毎日入れ替わる5本。7日以内に公開した記事があれば先頭に1本、残りは公開済みの全記事から日付で選ぶ */
+  function coverStories() {
+    function h(str) { var x = 0; for (var i = 0; i < str.length; i++) x = (x * 31 + str.charCodeAt(i)) | 0; return x; }
+    var all = pubs(function (t) { return !!t.cover; });
+    var out = all.filter(isNew).slice(0, 1);
+    var rest = all.filter(function (t) { return out.indexOf(t) < 0; })
+      .sort(function (a, b) { return h(a.slug + DAY) - h(b.slug + DAY); });
+    return out.concat(rest).slice(0, 5);
+  }
   function renderHome() {
-    var stories = Z.picks.map(topic);
-    var start = mod(DAY, stories.length);
+    var stories = coverStories(), picks = Z.picks.map(topic);
+    var start = 0;
     var slides = stories.map(function (t, i) {
       var c = cat(t.cat), p = t.cover || photo(t.cat, i * 2);
       return '<a class="slide' + (i === start ? " is-active" : "") + '" href="' + articleUrl(t) + '" data-credit="' + esc(p ? credit(p) : "") + '"' + (i === start ? "" : ' tabindex="-1" aria-hidden="true"') + ">" +
@@ -209,7 +218,7 @@
       '<p class="tate" aria-hidden="true">なぜ？を、五分で。</p></div>' +
       '<div id="c-credit">' + credit(stories[start].cover || photo(stories[start].cat, start * 2)) + "</div></div>" +
       '<p class="home-intro">身の回りの「なぜ？」を、写真と図解で<b>5分</b>で読めるウェブマガジン。いま<b>' + pubs().length + "本</b>の疑問に答えています。</p>" +
-      '<section class="sec home-picks">' + secHead("First Issue", "創刊ラインナップ", null, null, true) + '<div class="rows two">' + stories.map(row).join("") + "</div></section></div>" +
+      '<section class="sec home-picks">' + secHead("First Issue", "創刊ラインナップ", null, null, true) + '<div class="rows two">' + picks.map(row).join("") + "</div></section></div>" +
       '<section class="statement" aria-label="SOMOSOMOについて"><p class="statement-lead">そもそも、<br>なぜだろう？</p>' +
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
@@ -230,7 +239,8 @@
   function mosaic(list, hl) { return '<div class="rows two mosaic">' + list.map(function (t, i) { return row(t, i % 5 === 0, hl === true); }).join("") + "</div>"; }
   /* ---------- 並べ方のいろいろ（BRUTUS のトップのように、欄ごとに変える） ---------- */
   var HL = window.ZUKAN_HL || {}, COL = window.ZUKAN_COLUMNS || {};
-  function hlA(t) { return HL[t.slug] && HL[t.slug].a ? '<span class="row-hl"><i>ひとことで</i>' + esc(HL[t.slug].a) + "</span>" : ""; }
+  /* 問いの答え（ひとことで言うと）は記事の外に出さない（2026-11-19、本人「読む一番の動機がなくなる」）。呼び出しは残し、何も出さない */
+  function hlA() { return ""; }
   /* 縦の番号つき一覧 */
   function vlist(list, hl, from) {
     return '<ol class="vlist">' + list.map(function (t, i) {
@@ -273,7 +283,7 @@
   /* 写真なし、文字だけの目録（問いと、ひとことの答え） */
   function catalog(list) {
     return '<ol class="catalog">' + list.map(function (t, i) {
-      return '<li><a href="' + articleUrl(t) + '"><span class="ct-no">' + pad(i + 1) + "</span><b>" + esc(t.q) + "</b>" + hlA(t) + "</a></li>";
+      return '<li><a href="' + articleUrl(t) + '"><span class="ct-no">' + pad(i + 1) + "</span><b>" + esc(t.q) + '</b><span class="meta">' + readLabel(t) + "</span></a></li>";
     }).join("") + "</ol>";
   }
   /* 欄と欄のあいだの、大きな引用1行 */
@@ -349,6 +359,7 @@
   function startFeed(cat) {
     var box = document.getElementById("feed-box"), end = document.getElementById("feed-end");
     if (!box) return;
+    if (/[?&]nofeed/.test(location.search)) { box.innerHTML = "<p>（撮影用：数珠つなぎの欄を止めています）</p>"; return; }  /* 撮影ツールでホームの中ほどを撮るため */
     var ex = cat ? {} : shownSlugs();
     var list = mix(pubs(function (t) { return cat ? t.cat === cat : !ex[t.slug]; }));
     if (!cat && list.length < 12) list = pubs(function (t) { return t.slug !== document.body.getAttribute("data-slug"); });
