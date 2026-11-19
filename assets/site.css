@@ -2,6 +2,8 @@
    Layout: 雑誌のウェブ版。紙の地に、明朝の見出し・イタリックの英数字・細い罫線。
    写真が主役。表紙は自動で切り替わり、スクロールに合わせて誌面がふわっと現れる。
    紙の印刷物として、ライトの見た目に固定する。 */
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
 :root {
   color-scheme: light;
   --paper: #f5f2eb;
@@ -14,6 +16,7 @@
   --on-dark: #f5f2eb;
   --display: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --latin: "Cormorant Garamond", "Times New Roman", serif;
+  --poster: "Anton", "Impact", "Arial Narrow", sans-serif;
   --body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
   --header-h: 56px;
   --tab-h: 60px;
@@ -515,3 +518,77 @@ img.kb { animation: kb 18s ease-out both; }
   .series-index { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
   .sb-cells a { height: 12px; }
 }
+
+/* ===== 2026-11-19 ブラッシュアップ（BRUTUS.jp を参考に、整いすぎた誌面に緩急をつける） ===== */
+/* セクション見出し：極太の英字を大きく中央に、日本語は小さく添える */
+.sec-head { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "no more" "t t"; align-items: center; gap: 0 12px; border-bottom: 2px solid var(--ink); padding-bottom: 12px; }
+.sec-no { grid-area: no; font-size: 22px; line-height: 1; }
+.sec-head > .more { grid-area: more; }
+.sec-title { grid-area: t; text-align: center; }
+.sec-title .en { font-family: var(--poster); font-weight: 400; font-size: clamp(40px, 12.5vw, 72px); line-height: 1; letter-spacing: .01em; color: var(--ink); margin: 2px 0 6px; overflow-wrap: anywhere; }
+.sec-title h2 { font-family: var(--body); font-size: 13px; font-weight: 700; letter-spacing: .12em; line-height: 1.5; }
+
+/* 写真の色をそろえる（集めた写真の色味のばらつきを抑える） */
+.row .thumb img, .steps .thumb img, .fcard img.bg, .cat-row .thumb img, .pi-head img.bg, .pi-eps img, .part-head img.bg { filter: contrast(1.06) saturate(.86) sepia(.08); }
+
+/* 一覧のモザイク：大きい1本 → 2列の4本 → 大きい1本 … */
+.rows.mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 14px; }
+.mosaic .row { grid-template-columns: 1fr; align-items: start; gap: 10px; padding: 0; border-bottom: 0; }
+.mosaic .row .thumb { aspect-ratio: 1 / 1; }
+.mosaic .row h3 { font-size: 15px; line-height: 1.5; }
+.mosaic .row .sub, .mosaic .row .meta .sep, .mosaic .row .date { display: none; }
+.mosaic .row:nth-child(5n + 1) { grid-column: 1 / -1; gap: 12px; }
+.mosaic .row:nth-child(5n + 1) .thumb { aspect-ratio: 3 / 2; margin: 0 -16px; }
+.mosaic .row:nth-child(5n + 1) h3 { font-size: 21px; line-height: 1.45; }
+.mosaic .row:nth-child(5n + 1) .sub, .mosaic .row:nth-child(5n + 1) .meta .sep, .mosaic .row:nth-child(5n + 1) .date { display: revert; }
+/* 2列で1本だけ余ったら、横長の行にする */
+.mosaic .row:last-child:nth-child(5n + 2), .mosaic .row:last-child:nth-child(5n + 4) { grid-column: 1 / -1; grid-template-columns: 104px 1fr; align-items: center; gap: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
+.mosaic .row:last-child:nth-child(5n + 2) .thumb, .mosaic .row:last-child:nth-child(5n + 4) .thumb { aspect-ratio: 4 / 5; }
+@media (min-width: 768px) {
+  .rows.mosaic { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; grid-auto-flow: dense; }
+  .mosaic .row:nth-child(5n + 1) { grid-column: span 2; grid-row: span 2; }
+  .mosaic .row:nth-child(5n + 1) .thumb { margin: 0; aspect-ratio: 4 / 3; }
+  .mosaic .row:nth-child(5n + 1) h3 { font-size: 24px; }
+  .mosaic .row:last-child:nth-child(5n + 2), .mosaic .row:last-child:nth-child(5n + 4) { grid-column: auto; grid-template-columns: 1fr; border-top: 0; padding-top: 0; }
+  .mosaic .row:last-child:nth-child(5n + 2) .thumb, .mosaic .row:last-child:nth-child(5n + 4) .thumb { aspect-ratio: 1 / 1; }
+}
+
+/* 黒い帯（上の縁をギザギザに切る） */
+.dark-band { position: relative; background: var(--night); color: var(--on-dark); margin: 26px -16px 0; padding: 30px 16px 40px; }
+.dark-band::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; height: 23px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='23'%3E%3Cpath d='M0 23L30 2L44 14L70 0L88 23Z' fill='%2315171b'/%3E%3C/svg%3E") repeat-x left bottom / 88px 23px; }
+.dark-band .sec-head { border-bottom-color: var(--on-dark); }
+.dark-band .sec-title .en, .dark-band .more { color: var(--on-dark); }
+.dark-band .sec-no { color: #e0646c; }
+@media (min-width: 768px) { .dark-band { margin-inline: 0; padding-inline: 28px; } }
+
+/* 世界史の目次：部ごとに写真の見出し、各話は番号つきの写真タイル */
+.series-index { border-top: 0; gap: 22px; }
+.series-index li { border-bottom: 0; padding: 0; }
+.pi-head { position: relative; overflow: hidden; min-height: 150px; align-items: end; padding: 16px 14px 14px; background: var(--night); color: #ffffff; grid-template-columns: auto 1fr 18px; }
+.pi-head img.bg { transition: transform .8s var(--ease); }
+.pi-head:hover img.bg { transform: scale(1.05); }
+.pi-head .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 10, 12, .05) 20%, rgba(10, 10, 12, .78)); }
+.pi-head .pi-no, .pi-head .pi-txt, .pi-head svg { position: relative; }
+.pi-head .pi-no { font-size: 56px; color: #ffffff; text-shadow: 0 2px 14px rgba(0, 0, 0, .35); }
+.pi-head .pi-txt small { color: rgba(255, 255, 255, .8); }
+.pi-head .pi-txt b { font-size: 21px; }
+.pi-head svg { color: #ffffff; }
+.pi-eps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; padding: 3px 0 0; }
+.pi-eps button { position: relative; overflow: hidden; height: auto; aspect-ratio: 4 / 3; padding: 0; border: 0; background: var(--surface); outline: 1px solid var(--line); outline-offset: -1px; display: grid; place-items: center; align-content: center; }
+.pi-eps button img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.pi-eps button.is-pub::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 12, .65)); }
+.pi-eps button b { position: relative; z-index: 1; font-family: var(--latin); font-style: italic; font-weight: 700; font-size: 26px; line-height: 1; }
+.pi-eps button.is-pub b { position: absolute; left: 8px; bottom: 6px; color: #ffffff; }
+.pi-eps button small { font-family: var(--body); font-style: normal; font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: .08em; }
+.pi-eps button.is-pub { outline: 0; }
+.pi-eps button:hover img { transform: scale(1.08); }
+@media (min-width: 768px) { .pi-eps { grid-template-columns: repeat(6, minmax(0, 1fr)); } .pi-eps button { aspect-ratio: 1 / 1; } }
+
+/* 各部の扉：写真の上に部の名前 */
+.part-head { position: relative; overflow: hidden; min-height: 230px; align-items: end; padding-top: 60px; }
+.part-head .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 10, 12, .1) 10%, rgba(10, 10, 12, .85)); }
+.part-head > :not(img):not(.shade) { position: relative; }
+.part-head .part-no { font-family: var(--poster); font-style: normal; font-weight: 400; font-size: 84px; line-height: .85; color: #ffffff; }
+.part-title h2 { font-size: 24px; }
+.part .steps .thumb { aspect-ratio: 4 / 5; }
+.part .steps a { grid-template-columns: 52px 1fr 96px; }
