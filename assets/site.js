@@ -320,9 +320,9 @@
   function genreSec(c, k) {
     var all = pubs(function (t) { return t.cat === c.id && !t.series; });
     if (!all.length) return "";
-    var L = { nature: "mosaic", history: "vlist", society: "scatter", mind: "rail", tech: "hero", culture: "spread", ent: "catalog" }[c.id] || "mosaic";
+    var L = { nature: "mosaic", history: "vlist", society: "scatter", mind: "rail", tech: "hero", culture: "spread", ent: "rail2" }[c.id] || "mosaic";
     var big = { nature: 1, society: 1, culture: 1 }[c.id];
-    var body = L === "vlist" ? vlist(all.slice(0, 5)) : L === "scatter" ? scatter(all.slice(0, 5)) : L === "rail" ? marquee(all.slice(0, 8), c.name + "の記事") : L === "hero" ? heroList(all.slice(0, 5)) :
+    var body = L === "vlist" ? vlist(all.slice(0, 5)) : L === "scatter" ? scatter(all.slice(0, 5)) : L === "rail" ? marquee(all.slice(0, 8), c.name + "の記事") : L === "rail2" ? arail(all.slice(0, 8)) : L === "hero" ? heroList(all.slice(0, 5)) :
       L === "spread" ? spread(all.slice(0, 4)) : L === "catalog" ? catalog(all.slice(0, 5)) : mosaic(all.slice(0, 5));
     return '<section class="sec genre g-' + L + (k % 2 ? " dark-band" : big ? " notch" : "") + '" id="g-' + c.id + '">' + secHead(c.en, c.name, null, null, !big) +
       body + '<a class="genre-more" href="' + catUrl(c.id) + '">' + esc(c.name) + "の疑問をすべて見る" + svg("arrow") + "</a></section>";
