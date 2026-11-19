@@ -486,9 +486,7 @@
       '<nav class="chips scroll" aria-label="カテゴリの切り替え">' + Z.categories.map(function (x) {
         return '<a href="' + catUrl(x.id) + '"' + (x.id === c.id ? ' class="on" aria-current="page"' : "") + ">" + esc(x.name) + "</a>";
       }).join("") + "</nav>" +
-      catBody(c, list) + feedHtml(true);
-    startFeed("");
-    startFeedTabs();
+      catBody(c, list);
     window.scrollTo(0, 0);
   }
 
