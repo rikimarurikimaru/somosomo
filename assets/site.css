@@ -912,3 +912,7 @@ img.kb { animation: kb 18s ease-out both; }
 /* 一覧の題（.hl）は読点の区切りを生かす（帯ではないので地は付かない）。コラムの下のリンクは1行ずつ素直に折り返す */
 .hl .qw { display: inline-block; }
 .col-links .qw { display: inline; }
+/* 流れる帯は、触っても・ホバーしても・選んでも止めない（記事をタップして移るときだけ） */
+@media (prefers-reduced-motion: no-preference) {
+  .marquee .mq-track, .marquee:hover .mq-track, .marquee:focus-within .mq-track, .marquee.is-held .mq-track, .marquee:has(a:focus-visible) .mq-track { animation-play-state: running; }
+}

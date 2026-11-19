@@ -225,7 +225,7 @@
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
       '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.map(fcard).join("") + "</div></section>" +
-      Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : "") + (c.id === "nature" ? quoteBand() : ""); }).join("") +
+      Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : "") + ""; }).join("") +
       '<section class="tag-band" aria-labelledby="h-kw"><span class="en">Pick up keywords</span><h2 id="h-kw">#気になることばから探す</h2>' +
       '<div class="hash">' + Z.keywords.map(function (k, i) { return '<a href="' + u("search.html#k" + i) + '">#' + esc(k) + "</a>"; }).join("") + "</div></section>";
     startCarousel(start);
@@ -313,17 +313,7 @@
       var step = (card.getBoundingClientRect().width + 12) * +b.getAttribute("data-dir");
       r.scrollBy({ left: step, behavior: REDUCED ? "auto" : "smooth" });
     });
-    /* 流れる帯：指で触っている間と、そのあと少しのあいだは止める */
-    document.querySelectorAll(".marquee").forEach(function (m) {
-      var t = 0;
-      function hold() { clearTimeout(t); m.classList.add("is-held"); }
-      function release() { clearTimeout(t); t = setTimeout(function () { m.classList.remove("is-held"); }, 1200); }
-      m.addEventListener("touchstart", hold, { passive: true });
-      m.addEventListener("touchend", release, { passive: true });
-      m.addEventListener("touchcancel", release, { passive: true });
-      m.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hold(); });
-      m.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") release(); });
-    });
+    /* 流れる帯は止めない（2026-11-20、本人「記事をタップして移るとき以外は止まらないように」） */
   }
 
   /* ホームのジャンルの欄（BRUTUS のトップの FASHION・WATCHES のように、ジャンルごとに積む） */
