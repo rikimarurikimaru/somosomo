@@ -942,3 +942,9 @@ img.kb { animation: kb 18s ease-out both; }
 /* 検索のキーワード（ボタン） */
 .hash button { padding: 7px 14px; border: 1px solid var(--ink); background: none; color: var(--ink); font-size: 13.5px; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
 .hash button:hover { background: var(--ink); color: var(--paper); }
+
+/* ===== 2026-11-20 特集の紹介文 ===== */
+.feature-intro { display: flex; flex-direction: column; gap: 14px; max-width: 680px; border-left: 3px solid var(--red); padding-left: 16px; }
+.fi-en { font-family: var(--latin); font-weight: 600; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
+.feature-intro p { font-size: 15.5px; line-height: 1.95; }
+.feature-intro .fi-lead { font-family: var(--display); font-weight: 800; font-size: 19px; line-height: 1.7; }

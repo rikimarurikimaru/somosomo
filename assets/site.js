@@ -561,12 +561,12 @@
       '<nav class="crumbs" aria-label="現在地"><a href="' + u("index.html") + '">ホーム</a><span>/</span><a href="' + u("features.html") + '">特集</a><span>/</span><span>' + esc(f.title.split("　")[0]) + "</span></nav>" +
       '<section class="cover">' + (p ? img(p.src, "bg kb", true) : "") + '<span class="shade"></span>' +
       '<div class="cover-in"><span class="big-no">' + f.no + '</span><span class="en">Special ・ ' + f.en + "</span><h1><span class=\"band\">" + esc(f.title) + "</span></h1><p>" + esc(f.lead) + '</p><span class="meta">' + (f.parts ? "全" + list.length + "話 ・ " + f.parts.length + "部" : "全" + list.length + "記事") + "</span></div>" + credit(p) + "</section>" +
+      (f.intro ? '<section class="sec feature-intro"><span class="fi-en">About this special</span>' + f.intro.map(function (x, i) { return "<p" + (i === 0 ? ' class="fi-lead"' : "") + ">" + esc(x) + "</p>"; }).join("") + "</section>" : "") +
       (f.parts ? seriesBody(f, list) :
       '<section class="sec">' + secHead("How to Read", "この特集の読み方") +
       '<ol class="steps">' + list.map(function (t, i) { return stepItem(t, i); }).join("") + "</ol></section>") +
       '<section class="sec">' + secHead("More Specials", "ほかの特集", u("features.html")) +
-      '<div class="feature-rail">' + F.filter(function (x) { return x.id !== f.id; }).map(fcard).join("") + "</div></section>" + feedHtml(false);
-    startFeed("");
+      '<div class="feature-rail">' + F.filter(function (x) { return x.id !== f.id; }).map(fcard).join("") + "</div></section>";
     window.scrollTo(0, 0);
   }
 
@@ -819,6 +819,12 @@
           }).join("") + "</ul></section>" : "");
       } else {
         idle.innerHTML = "";
+      }
+      if (!q) {
+        /* 何も入れていないとき：全記事の一覧はやめ、More Stories（ジャンルで絞り込める数珠つなぎ）を出す */
+        var res = document.getElementById("results");
+        if (!res.querySelector("#feed")) { res.innerHTML = feedHtml(true); startFeed(""); startFeedTabs(); }
+        return;
       }
       var list = Z.topics.filter(function (t) { return (!state.cat || t.cat === state.cat) && (!q || matches(t, q)); });
       list = list.filter(function (t) { return t.status === "published"; }).sort(byNew).concat(list.filter(function (t) { return t.status !== "published"; }));
