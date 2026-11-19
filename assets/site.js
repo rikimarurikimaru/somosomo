@@ -194,7 +194,7 @@
     return out.concat(rest).slice(0, 5);
   }
   function renderHome() {
-    var stories = coverStories(), picks = Z.picks.map(topic).filter(function (t) { return stories.indexOf(t) < 0; });
+    var stories = coverStories(), picks = pubs(function (t) { return stories.indexOf(t) < 0 && !t.series; }).slice(0, 4);  /* 連載は下の「連載」の欄で見せる */
     var start = 0;
     var slides = stories.map(function (t, i) {
       var c = cat(t.cat), p = t.cover || photo(t.cat, i * 2);
@@ -220,15 +220,14 @@
       '<p class="tate" aria-hidden="true">なぜ？を、五分で。</p></div>' +
       '<div id="c-credit">' + credit(stories[start].cover || photo(stories[start].cat, start * 2)) + "</div></div>" +
       '<p class="home-intro">身の回りの「なぜ？」を、写真と図解で<b>5分</b>で読めるウェブマガジン。</p>' +
-      (picks.length ? '<section class="sec home-picks">' + secHead("First Issue", "創刊ラインナップ", null, null, true) + '<div class="rows two">' + picks.map(row).join("") + "</div></section>" : "") + "</div>" +
+      (picks.length ? '<section class="sec home-picks">' + secHead("New Arrivals", "新着", u("search.html"), "すべての記事", true) + '<div class="rows two">' + picks.map(row).join("") + "</div></section>" : "") + "</div>" +
       '<section class="statement" aria-label="SOMOSOMOについて"><p class="statement-lead">そもそも、<br>なぜだろう？</p>' +
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
       '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.map(fcard).join("") + "</div></section>" +
+      seriesSec() +
       '<section class="sec genre-chapter">' + secHead("Categories", "ジャンルから読む") + "</section>" +
-      Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : ""); }).join("") +
-      '<section class="tag-band" aria-labelledby="h-kw"><span class="en">Pick up keywords</span><h2 id="h-kw">#気になることばから探す</h2>' +
-      '<div class="hash">' + Z.keywords.map(function (k, i) { return '<a href="' + u("search.html#k" + i) + '">#' + esc(k) + "</a>"; }).join("") + "</div></section>";
+      Z.categories.map(function (c, k) { return genreSec(c, k); }).join("");
     startCarousel(start);
     startRails();
   }
@@ -323,8 +322,8 @@
     if (!all.length) return "";
     var L = { nature: "mosaic", history: "vlist", society: "scatter", mind: "rail", tech: "hero", culture: "spread", ent: "rail2" }[c.id] || "mosaic";
     var big = { nature: 1, society: 1, culture: 1 }[c.id];
-    var body = L === "vlist" ? vlist(all.slice(0, 5)) : L === "scatter" ? scatter(all.slice(0, 5)) : L === "rail" ? marquee(all.slice(0, 8), c.name + "の記事") : L === "rail2" ? arail(all.slice(0, 8)) : L === "hero" ? heroList(all.slice(0, 5)) :
-      L === "spread" ? spread(all.slice(0, 4)) : L === "catalog" ? catalog(all.slice(0, 5)) : mosaic(all.slice(0, 5));
+    var body = L === "vlist" ? vlist(all.slice(0, 4)) : L === "scatter" ? scatter(all.slice(0, 3)) : L === "rail" ? marquee(all.slice(0, 6), c.name + "の記事") : L === "rail2" ? arail(all.slice(0, 5)) : L === "hero" ? heroList(all.slice(0, 4)) :
+      L === "spread" ? spread(all.slice(0, 3)) : L === "catalog" ? catalog(all.slice(0, 4)) : mosaic(all.slice(0, 3));
     /* 枠組み（見出し・区切り・下のボタン）は全ジャンルでそろえ、中の並べ方だけ変える。黒い帯にはしない（2026-11-20、本人「黒多すぎ」「ある程度の統一感」） */
     return '<section class="sec genre notch g-' + L + '" id="g-' + c.id + '">' + secHead(c.en, c.name, null, null, true) +
       body + '<a class="genre-more" href="' + catUrl(c.id) + '">' + esc(c.name) + "の疑問をすべて見る" + svg("arrow") + "</a></section>";
@@ -333,8 +332,9 @@
     var f = feature("world-history");
     if (!f) return "";
     var eps = pubs(function (t) { return t.series === "world-history"; }).sort(function (a, b) { return b.ep - a.ep; });
-    return '<section class="sec genre notch" id="g-world-history">' + secHead("World History", "世界史の流れ　新しい話から", null, null, true) +
-      arail(eps.slice(0, 8)) + '<a class="genre-more" href="' + featureUrl(f.id) + '">36話の目次を見る' + svg("arrow") + "</a></section>";
+    return '<section class="sec genre series-home" id="g-world-history">' + secHead("Series", "連載　世界史の流れ", null, null, true) +
+      '<p class="series-progress">全' + f.articles.length + "話のうち、<b>第" + (eps[0] ? eps[0].ep : 0) + "話</b>まで公開中。新しい話から。</p>" +
+      arail(eps.slice(0, 5)) + '<a class="genre-more" href="' + featureUrl(f.id) + '">36話の目次を見る' + svg("arrow") + "</a></section>";
   }
   /* 数珠つなぎの欄：10本ずつ読み足し、あいだに特集・カテゴリの大きな帯をはさむ */
   /* ジャンルを順に1本ずつ混ぜる（同じジャンルが続かないように） */
@@ -460,9 +460,7 @@
   /* ---------- カテゴリ一覧 ---------- */
   function renderCategories() {
     main.innerHTML = '<header class="page-head"><span class="en">Category</span><h1>カテゴリー</h1><p>6つの分野から、気になる「なぜ？」を探す。</p></header>' +
-      '<div class="cat-list">' + Z.categories.map(function (c, i) { return catRow(c, i === 0); }).join("") + "</div>" + feedHtml(true);
-    startFeed("");
-    startFeedTabs();
+      '<div class="cat-list">' + Z.categories.map(function (c, i) { return catRow(c, i === 0); }).join("") + "</div>";
   }
 
   /* ---------- カテゴリ ---------- */
@@ -587,8 +585,7 @@
       seriesBar(t) +
       '<figure class="article-photo">' + (p ? img(p.src, "kb", true) : "") + "</figure>" + credit(p) +
       '<div class="toc"><b>この記事は準備中です</b><p>公開まで、もう少しお待ちください。下の特集や関連する疑問から、先に読み進めることもできます。</p></div></article>' +
-      moreSections(t) + feedHtml(false);
-    startFeed("");
+      moreSections(t);
     window.scrollTo(0, 0);
   }
   /* 記事の下に並べる「入っている特集」「関連する疑問」「同じカテゴリ」 */
@@ -607,9 +604,8 @@
       (branches.length ? '<section class="sec">' + secHead("Branches", "いまにつながる話") + '<p class="sec-note">この時代から、いまの暮らしにつながっているもの。</p><div class="rows two">' + branches.map(row).join("") + "</div></section>" : "") +
       (trunk ? '<section class="sec">' + secHead("Main Line", esc(feature(trunk.series) ? feature(trunk.series).title.split("　")[0] : "本線") + "に戻る") + '<div class="rows two">' + row(trunk) + "</div></section>" : "") +
       (feats.length ? '<section class="sec">' + secHead("Special", "この疑問が入っている特集") + '<div class="feature-rail">' + feats.map(fcard).join("") + "</div></section>" : "") +
-      (rel.length ? '<section class="sec">' + secHead("Related", "関連する疑問") + '<div class="rows two mosaic">' + rel.map(row).join("") + "</div></section>" : "") +
-      '<section class="sec">' + secHead("Same Category", esc(c.name) + "のほかの疑問", catUrl(c.id)) + '<div class="rows two mosaic">' +
-      same.map(row).join("") + "</div></section>";
+      (rel.length ? '<section class="sec">' + secHead("Related", "関連する疑問") + '<div class="rows two mosaic">' + rel.slice(0, 3).map(row).join("") + "</div></section>" : "") +
+      '<section class="sec more-genre"><a class="genre-more" href="' + catUrl(c.id) + '">' + esc(c.name) + "の疑問をすべて見る" + svg("arrow") + "</a></section>";
   }
 
   /* 次に読む1本を、写真つきの大きな帯で（WIRED・Pen Online 風）。創刊5本は順番に、それ以外は関連する疑問の先頭へ */
@@ -761,7 +757,7 @@
       if (hero) hero.insertAdjacentHTML("afterend", seriesBar(t));
       seriesLinks(t);
     }
-    if (t && box) { box.insertAdjacentHTML("beforebegin", shareBar(t)); startShare(t); box.innerHTML = moreSections(t) + feedHtml(false); startFeed(""); }
+    if (t && box) { box.insertAdjacentHTML("beforebegin", shareBar(t)); startShare(t); box.innerHTML = moreSections(t); }
 
     /* 読んだ量を示す細い線 */
     var bar = document.getElementById("progress");
@@ -816,8 +812,8 @@
       var idle = document.getElementById("idle");
       if (!q) {
         var recent = loadRecent();
-        idle.innerHTML = '<section class="sec">' + secHead("Popular", "人気のキーワード") + '<div class="chips">' +
-          Z.keywords.map(function (k) { return '<button type="button" data-kw="' + esc(k) + '">' + esc(k) + "</button>"; }).join("") + "</div></section>" +
+        idle.innerHTML = '<section class="sec">' + secHead("Popular", "人気のキーワード", null, null, true) + '<div class="hash">' +
+          Z.keywords.map(function (k) { return '<button type="button" data-kw="' + esc(k) + '">#' + esc(k) + "</button>"; }).join("") + "</div></section>" +
           (recent.length ? '<section class="sec" style="margin-top:28px">' + secHead("Recent", "最近の検索") + '<ul class="recent">' + recent.map(function (r, i) {
             return '<li><button type="button" data-kw="' + esc(r) + '">' + svg("clock") + esc(r) + '</button><button type="button" class="del" data-del="' + i + '" aria-label="「' + esc(r) + '」を履歴から消す">' + svg("close") + "</button></li>";
           }).join("") + "</ul></section>" : "");
@@ -825,6 +821,7 @@
         idle.innerHTML = "";
       }
       var list = Z.topics.filter(function (t) { return (!state.cat || t.cat === state.cat) && (!q || matches(t, q)); });
+      list = list.filter(function (t) { return t.status === "published"; }).sort(byNew).concat(list.filter(function (t) { return t.status !== "published"; }));
       document.getElementById("results").innerHTML =
         secHead(q ? "Results" : "All Stories", q ? "「" + esc(q) + "」の検索結果" : "すべての記事") +
         '<div class="chips scroll" role="group" aria-label="カテゴリで絞り込む">' +
