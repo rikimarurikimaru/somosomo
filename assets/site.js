@@ -224,6 +224,7 @@
       '<section class="statement" aria-label="SOMOSOMOについて"><p class="statement-lead">そもそも、<br>なぜだろう？</p>' +
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
+      '<section class="sec now-flow" aria-label="いま読める記事">' + marquee(mix(pubs()).slice(0, 14), "いま読める記事") + "</section>" +
       '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.map(fcard).join("") + "</div></section>" +
       Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : "") + (c.id === "nature" ? quoteBand() : ""); }).join("") +
       '<section class="tag-band" aria-labelledby="h-kw"><span class="en">Pick up keywords</span><h2 id="h-kw">#気になることばから探す</h2>' +
@@ -231,7 +232,7 @@
     startCarousel(start);
     startFeed("");
     startFeedTabs();
-    startAutoRails();
+    startRails();
   }
 
 
@@ -252,12 +253,23 @@
     }).join("") + "</ol>";
   }
   /* 横に自動で流れる棚 */
+  function rcard(t) {
+    var p = topicPhoto(t), c = cat(t.cat);
+    return '<a class="rcard" href="' + articleUrl(t) + '">' + (p ? img(p.small, "bg") : "") + '<span class="shade"></span>' + newBadge(t) +
+      '<span class="rc-in"><span class="cat-label">' + esc(t.series ? epLabel(t) : c.name) + "</span><b>" + qh(t.q) + "</b></span></a>";
+  }
+  /* ＜＞ボタンで1枚ずつ送る棚 */
   function arail(list) {
-    return '<div class="arail" data-auto>' + list.map(function (t) {
+    return '<div class="rail-box"><div class="arail">' + list.map(rcard).join("") + "</div>" +
+      '<div class="rail-nav"><button type="button" data-dir="-1" aria-label="前へ">' + svg("arrow", "flip") + '</button><button type="button" data-dir="1" aria-label="次へ">' + svg("arrow") + "</button></div></div>";
+  }
+  /* 流れ続ける帯（キーワードの帯の記事版）。同じ並びを2回つなげて、途切れずに流す。触ると止まる */
+  function marquee(list, label) {
+    var one = list.map(function (t) {
       var p = topicPhoto(t), c = cat(t.cat);
-      return '<a class="rcard" href="' + articleUrl(t) + '">' + (p ? img(p.small, "bg") : "") + '<span class="shade"></span>' + newBadge(t) +
-        '<span class="rc-in"><span class="cat-label">' + esc(t.series ? epLabel(t) : c.name) + "</span><b>" + qh(t.q) + "</b></span></a>";
-    }).join("") + "</div>";
+      return '<a class="mq-card" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(p.small) : "") + '</span><span class="cat-label">' + esc(t.series ? epLabel(t) : c.name) + "</span><b>" + qh(t.q) + "</b></a><i class=\"mq-why\" aria-hidden=\"true\">Why?</i>";
+    }).join("");
+    return '<div class="marquee"' + (label ? ' aria-label="' + esc(label) + '"' : "") + '><div class="mq-track" style="--n:' + list.length + '">' + one + '<span class="mq-dup" aria-hidden="true">' + one.replace(/<a /g, '<a tabindex="-1" ') + "</span></div></div>";
   }
   /* 大きさがまばらな並び */
   function scatter(list) {
@@ -295,28 +307,30 @@
     var t = cand[mod(DAY, cand.length)];
     return '<a class="quote-band" href="' + articleUrl(t) + '"><span class="qb-src qb-top">' + qh(t.q) + '</span><span class="qb-mark" aria-hidden="true">\u201C</span><span class="qb-text">' + esc(HL[t.slug].f) + '</span><span class="qb-src">記事を読む' + svg("arrow") + "</span></a>";
   }
-  function startAutoRails() {
-    document.querySelectorAll(".arail[data-auto]").forEach(function (r) {
-      if (REDUCED) return;
-      var hold = 0, seen = false;
-      function pause() { hold = Date.now() + 7000; }
-      ["pointerdown", "touchstart", "wheel", "focusin"].forEach(function (ev) { r.addEventListener(ev, pause, { passive: true }); });
-      if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; }).observe(r);
-      setInterval(function () {
-        if (!seen || Date.now() < hold || document.hidden) return;
-        var card = r.firstElementChild; if (!card) return;
-        var step = card.getBoundingClientRect().width + 12, max = r.scrollWidth - r.clientWidth - 4;
-        r.scrollTo({ left: r.scrollLeft >= max ? 0 : r.scrollLeft + step, behavior: "smooth" });
-      }, 3600);
+  function startRails() {
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest(".rail-nav button");
+      if (!b) return;
+      var r = b.closest(".rail-box").querySelector(".arail"), card = r.firstElementChild;
+      if (!card) return;
+      var step = (card.getBoundingClientRect().width + 12) * +b.getAttribute("data-dir");
+      r.scrollBy({ left: step, behavior: REDUCED ? "auto" : "smooth" });
+    });
+    /* 流れる帯：指で触っている間と、そのあと少しのあいだは止める */
+    document.querySelectorAll(".marquee").forEach(function (m) {
+      var t = 0;
+      m.addEventListener("touchstart", function () { clearTimeout(t); m.classList.add("is-held"); }, { passive: true });
+      m.addEventListener("touchend", function () { t = setTimeout(function () { m.classList.remove("is-held"); }, 2500); }, { passive: true });
     });
   }
+
   /* ホームのジャンルの欄（BRUTUS のトップの FASHION・WATCHES のように、ジャンルごとに積む） */
   function genreSec(c, k) {
     var all = pubs(function (t) { return t.cat === c.id && !t.series; });
     if (!all.length) return "";
     var L = { nature: "mosaic", history: "vlist", society: "scatter", mind: "rail", tech: "hero", culture: "spread", ent: "catalog" }[c.id] || "mosaic";
     var big = { nature: 1, society: 1, culture: 1 }[c.id];
-    var body = L === "vlist" ? vlist(all.slice(0, 5)) : L === "scatter" ? scatter(all.slice(0, 5)) : L === "rail" ? arail(all.slice(0, 8)) : L === "hero" ? heroList(all.slice(0, 5)) :
+    var body = L === "vlist" ? vlist(all.slice(0, 5)) : L === "scatter" ? scatter(all.slice(0, 5)) : L === "rail" ? marquee(all.slice(0, 8), c.name + "の記事") : L === "hero" ? heroList(all.slice(0, 5)) :
       L === "spread" ? spread(all.slice(0, 4)) : L === "catalog" ? catalog(all.slice(0, 5)) : mosaic(all.slice(0, 5));
     return '<section class="sec genre g-' + L + (k % 2 ? " dark-band" : big ? " notch" : "") + '" id="g-' + c.id + '">' + secHead(c.en, c.name, null, null, !big) +
       body + '<a class="genre-more" href="' + catUrl(c.id) + '">' + esc(c.name) + "の疑問をすべて見る" + svg("arrow") + "</a></section>";
