@@ -916,3 +916,18 @@ img.kb { animation: kb 18s ease-out both; }
 @media (prefers-reduced-motion: no-preference) {
   .marquee .mq-track, .marquee:hover .mq-track, .marquee:focus-within .mq-track, .marquee.is-held .mq-track, .marquee:has(a:focus-visible) .mq-track { animation-play-state: running; }
 }
+
+/* ===== 2026-11-20 黒を減らし、ジャンルの欄の枠組みをそろえる ===== */
+/* キーワードの帯は紙の色に */
+.tag-band { background: transparent; color: var(--ink); border-block: 2px solid var(--ink); margin: 0; padding: 26px 0 28px; }
+.tag-band .en { color: var(--red); }
+.hash a { border-color: var(--ink); color: var(--ink); }
+.hash a:hover { background: var(--ink); color: var(--paper); }
+@media (min-width: 768px) { .tag-band { padding: 34px 0; } }
+/* ジャンルの章の大見出しのあとは、すぐ最初のジャンル */
+.genre-chapter { margin-bottom: -14px; }
+.genre-chapter + .genre.notch { border-top: 0; padding-top: 0; }
+.genre-chapter + .genre.notch::before { display: none; }
+/* ジャンルの見出しは同じ形：番号＋英字＋明朝のジャンル名 */
+.genre .sec-head.sm .sec-title h2 { font-size: 22px; }
+.genre.notch { padding-top: 38px; }

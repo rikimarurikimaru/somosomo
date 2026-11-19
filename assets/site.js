@@ -225,7 +225,8 @@
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
       '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.map(fcard).join("") + "</div></section>" +
-      Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : "") + ""; }).join("") +
+      '<section class="sec genre-chapter">' + secHead("Categories", "ジャンルから読む") + "</section>" +
+      Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : ""); }).join("") +
       '<section class="tag-band" aria-labelledby="h-kw"><span class="en">Pick up keywords</span><h2 id="h-kw">#気になることばから探す</h2>' +
       '<div class="hash">' + Z.keywords.map(function (k, i) { return '<a href="' + u("search.html#k" + i) + '">#' + esc(k) + "</a>"; }).join("") + "</div></section>";
     startCarousel(start);
@@ -324,14 +325,15 @@
     var big = { nature: 1, society: 1, culture: 1 }[c.id];
     var body = L === "vlist" ? vlist(all.slice(0, 5)) : L === "scatter" ? scatter(all.slice(0, 5)) : L === "rail" ? marquee(all.slice(0, 8), c.name + "の記事") : L === "rail2" ? arail(all.slice(0, 8)) : L === "hero" ? heroList(all.slice(0, 5)) :
       L === "spread" ? spread(all.slice(0, 4)) : L === "catalog" ? catalog(all.slice(0, 5)) : mosaic(all.slice(0, 5));
-    return '<section class="sec genre g-' + L + (k % 2 ? " dark-band" : big ? " notch" : "") + '" id="g-' + c.id + '">' + secHead(c.en, c.name, null, null, !big) +
+    /* 枠組み（見出し・区切り・下のボタン）は全ジャンルでそろえ、中の並べ方だけ変える。黒い帯にはしない（2026-11-20、本人「黒多すぎ」「ある程度の統一感」） */
+    return '<section class="sec genre notch g-' + L + '" id="g-' + c.id + '">' + secHead(c.en, c.name, null, null, true) +
       body + '<a class="genre-more" href="' + catUrl(c.id) + '">' + esc(c.name) + "の疑問をすべて見る" + svg("arrow") + "</a></section>";
   }
   function seriesSec() {
     var f = feature("world-history");
     if (!f) return "";
     var eps = pubs(function (t) { return t.series === "world-history"; }).sort(function (a, b) { return b.ep - a.ep; });
-    return '<section class="sec genre" id="g-world-history">' + secHead("World History", "世界史の流れ　新しい話から", null, null, true) +
+    return '<section class="sec genre notch" id="g-world-history">' + secHead("World History", "世界史の流れ　新しい話から", null, null, true) +
       arail(eps.slice(0, 8)) + '<a class="genre-more" href="' + featureUrl(f.id) + '">36話の目次を見る' + svg("arrow") + "</a></section>";
   }
   /* 数珠つなぎの欄：10本ずつ読み足し、あいだに特集・カテゴリの大きな帯をはさむ */
