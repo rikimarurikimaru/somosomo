@@ -909,3 +909,6 @@ img.kb { animation: kb 18s ease-out both; }
 .genre { gap: 24px; }
 .genre.dark-band { padding-top: 40px; padding-bottom: 44px; }
 .ticker { margin-block: 8px; }
+/* 一覧の題（.hl）は読点の区切りを生かす（帯ではないので地は付かない）。コラムの下のリンクは1行ずつ素直に折り返す */
+.hl .qw { display: inline-block; }
+.col-links .qw { display: inline; }

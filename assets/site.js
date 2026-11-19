@@ -227,10 +227,8 @@
       '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.map(fcard).join("") + "</div></section>" +
       Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : "") + (c.id === "nature" ? quoteBand() : ""); }).join("") +
       '<section class="tag-band" aria-labelledby="h-kw"><span class="en">Pick up keywords</span><h2 id="h-kw">#気になることばから探す</h2>' +
-      '<div class="hash">' + Z.keywords.map(function (k, i) { return '<a href="' + u("search.html#k" + i) + '">#' + esc(k) + "</a>"; }).join("") + "</div></section>" + feedHtml(true);
+      '<div class="hash">' + Z.keywords.map(function (k, i) { return '<a href="' + u("search.html#k" + i) + '">#' + esc(k) + "</a>"; }).join("") + "</div></section>";
     startCarousel(start);
-    startFeed("");
-    startFeedTabs();
     startRails();
   }
 
@@ -470,7 +468,9 @@
   /* ---------- カテゴリ一覧 ---------- */
   function renderCategories() {
     main.innerHTML = '<header class="page-head"><span class="en">Category</span><h1>カテゴリー</h1><p>6つの分野から、気になる「なぜ？」を探す。</p></header>' +
-      '<div class="cat-list">' + Z.categories.map(function (c, i) { return catRow(c, i === 0); }).join("") + "</div>";
+      '<div class="cat-list">' + Z.categories.map(function (c, i) { return catRow(c, i === 0); }).join("") + "</div>" + feedHtml(true);
+    startFeed("");
+    startFeedTabs();
   }
 
   /* ---------- カテゴリ ---------- */
@@ -486,7 +486,9 @@
       '<nav class="chips scroll" aria-label="カテゴリの切り替え">' + Z.categories.map(function (x) {
         return '<a href="' + catUrl(x.id) + '"' + (x.id === c.id ? ' class="on" aria-current="page"' : "") + ">" + esc(x.name) + "</a>";
       }).join("") + "</nav>" +
-      catBody(c, list);
+      catBody(c, list) + feedHtml(true);
+    startFeed("");
+    startFeedTabs();
     window.scrollTo(0, 0);
   }
 
