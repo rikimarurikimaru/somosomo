@@ -219,7 +219,7 @@
       spinBadge() +
       '<p class="tate" aria-hidden="true">なぜ？を、五分で。</p></div>' +
       '<div id="c-credit">' + credit(stories[start].cover || photo(stories[start].cat, start * 2)) + "</div></div>" +
-      '<p class="home-intro">身の回りの「なぜ？」を、写真と図解で<b>5分</b>で読めるウェブマガジン。いま<b>' + pubs().length + "本</b>の疑問に答えています。</p>" +
+      '<p class="home-intro">身の回りの「なぜ？」を、写真と図解で<b>5分</b>で読めるウェブマガジン。</p>' +
       (picks.length ? '<section class="sec home-picks">' + secHead("First Issue", "創刊ラインナップ", null, null, true) + '<div class="rows two">' + picks.map(row).join("") + "</div></section>" : "") + "</div>" +
       '<section class="statement" aria-label="SOMOSOMOについて"><p class="statement-lead">そもそも、<br>なぜだろう？</p>' +
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
