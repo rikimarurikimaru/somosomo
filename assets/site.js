@@ -176,12 +176,10 @@
 
     var foot = document.getElementById("site-footer");
     foot.className = "site-footer";
-    foot.innerHTML = '<div class="wrap"><p class="foot-big">「なぜ？」が、<br>5分でわかる。</p>' +
-      '<a class="logo" href="' + u("index.html") + '"><b>SOMO<i>SOMO</i></b><small>そもそも、なぜ？</small></a>' +
-      '<nav aria-label="フッター">' + Z.categories.map(function (c) { return '<a href="' + catUrl(c.id) + '">' + esc(c.name) + "</a>"; }).join("") +
-      '<a href="' + u("features.html") + '">特集</a><a href="' + u("search.html") + '">検索</a><a href="' + u("credits.html") + '">写真クレジット</a></nav>' +
-      "<small>写真は毎日入れ替わります。</small></div>" +
-      '<span class="foot-word" aria-hidden="true">Somosomo</span>';
+    foot.innerHTML = '<div class="wrap"><a class="foot-logo" href="' + u("index.html") + '"><b>SOMOSOMO</b><small>そもそも、なぜ？<br>身の回りの「なぜ？」が、5分でわかる。</small></a>' +
+      '<nav class="foot-cats" aria-label="カテゴリ">' + Z.categories.map(function (c) { return '<a href="' + catUrl(c.id) + '"><span>' + c.no + "</span>" + esc(c.name) + svg("arrow") + "</a>"; }).join("") + "</nav>" +
+      '<nav class="foot-links" aria-label="フッター"><a href="' + u("features.html") + '">特集</a><a href="' + u("search.html") + '">検索</a><a href="' + u("credits.html") + '">写真クレジット</a></nav>' +
+      "<small class=\"foot-note\">写真は毎日入れ替わります。　© 2026 SOMOSOMO編集部</small></div>";
   }
 
   var main = document.getElementById("main");
@@ -274,6 +272,7 @@
     var i = 0, k = 0;
     box.innerHTML = ""; end.classList.remove("is-done"); end.innerHTML = '<span class="feed-dots" aria-hidden="true"><i></i><i></i><i></i></span>';
     if (feedObs) feedObs.disconnect();
+    document.body.classList.add("feed-on");
     function near() { return end.getBoundingClientRect().top < window.innerHeight + 1400; }
     function more() {
       if (i >= list.length) return;
@@ -282,6 +281,7 @@
       fadeImages();
       if (i >= list.length) {
         if (feedObs) feedObs.disconnect();
+        document.body.classList.remove("feed-on");
         end.classList.add("is-done");
         end.innerHTML = "<p>" + "公開中の "+ Z.topics.filter(function (t) { return t.status === "published"; }).length + " 本を、ここまで。次の「そもそも」をお楽しみに。</p>";
       } else if (near()) requestAnimationFrame(more);
@@ -355,7 +355,8 @@
   /* ---------- カテゴリ一覧 ---------- */
   function renderCategories() {
     main.innerHTML = '<header class="page-head"><span class="en">Category</span><h1>カテゴリー</h1><p>6つの分野から、気になる「なぜ？」を探す。</p></header>' +
-      '<div class="cat-list">' + Z.categories.map(function (c, i) { return catRow(c, i === 0); }).join("") + "</div>";
+      '<div class="cat-list">' + Z.categories.map(function (c, i) { return catRow(c, i === 0); }).join("") + "</div>" + feedHtml(false);
+    startFeed("");
   }
 
   /* ---------- カテゴリ ---------- */
@@ -379,7 +380,8 @@
   /* ---------- 特集一覧 ---------- */
   function renderFeatures() {
     main.innerHTML = '<header class="page-head"><span class="en">Special</span><h1>特集</h1><p>関連する疑問を読む順番に並べました。1つのテーマを、深く掘り下げる。</p></header>' +
-      '<div class="fstack">' + F.map(fcard).join("") + "</div>";
+      '<div class="fstack">' + F.map(fcard).join("") + "</div>" + feedHtml(false);
+    startFeed("");
   }
 
   /* ---------- 特集 ---------- */
