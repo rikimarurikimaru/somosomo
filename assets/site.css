@@ -857,3 +857,5 @@ img.kb { animation: kb 18s ease-out both; }
 .tate { color: #ffffff; text-shadow: 0 1px 10px rgba(0, 0, 0, .6); }
 .spin-badge { filter: drop-shadow(0 1px 6px rgba(0, 0, 0, .55)); }
 .carousel .cover-in .en { text-shadow: 0 1px 8px rgba(0, 0, 0, .6); }
+/* 帯（紙の地）の中では読点の区切りを使わない。ひとかたまりが2行に折れると、帯の地が付いてこず黒い字がむき出しになる（2026-11-20、ミスタードーナツの表紙） */
+.band .qw, .hl .qw { display: inline; }
