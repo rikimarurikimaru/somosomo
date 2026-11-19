@@ -957,3 +957,21 @@ img.kb { animation: kb 18s ease-out both; }
 .vlist.no-num a { grid-template-columns: 1fr 88px; }
 .vlist.no-num .vl-no { display: none; }
 .col-links a > span { min-width: 0; }
+
+/* ===== 2026-11-20 PC幅（1100px以上）の崩れを直す ===== */
+@media (min-width: 1100px) {
+  /* 上の段：左に表紙、右に紹介の一文と新着 */
+  .home-top { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); grid-template-areas: "cover intro" "cover picks"; grid-template-rows: auto 1fr; row-gap: 18px; }
+  .home-top > .home-cover { grid-area: cover; }
+  .home-top > .home-intro { grid-area: intro; }
+  .home-top > .home-picks { grid-area: picks; }
+}
+@media (min-width: 768px) {
+  /* 大きい1本のカードは、写真のすぐ下に題（2行ぶん縦に伸ばしたときのすき間をなくす） */
+  .mosaic .row:nth-child(5n + 1) { align-content: start; align-self: start; }
+  /* まばらな並び：横いっぱいの1枚は細長くして、画面を占めすぎない */
+  .sc:nth-child(3) .thumb { aspect-ratio: 21 / 9; }
+  .sc:nth-child(1) .thumb, .sc:nth-child(2) .thumb { aspect-ratio: 4 / 3; }
+}
+/* まばらな並びの写真は枠の比率に合わせる（写真の元の高さで枠が伸びないように） */
+.sc .thumb img { position: absolute; inset: 0; }
