@@ -773,3 +773,64 @@ img.kb { animation: kb 18s ease-out both; }
 .col-links a { display: grid; grid-template-columns: 1fr 16px; gap: 10px; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(245, 242, 235, .16); color: var(--on-dark); text-decoration: none; font-weight: 700; font-size: 14px; }
 .col-links svg { width: 15px; height: 15px; }
 .column .col-sign { font-size: 12px; color: rgba(245, 242, 235, .55); text-align: right; }
+
+/* ===== 2026-11-19 第三者レビューを受けて ===== */
+/* 小さい見出し（大きな英字の見出しは3〜4欄に1回だけにする） */
+.sec-head.sm { grid-template-columns: auto 1fr auto; grid-template-areas: "no t more"; align-items: end; border-bottom-width: 1px; padding-bottom: 10px; }
+.sec-head.sm .sec-no { font-size: 40px; line-height: .8; }
+.sec-head.sm .sec-title { text-align: left; }
+.sec-head.sm .sec-title .en { font-family: var(--latin); font-weight: 600; font-size: 11px; letter-spacing: .2em; line-height: 1.4; color: var(--muted); margin: 0 0 2px; }
+.sec-head.sm .sec-title h2 { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: 0; line-height: 1.35; }
+.dark-band .sec-head.sm .sec-title .en { color: rgba(245, 242, 235, .65); }
+/* 縁のギザギザは特集の欄（と、あいだの特集の帯・フッター）だけ */
+.dark-band:not(.zig)::before { display: none; }
+.feed-break.dark-band::before { display: block; }
+
+/* ホームの冒頭の紹介 */
+.home-intro { font-family: var(--display); font-weight: 800; font-size: 17px; line-height: 1.7; padding: 4px 0 0; }
+.home-intro b { color: var(--red); }
+
+/* 記事の終わりの欄どうしのすき間 */
+.story-more > .sec { margin-top: 56px; }
+.story-more > .sec .sec-head { margin-bottom: 18px; }
+/* 歴史の欄などで罫線が2本続かないように */
+.sec-head + .vlist { border-top: 0; }
+
+/* 準備中の記事は写真なし */
+.row .thumb:empty, .vl-thumb:empty, .steps .thumb:empty { display: grid; place-items: center; background: var(--surface); outline: 1px solid var(--line); outline-offset: -1px; }
+.row .thumb:empty::after, .vl-thumb:empty::after, .steps .thumb:empty::after { content: "準備中"; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--muted); }
+
+/* 全面の写真1枚の見開き */
+.spread { position: relative; overflow: hidden; display: flex; align-items: flex-end; min-height: 540px; margin: 0 -16px; color: #ffffff; text-decoration: none; background: var(--night); }
+.spread img.bg { filter: contrast(1.06) saturate(.86) sepia(.08); transition: transform 1s var(--ease); }
+.spread:hover img.bg { transform: scale(1.04); }
+.spread .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 10, 12, .05) 30%, rgba(10, 10, 12, .82)); }
+.sp-in { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 24px 18px 26px; }
+.sp-quote { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1.5; text-wrap: balance; }
+.sp-q { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .85); border-top: 1px solid rgba(255, 255, 255, .4); padding-top: 12px; }
+.sp-q svg { width: 16px; height: 16px; flex: none; }
+@media (min-width: 768px) { .spread { margin: 0; min-height: 600px; } .sp-in { padding: 40px; max-width: 760px; } .sp-quote { font-size: 36px; } }
+
+/* 文字だけの目録 */
+.catalog { list-style: none; margin: 0; padding: 0; }
+.catalog li { border-bottom: 1px solid var(--line); }
+.dark-band .catalog li { border-bottom-color: rgba(245, 242, 235, .16); }
+.catalog a { display: grid; grid-template-columns: 40px 1fr; column-gap: 10px; row-gap: 4px; padding: 18px 0; text-decoration: none; }
+.ct-no { grid-row: span 2; font-family: var(--latin); font-style: italic; font-weight: 600; font-size: 28px; line-height: 1; color: var(--red); }
+.dark-band .ct-no { color: #e8737a; }
+.catalog b { font-family: var(--display); font-weight: 800; font-size: 19px; line-height: 1.5; }
+.dark-band .catalog .row-hl { color: rgba(245, 242, 235, .7); }
+
+/* 欄のあいだの大きな引用1行 */
+.quote-band { display: flex; flex-direction: column; gap: 14px; padding: 8px 0 4px; text-decoration: none; }
+.qb-mark { font-family: var(--latin); font-weight: 700; font-size: 110px; line-height: .6; color: var(--red); height: 48px; }
+.qb-text { font-family: var(--display); font-weight: 800; font-size: 27px; line-height: 1.55; text-wrap: balance; }
+.qb-src { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.qb-src svg { width: 16px; height: 16px; flex: none; transition: transform .3s var(--ease); }
+.quote-band:hover .qb-src svg { transform: translateX(4px); }
+@media (min-width: 768px) { .qb-text { font-size: 38px; max-width: 900px; } }
+
+/* 出典の折りたたみ */
+.sources ul.is-folded li:nth-child(n + 6) { display: none; }
+.src-more { margin-top: 10px; border: 1px solid var(--ink); border-radius: 999px; background: none; padding: 8px 18px; font-size: 13px; font-weight: 700; color: var(--ink); cursor: pointer; }
+.src-more:hover { background: var(--ink); color: var(--paper); }
