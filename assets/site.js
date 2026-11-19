@@ -500,8 +500,7 @@
   /* ---------- 特集一覧 ---------- */
   function renderFeatures() {
     main.innerHTML = '<header class="page-head"><span class="en">Special</span><h1>特集</h1><p>関連する疑問を読む順番に並べました。1つのテーマを、深く掘り下げる。</p></header>' +
-      '<div class="fstack">' + F.map(fcard).join("") + "</div>" + feedHtml(false);
-    startFeed("");
+      '<div class="fstack">' + F.map(fcard).join("") + "</div>";
   }
 
   /* ---------- 特集 ---------- */
