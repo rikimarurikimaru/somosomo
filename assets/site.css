@@ -834,3 +834,16 @@ img.kb { animation: kb 18s ease-out both; }
 .sources ul.is-folded li:nth-child(n + 6) { display: none; }
 .src-more { margin-top: 10px; border: 1px solid var(--ink); border-radius: 999px; background: none; padding: 8px 18px; font-size: 13px; font-weight: 700; color: var(--ink); cursor: pointer; }
 .src-more:hover { background: var(--ink); color: var(--paper); }
+
+/* ===== 2026-11-19 2回目のレビューを受けて ===== */
+/* 題は読点までをひとかたまりにして折り返す */
+.qw { display: inline-block; }
+.vl-txt b, .rc-in b, .sc b, .tlist b, .catalog b, .sp-q, .qb-src, .next-in b, .hl-q { word-break: auto-phrase; }
+/* 区切りの帯の番号を読めるように */
+.cb-no { color: #ffffff; background: var(--red); padding: 0 8px; align-self: flex-start; font-style: normal; font-size: 16px; }
+/* 準備中の次の話：文字だけの低い帯 */
+.next-story.no-img { min-height: 0; padding: 26px 0; }
+.next-story.no-img .next-in { position: relative; left: auto; right: auto; bottom: auto; padding: 0 64px 0 16px; }
+/* 引用は問いを先に、見開きも問いを上に */
+.qb-top { color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 14px; border-left: 3px solid var(--red); padding-left: 10px; }
+.sp-q { order: -1; border-top: 0; padding-top: 0; border-bottom: 1px solid rgba(255, 255, 255, .4); padding-bottom: 10px; }

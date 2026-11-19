@@ -26,6 +26,8 @@
   }
 
   /* ---------- 小道具 ---------- */
+  /* 題を読点のあとで区切る（文節の途中で折り返さないように。「、」までをひとかたまりにする） */
+  function qh(q) { return esc(q).split(/(?<=、)/).map(function (x) { return '<span class="qw">' + x + "</span>"; }).join(""); }
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -80,7 +82,7 @@
   function row(t, big, hl) {
     var c = cat(t.cat), p = topicPhoto(t);
     return '<a class="row" href="' + articleUrl(t) + '"><div class="thumb">' + (p ? img(big === true ? p.src : p.small) : "") + newBadge(t) + "</div>" +
-      '<div class="txt"><span class="row-top"><span class="cat-label">' + esc(c.name) + (t.series ? " ・ " + epLabel(t) : "") + '</span></span><h3><span class="hl">' + esc(t.q) + "</span></h3>" + (hl === true ? hlA(t) : "") + subLine(t) + '<span class="meta">' + readLabel(t) +
+      '<div class="txt"><span class="row-top"><span class="cat-label">' + esc(c.name) + (t.series ? " ・ " + epLabel(t) : "") + '</span></span><h3><span class="hl">' + qh(t.q) + "</span></h3>" + (hl === true ? hlA(t) : "") + subLine(t) + '<span class="meta">' + readLabel(t) +
       (t.date ? '<span class="sep"></span><span class="date">' + fmtDate(t.date) + " UP</span>" : "") + "</span></div></a>";
   }
   function fcard(f) {
@@ -192,14 +194,14 @@
     return out.concat(rest).slice(0, 5);
   }
   function renderHome() {
-    var stories = coverStories(), picks = Z.picks.map(topic);
+    var stories = coverStories(), picks = Z.picks.map(topic).filter(function (t) { return stories.indexOf(t) < 0; });
     var start = 0;
     var slides = stories.map(function (t, i) {
       var c = cat(t.cat), p = t.cover || photo(t.cat, i * 2);
       return '<a class="slide' + (i === start ? " is-active" : "") + '" href="' + articleUrl(t) + '" data-credit="' + esc(p ? credit(p) : "") + '"' + (i === start ? "" : ' tabindex="-1" aria-hidden="true"') + ">" +
         (p ? img(p.src, "bg", i === start) : "") + '<span class="shade"></span>' +
         '<span class="cover-in"><span class="en">Cover Story ・ ' + todayLabel() + "</span>" +
-        '<h1><span class="band">' + esc(t.q) + "</span></h1>" +
+        '<h1><span class="band">' + qh(t.q) + "</span></h1>" +
         '<span class="meta"><span>' + esc(c.name) + '</span><span class="sep"></span>' + readLabel(t) + "</span></span>" +
         newBadge(t) + '<span class="go">' + svg("arrow") + "</span></a>";
     }).join("");
@@ -218,7 +220,7 @@
       '<p class="tate" aria-hidden="true">なぜ？を、五分で。</p></div>' +
       '<div id="c-credit">' + credit(stories[start].cover || photo(stories[start].cat, start * 2)) + "</div></div>" +
       '<p class="home-intro">身の回りの「なぜ？」を、写真と図解で<b>5分</b>で読めるウェブマガジン。いま<b>' + pubs().length + "本</b>の疑問に答えています。</p>" +
-      '<section class="sec home-picks">' + secHead("First Issue", "創刊ラインナップ", null, null, true) + '<div class="rows two">' + picks.map(row).join("") + "</div></section></div>" +
+      (picks.length ? '<section class="sec home-picks">' + secHead("First Issue", "創刊ラインナップ", null, null, true) + '<div class="rows two">' + picks.map(row).join("") + "</div></section>" : "") + "</div>" +
       '<section class="statement" aria-label="SOMOSOMOについて"><p class="statement-lead">そもそも、<br>なぜだろう？</p>' +
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
@@ -245,7 +247,7 @@
   function vlist(list, hl, from) {
     return '<ol class="vlist">' + list.map(function (t, i) {
       var p = topicPhoto(t), c = cat(t.cat);
-      return '<li><a href="' + articleUrl(t) + '"><span class="vl-no">' + pad((from || 0) + i + 1) + '</span><span class="vl-txt"><span class="cat-label">' + esc(t.series ? epLabel(t) + " ・ " + (t.sub || "") : c.name) + "</span><b>" + esc(t.q) + "</b>" +
+      return '<li><a href="' + articleUrl(t) + '"><span class="vl-no">' + pad((from || 0) + i + 1) + '</span><span class="vl-txt"><span class="cat-label">' + esc(t.series ? epLabel(t) + " ・ " + (t.sub || "") : c.name) + "</span><b>" + qh(t.q) + "</b>" +
         (hl === true ? hlA(t) : "") + '<span class="meta">' + readLabel(t) + '</span></span><span class="vl-thumb">' + (p ? img(p.small) : "") + "</span></a></li>";
     }).join("") + "</ol>";
   }
@@ -254,44 +256,44 @@
     return '<div class="arail" data-auto>' + list.map(function (t) {
       var p = topicPhoto(t), c = cat(t.cat);
       return '<a class="rcard" href="' + articleUrl(t) + '">' + (p ? img(p.small, "bg") : "") + '<span class="shade"></span>' + newBadge(t) +
-        '<span class="rc-in"><span class="cat-label">' + esc(t.series ? epLabel(t) : c.name) + "</span><b>" + esc(t.q) + "</b></span></a>";
+        '<span class="rc-in"><span class="cat-label">' + esc(t.series ? epLabel(t) : c.name) + "</span><b>" + qh(t.q) + "</b></span></a>";
     }).join("") + "</div>";
   }
   /* 大きさがまばらな並び */
   function scatter(list) {
     return '<div class="scatter">' + list.map(function (t, i) {
       var p = topicPhoto(t), c = cat(t.cat);
-      return '<a class="sc" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(i === 2 ? p.src : p.small) : "") + newBadge(t) + '</span><span class="cat-label">' + esc(c.name) + "</span><b>" + esc(t.q) + '</b><span class="meta">' + readLabel(t) + "</span></a>";
+      return '<a class="sc" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(i === 2 ? p.src : p.small) : "") + newBadge(t) + '</span><span class="cat-label">' + esc(c.name) + "</span><b>" + qh(t.q) + '</b><span class="meta">' + readLabel(t) + "</span></a>";
     }).join("") + "</div>";
   }
   /* 大きな1本＋文字だけの一覧 */
   function heroList(list) {
     var t = list[0], p = topicPhoto(t), c = cat(t.cat);
     return '<a class="hero-card" href="' + articleUrl(t) + '">' + (p ? img(p.src, "bg") : "") + '<span class="shade"></span>' + newBadge(t) +
-      '<span class="hc-in"><span class="cat-label">' + esc(c.name) + '</span><h3><span class="band">' + esc(t.q) + '</span></h3><span class="meta">' + readLabel(t) + "</span></span></a>" +
+      '<span class="hc-in"><span class="cat-label">' + esc(c.name) + '</span><h3><span class="band">' + qh(t.q) + '</span></h3><span class="meta">' + readLabel(t) + "</span></span></a>" +
       '<ol class="tlist">' + list.slice(1).map(function (x) {
-        return '<li><a href="' + articleUrl(x) + '"><b>' + esc(x.q) + "</b>" + svg("arrow") + "</a></li>";
+        return '<li><a href="' + articleUrl(x) + '"><b>' + qh(x.q) + "</b>" + svg("arrow") + "</a></li>";
       }).join("") + "</ol>";
   }
   /* 全面の写真1枚に「ここが面白い！」を重ねる見開き＋文字だけの一覧 */
   function spread(list) {
     var t = list[0], p = topicPhoto(t), f = HL[t.slug] && HL[t.slug].f;
     return '<a class="spread" href="' + articleUrl(t) + '">' + (p ? img(p.src, "bg") : "") + '<span class="shade"></span>' +
-      '<span class="sp-in">' + (f ? '<span class="sp-quote">' + esc(f) + "</span>" : "") + '<span class="sp-q">' + esc(t.q) + svg("arrow") + "</span></span></a>" +
-      '<ol class="tlist">' + list.slice(1).map(function (x) { return '<li><a href="' + articleUrl(x) + '"><b>' + esc(x.q) + "</b>" + svg("arrow") + "</a></li>"; }).join("") + "</ol>";
+      '<span class="sp-in">' + (f ? '<span class="sp-quote">' + esc(f) + "</span>" : "") + '<span class="sp-q">' + qh(t.q) + svg("arrow") + "</span></span></a>" +
+      '<ol class="tlist">' + list.slice(1).map(function (x) { return '<li><a href="' + articleUrl(x) + '"><b>' + qh(x.q) + "</b>" + svg("arrow") + "</a></li>"; }).join("") + "</ol>";
   }
   /* 写真なし、文字だけの目録（問いと、ひとことの答え） */
   function catalog(list) {
     return '<ol class="catalog">' + list.map(function (t, i) {
-      return '<li><a href="' + articleUrl(t) + '"><span class="ct-no">' + pad(i + 1) + "</span><b>" + esc(t.q) + '</b><span class="meta">' + readLabel(t) + "</span></a></li>";
+      return '<li><a href="' + articleUrl(t) + '"><span class="ct-no">' + pad(i + 1) + "</span><b>" + qh(t.q) + '</b><span class="meta">' + readLabel(t) + "</span></a></li>";
     }).join("") + "</ol>";
   }
   /* 欄と欄のあいだの、大きな引用1行 */
   function quoteBand() {
-    var cand = pubs(function (t) { return HL[t.slug] && HL[t.slug].f && !t.series && t.cat !== "nature"; });
+    var cand = pubs(function (t) { return HL[t.slug] && HL[t.slug].f && t.cat === "nature"; });
     if (!cand.length) return "";
     var t = cand[mod(DAY, cand.length)];
-    return '<a class="quote-band" href="' + articleUrl(t) + '"><span class="qb-mark" aria-hidden="true">\u201C</span><span class="qb-text">' + esc(HL[t.slug].f) + '</span><span class="qb-src">' + esc(t.q) + svg("arrow") + "</span></a>";
+    return '<a class="quote-band" href="' + articleUrl(t) + '"><span class="qb-src qb-top">' + qh(t.q) + '</span><span class="qb-mark" aria-hidden="true">\u201C</span><span class="qb-text">' + esc(HL[t.slug].f) + '</span><span class="qb-src">記事を読む' + svg("arrow") + "</span></a>";
   }
   function startAutoRails() {
     document.querySelectorAll(".arail[data-auto]").forEach(function (r) {
@@ -339,7 +341,8 @@
     document.querySelectorAll('a[href*="feature.html#"]').forEach(function (a) { shownF[a.getAttribute("href").split("#")[1]] = 1; });
     var freeF = F.filter(function (f) { return !shownF[f.id]; });
     if (k % 2 === 0 && freeF.length) { var f = freeF[(k / 2) % freeF.length]; return '<div class="feed-break dark-band">' + fcard(f) + "</div>"; }
-    var c = Z.categories[Math.floor(k / 2) % Z.categories.length], p = photo(c.id, k + 3);
+    var nb = document.querySelectorAll("#feed-box .cat-band").length;
+    var c = Z.categories[nb % Z.categories.length], p = photo(c.id, k + 3);
     return '<a class="cat-band" href="' + catUrl(c.id) + '">' + (p ? img(p.src, "bg") : "") + '<span class="shade"></span><span class="cb-in"><span class="cb-no">' + c.no + '</span><span class="cb-en">' + c.en + "</span><b>" + esc(c.name) + "</b><small>" + esc(c.desc) + '</small><span class="more">この分野の疑問を見る' + svg("arrow") + "</span></span></a>";
   }
   function feedHtml(tabs) {
@@ -477,12 +480,12 @@
     var hls = rest.filter(hasF).concat(head.filter(hasF)).slice(0, 8);
     return (hls.length ? '<section class="sec">' + secHead("Highlights", "記事のハイライト") + '<p class="sec-note">各記事の「ここが面白い！」から。</p><div class="hl-rail">' + hls.map(function (t) {
         var p = topicPhoto(t);
-        return '<a class="hlcard" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(p.small) : "") + '</span><span class="hl-f">' + esc(HL[t.slug].f) + '</span><span class="hl-q">' + esc(t.q) + svg("arrow") + "</span></a>";
+        return '<a class="hlcard" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(p.small) : "") + '</span><span class="hl-f">' + esc(HL[t.slug].f) + '</span><span class="hl-q">' + qh(t.q) + svg("arrow") + "</span></a>";
       }).join("") + "</div></section>" : "") +
       '<section class="sec">' + secHead("Stories", list.length + "の疑問") + mosaic(head, true) + "</section>" +
       (col ? '<section class="sec column dark-band"><div class="col-head"><span class="col-en">Column</span><span>編集部コラム</span></div><h2>' + esc(col.title) + "</h2>" +
         col.body.map(function (b, i) { return "<p" + (i === 0 ? ' class="col-lead"' : "") + ">" + esc(b) + "</p>"; }).join("") +
-        '<div class="col-links"><span>この話を読む</span>' + col.links.map(topic).filter(Boolean).map(function (t) { return '<a href="' + articleUrl(t) + '">' + esc(t.q) + svg("arrow") + "</a>"; }).join("") + "</div>" +
+        '<div class="col-links"><span>この話を読む</span>' + col.links.map(topic).filter(Boolean).map(function (t) { return '<a href="' + articleUrl(t) + '">' + qh(t.q) + svg("arrow") + "</a>"; }).join("") + "</div>" +
         '<p class="col-sign">文：SOMOSOMO編集部</p></section>' : "") +
       (rest.length ? '<section class="sec">' + secHead("More in " + c.en.split(" ")[0], c.name + "のほかの疑問") + vlist(rest, true, 5) + "</section>" : "");
   }
@@ -498,7 +501,7 @@
   function stepItem(t, i, id) {
     var tp = topicPhoto(t), c = cat(t.cat);
     return "<li" + (id ? ' id="' + id + '"' : "") + '><a href="' + articleUrl(t) + '"><span class="step"><small>' + (t.series ? "EP." : "STEP") + "</small><b>" + pad(i + 1) + "</b></span>" +
-      '<span class="txt">' + (t.sub ? subLine(t, "cat-label") : '<span class="cat-label">' + esc(c.name) + "</span>") + "<h3>" + esc(t.q) + '</h3><span class="meta">' + readLabel(t) + "</span></span>" +
+      '<span class="txt">' + (t.sub ? subLine(t, "cat-label") : '<span class="cat-label">' + esc(c.name) + "</span>") + "<h3>" + qh(t.q) + '</h3><span class="meta">' + readLabel(t) + "</span></span>" +
       '<span class="thumb">' + (tp ? img(tp.small) : "") + "</span></a></li>";
   }
   /* 部に分かれた連載（世界史の流れ）：目次から各部・各話へ飛べるようにする */
@@ -570,7 +573,7 @@
     main.innerHTML =
       '<nav class="crumbs" aria-label="現在地"><a href="' + u("index.html") + '">ホーム</a><span>/</span><a href="' + catUrl(c.id) + '">' + esc(c.name) + "</a></nav>" +
       '<article class="article"><header class="article-head"><span class="row-top"><a class="cat-label" href="' + catUrl(c.id) + '">' + esc(c.name) + "</a></span>" +
-      "<h1>" + esc(t.q) + "</h1>" + subLine(t, "article-sub") + '<span class="meta">' + readLabel(t) + "</span></header>" +
+      "<h1>" + qh(t.q) + "</h1>" + subLine(t, "article-sub") + '<span class="meta">' + readLabel(t) + "</span></header>" +
       seriesBar(t) +
       '<figure class="article-photo">' + (p ? img(p.src, "kb", true) : "") + "</figure>" + credit(p) +
       '<div class="toc"><b>この記事は準備中です</b><p>公開まで、もう少しお待ちください。下の特集や関連する疑問から、先に読み進めることもできます。</p></div></article>' +
@@ -583,9 +586,9 @@
     var c = cat(t.cat), feats = featuresWith(t.slug);
     var seen = {}; seen[t.slug] = 1;
     var nx = nextOf(t); if (nx) seen[nx.slug] = 1;
-    var rel = t.related.map(topic).filter(function (x) { return x && !seen[x.slug]; });
+    var rel = t.related.map(topic).filter(function (x) { return x && !seen[x.slug] && x.status === "published"; });
     rel.forEach(function (x) { seen[x.slug] = 1; });
-    var same = topicsOf(c.id).filter(function (x) { return !seen[x.slug]; });
+    var same = topicsOf(c.id).filter(function (x) { return !seen[x.slug] && x.status === "published"; });
     /* 本線の話 → その話から伸びる枝（公開済みだけ）。枝の記事 → 本線に戻る */
     var branches = Z.topics.filter(function (x) { return x.trunk === t.slug && x.status === "published"; });
     var trunk = t.trunk && topic(t.trunk);
@@ -608,9 +611,9 @@
     var n = nextOf(t);
     if (!n) return "";
     var p = topicPhoto(n);
-    return '<a class="next-story" href="' + articleUrl(n) + '">' + (p ? img(p.src, "bg") : "") + '<span class="shade"></span>' +
+    return '<a class="next-story' + (p ? "" : " no-img") + '" href="' + articleUrl(n) + '">' + (p ? img(p.src, "bg") : "") + '<span class="shade"></span>' +
       '<span class="next-in"><span class="en">' + (n.series ? "Next Episode" : "Next Story") + '</span><span class="next-cat">' + (n.series ? epLabel(n) + " ・ " + esc(n.sub) : esc(cat(n.cat).name)) + "</span>" +
-      "<b>" + esc(n.q) + '</b><span class="meta">' + readLabel(n) + '</span></span><span class="go">' + svg("arrow") + "</span></a>";
+      "<b>" + qh(n.q) + '</b><span class="meta">' + readLabel(n) + '</span></span><span class="go">' + svg("arrow") + "</span></a>";
   }
 
   /* 連載（世界史の流れ）の前後の話と、「いまここ」を示す年表の帯 */
@@ -638,7 +641,7 @@
   function seriesLinks(t) {
     [[".recap", -1, "前回"], [".to-next", 1, "次回"]].forEach(function (a) {
       var box = document.querySelector(".story " + a[0]), n = seriesNeighbor(t, a[1]);
-      if (box && n) box.insertAdjacentHTML("beforeend", '<a class="ep-link" href="' + articleUrl(n) + '"><small>' + a[2] + " ・ " + epLabel(n) + "</small><b>" + esc(n.q) + "</b>" + svg("arrow") + "</a>");
+      if (box && n) box.insertAdjacentHTML("beforeend", '<a class="ep-link" href="' + articleUrl(n) + '"><small>' + a[2] + " ・ " + epLabel(n) + "</small><b>" + qh(n.q) + "</b>" + svg("arrow") + "</a>");
     });
   }
 
