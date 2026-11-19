@@ -224,7 +224,6 @@
       '<section class="statement" aria-label="SOMOSOMOについて"><p class="statement-lead">そもそも、<br>なぜだろう？</p>' +
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
-      '<section class="sec now-flow" aria-label="いま読める記事">' + marquee(mix(pubs()).slice(0, 14), "いま読める記事") + "</section>" +
       '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.map(fcard).join("") + "</div></section>" +
       Z.categories.map(function (c, k) { return genreSec(c, k) + (c.id === "history" ? seriesSec() : "") + (c.id === "nature" ? quoteBand() : ""); }).join("") +
       '<section class="tag-band" aria-labelledby="h-kw"><span class="en">Pick up keywords</span><h2 id="h-kw">#気になることばから探す</h2>' +
@@ -267,7 +266,7 @@
   function marquee(list, label) {
     var one = list.map(function (t) {
       var p = topicPhoto(t), c = cat(t.cat);
-      return '<a class="mq-card" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(p.small) : "") + '</span><span class="cat-label">' + esc(t.series ? epLabel(t) : c.name) + "</span><b>" + qh(t.q) + "</b></a><i class=\"mq-why\" aria-hidden=\"true\">Why?</i>";
+      return '<a class="mq-card" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(p.small) : "") + '</span><span class="cat-label">' + esc(t.series ? epLabel(t) : c.name) + "</span><b>" + qh(t.q) + "</b></a>";
     }).join("");
     return '<div class="marquee"' + (label ? ' aria-label="' + esc(label) + '"' : "") + '><div class="mq-track" style="--n:' + list.length + '">' + one + '<span class="mq-dup" aria-hidden="true">' + one.replace(/<a /g, '<a tabindex="-1" ') + "</span></div></div>";
   }
@@ -319,8 +318,13 @@
     /* 流れる帯：指で触っている間と、そのあと少しのあいだは止める */
     document.querySelectorAll(".marquee").forEach(function (m) {
       var t = 0;
-      m.addEventListener("touchstart", function () { clearTimeout(t); m.classList.add("is-held"); }, { passive: true });
-      m.addEventListener("touchend", function () { t = setTimeout(function () { m.classList.remove("is-held"); }, 2500); }, { passive: true });
+      function hold() { clearTimeout(t); m.classList.add("is-held"); }
+      function release() { clearTimeout(t); t = setTimeout(function () { m.classList.remove("is-held"); }, 1200); }
+      m.addEventListener("touchstart", hold, { passive: true });
+      m.addEventListener("touchend", release, { passive: true });
+      m.addEventListener("touchcancel", release, { passive: true });
+      m.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hold(); });
+      m.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") release(); });
     });
   }
 

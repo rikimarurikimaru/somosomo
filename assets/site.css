@@ -894,3 +894,18 @@ img.kb { animation: kb 18s ease-out both; }
 .now-flow { margin-top: -20px; }
 @media (min-width: 768px) { .marquee { margin: 0; } .mq-card { width: 220px; } }
 .rail-nav svg.flip { transform: scaleX(-1); }
+
+/* ===== 2026-11-20 流れる帯の手直し（本人：タップのあとが変・Why? はいらない・動きと静止のバランス） ===== */
+/* 止めるのは、指が触れている間（is-held）と、キーボードで記事を選んでいる間だけ。スマホで :hover が残って止まりっぱなしにならないように */
+@media (prefers-reduced-motion: no-preference) {
+  .marquee:hover .mq-track, .marquee:focus-within .mq-track { animation-play-state: running; }
+  .marquee.is-held .mq-track, .marquee:has(a:focus-visible) .mq-track { animation-play-state: paused; }
+  .mq-track { animation-duration: calc(var(--n, 8) * 4.5s); }
+}
+.mq-why { display: none; }
+.mq-card { margin-right: 14px; -webkit-tap-highlight-color: transparent; }
+.marquee { padding: 2px 0 6px; }
+/* 欄の上下の間合いをそろえる（動く欄の前後にゆとり） */
+.genre { gap: 24px; }
+.genre.dark-band { padding-top: 40px; padding-bottom: 44px; }
+.ticker { margin-block: 8px; }
