@@ -310,7 +310,7 @@
     main.innerHTML =
       '<nav class="crumbs" aria-label="現在地"><a href="' + u("index.html") + '">ホーム</a><span>/</span><a href="' + u("categories.html") + '">カテゴリ</a><span>/</span><span>' + esc(c.name) + "</span></nav>" +
       '<section class="cover cover-mid">' + (p ? img(p.src, "bg kb", true) : "") + '<span class="shade"></span>' +
-      '<div class="cover-in"><span class="big-no">' + c.no + '</span><span class="en">' + c.en + "</span><h1>" + esc(c.name) + "</h1><p>" + esc(c.desc) + "</p></div>" + credit(p) + "</section>" +
+      '<div class="cover-in"><span class="big-no">' + c.no + '</span><span class="en">' + c.en + "</span><h1><span class=\"band\">" + esc(c.name) + "</span></h1><p>" + esc(c.desc) + "</p></div>" + credit(p) + "</section>" +
       '<nav class="chips scroll" aria-label="カテゴリの切り替え">' + Z.categories.map(function (x) {
         return '<a href="' + catUrl(x.id) + '"' + (x.id === c.id ? ' class="on" aria-current="page"' : "") + ">" + esc(x.name) + "</a>";
       }).join("") + "</nav>" +
@@ -340,10 +340,13 @@
       var pubs = eps.filter(function (t) { return t.status === "published" && t.cover; });
       return { pt: pt, n: n + 1, eps: eps, from: from, ph: pt.img ? { src: pt.img, small: pt.img } : pubs.length ? pubs[pubs.length - 1].cover : featurePhoto(f) };
     });
-    var index = '<section class="sec" id="index">' + secHead("Index", "目次") +
+    var shelf = '<div class="shelf" role="group" aria-label="部の背表紙">' + parts.map(function (P) {
+      return '<button type="button" class="spine" data-jump="part-' + P.n + '" style="--c:' + (P.pt.color || "#23211d") + ";--h:" + [96, 88, 92, 100, 97, 90][(P.n - 1) % 6] + '%"><b>' + pad(P.n) + '</b><span class="spine-t">' + esc(P.pt.title).replace(/\d+/g, '<span class="tcy">$&</span>') + '</span><small>' + esc(P.pt.era) + '</small><i class="spine-dot" aria-hidden="true"></i></button>';
+    }).join("") + "</div>";
+    var index = '<section class="sec" id="index">' + secHead("Index", "目次") + shelf +
       '<p class="series-note">' + esc(f.note || "") + "</p>" +
       '<ol class="series-index">' + parts.map(function (P) {
-        return '<li><button type="button" class="pi-head" data-jump="part-' + P.n + '">' + (P.ph ? img(P.ph.small, "bg") : "") + '<span class="shade"></span><span class="pi-no">' + pad(P.n) + '</span><span class="pi-txt"><small>第' + P.n + "部 ・ " + esc(P.pt.era) + " ・ " + esc(P.pt.span) + "</small><b>" + esc(P.pt.title) + "</b></span>" + svg("chevron") + "</button>" +
+        return '<li><button type="button" class="pi-head" data-jump="part-' + P.n + '" style="--c:' + (P.pt.color || "#23211d") + '">' + (P.ph ? img(P.ph.small, "bg") : "") + '<span class="shade"></span><span class="pi-no">' + pad(P.n) + '</span><span class="pi-txt"><small>第' + P.n + "部 ・ " + esc(P.pt.era) + " ・ " + esc(P.pt.span) + "</small><b>" + esc(P.pt.title) + "</b></span>" + svg("chevron") + "</button>" +
           '<div class="pi-eps" role="group" aria-label="第' + P.n + '部の各話">' + P.eps.map(function (t, j) {
             var no = P.from + j + 1;
             var tp = t.status === "published" && t.cover;
@@ -353,7 +356,7 @@
       (list[0] ? '<a class="series-start" href="' + articleUrl(list[0]) + '">第1話から読む' + svg("arrow") + "</a>" : "") +
       '<p class="series-count">公開中 ' + read + " / 全" + list.length + "話</p></section>";
     var body = parts.map(function (P) {
-      return '<section class="sec part" id="part-' + P.n + '"><div class="part-head">' + (P.ph ? img(P.ph.src, "bg") : "") + '<span class="shade"></span><span class="part-no">' + pad(P.n) + '</span><div class="part-title"><span class="en">Part ' + pad(P.n) + " ・ " + esc(P.pt.en) + "</span><h2>第" + P.n + "部　" + esc(P.pt.title) + "</h2><small>" + esc(P.pt.era) + " ・ " + esc(P.pt.span) + "</small></div>" +
+      return '<section class="sec part" id="part-' + P.n + '"><div class="part-head" style="--c:' + (P.pt.color || "#23211d") + '">' + (P.ph ? img(P.ph.src, "bg") : "") + '<span class="shade"></span><span class="part-no">' + pad(P.n) + '</span><div class="part-title"><span class="en">Part ' + pad(P.n) + " ・ " + esc(P.pt.en) + "</span><h2>第" + P.n + "部　" + esc(P.pt.title) + "</h2><small>" + esc(P.pt.era) + " ・ " + esc(P.pt.span) + "</small></div>" +
         '<button type="button" class="to-index" data-jump="index">目次へ</button></div>' +
         '<ol class="steps">' + P.eps.map(function (t, j) { return stepItem(t, P.from + j, "ep-" + (P.from + j + 1)); }).join("") + "</ol></section>";
     }).join("");
@@ -376,7 +379,7 @@
     main.innerHTML =
       '<nav class="crumbs" aria-label="現在地"><a href="' + u("index.html") + '">ホーム</a><span>/</span><a href="' + u("features.html") + '">特集</a><span>/</span><span>No.' + f.no + "</span></nav>" +
       '<section class="cover">' + (p ? img(p.src, "bg kb", true) : "") + '<span class="shade"></span>' +
-      '<div class="cover-in"><span class="big-no">' + f.no + '</span><span class="en">Special ・ ' + f.en + "</span><h1>" + esc(f.title) + "</h1><p>" + esc(f.lead) + '</p><span class="meta">' + (f.parts ? "全" + list.length + "話 ・ " + f.parts.length + "部" : "全" + list.length + "記事") + "</span></div>" + credit(p) + "</section>" +
+      '<div class="cover-in"><span class="big-no">' + f.no + '</span><span class="en">Special ・ ' + f.en + "</span><h1><span class=\"band\">" + esc(f.title) + "</span></h1><p>" + esc(f.lead) + '</p><span class="meta">' + (f.parts ? "全" + list.length + "話 ・ " + f.parts.length + "部" : "全" + list.length + "記事") + "</span></div>" + credit(p) + "</section>" +
       (f.parts ? seriesBody(f, list) :
       '<section class="sec">' + secHead("How to Read", "この特集の読み方") +
       '<ol class="steps">' + list.map(function (t, i) { return stepItem(t, i); }).join("") + "</ol></section>") +
@@ -536,9 +539,17 @@
   }
 
   /* ---------- 公開済みの記事（articles/<slug>.html）：本文はページに書き、下の続きだけ組み立てる ---------- */
+  /* 扉の題を色の帯に（TRANSIT 風）。文節の span（.nw）があればそれぞれを、なければ題全体を帯にする */
+  function heroBand() {
+    var h1 = document.querySelector(".story-hero h1");
+    if (!h1 || h1.querySelector(".band")) return;
+    if (!h1.querySelector(".nw")) h1.innerHTML = '<span class="band">' + h1.innerHTML + "</span>";
+    h1.classList.add("is-band");
+  }
   function renderStory() {
     var t = topic(document.body.getAttribute("data-slug"));
     var box = document.getElementById("story-more");
+    heroBand();
     storyToc();
     drawLineCharts();
     if (t && t.series) {
