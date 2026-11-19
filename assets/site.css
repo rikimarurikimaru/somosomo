@@ -948,3 +948,12 @@ img.kb { animation: kb 18s ease-out both; }
 .fi-en { font-family: var(--latin); font-weight: 600; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
 .feature-intro p { font-size: 15.5px; line-height: 1.95; }
 .feature-intro .fi-lead { font-family: var(--display); font-weight: 800; font-size: 19px; line-height: 1.7; }
+
+/* ===== 2026-11-20 各ジャンルのページ：ハイライト → 新着、番号なしの一覧 ===== */
+.hlcard.is-new .thumb { position: relative; }
+.hlcard.is-new .hl-f { padding: 0 16px; font-size: 17px; }
+.hlcard.is-new .hl-f::before { display: none; }
+.hlcard.is-new .hl-q { font-family: var(--latin); font-style: italic; letter-spacing: .04em; }
+.vlist.no-num a { grid-template-columns: 1fr 88px; }
+.vlist.no-num .vl-no { display: none; }
+.col-links a > span { min-width: 0; }

@@ -242,8 +242,8 @@
   /* 問いの答え（ひとことで言うと）は記事の外に出さない（2026-11-19、本人「読む一番の動機がなくなる」）。呼び出しは残し、何も出さない */
   function hlA() { return ""; }
   /* 縦の番号つき一覧 */
-  function vlist(list, hl, from) {
-    return '<ol class="vlist">' + list.map(function (t, i) {
+  function vlist(list, hl, from, noNum) {
+    return '<ol class="vlist' + (noNum ? " no-num" : "") + '">' + list.map(function (t, i) {
       var p = topicPhoto(t), c = cat(t.cat);
       return '<li><a href="' + articleUrl(t) + '"><span class="vl-no">' + pad((from || 0) + i + 1) + '</span><span class="vl-txt"><span class="cat-label">' + esc(t.series ? epLabel(t) + " ・ " + (t.sub || "") : c.name) + "</span><b>" + qh(t.q) + "</b>" +
         (hl === true ? hlA(t) : "") + '<span class="meta">' + readLabel(t) + '</span></span><span class="vl-thumb">' + (p ? img(p.small) : "") + "</span></a></li>";
@@ -288,7 +288,7 @@
   function spread(list) {
     var t = list[0], p = topicPhoto(t), f = HL[t.slug] && HL[t.slug].f;
     return '<a class="spread" href="' + articleUrl(t) + '">' + (p ? img(p.src, "bg") : "") + '<span class="shade"></span>' +
-      '<span class="sp-in">' + (f ? '<span class="sp-quote">' + esc(f) + "</span>" : "") + '<span class="sp-q">' + qh(t.q) + svg("arrow") + "</span></span></a>" +
+      '<span class="sp-in">' + (f ? '<span class="sp-quote">' + esc(f) + "</span>" : "") + '<span class="sp-q"><span>' + qh(t.q) + "</span>" + svg("arrow") + "</span></span></a>" +
       '<ol class="tlist">' + list.slice(1).map(function (x) { return '<li><a href="' + articleUrl(x) + '"><b>' + qh(x.q) + "</b>" + svg("arrow") + "</a></li>"; }).join("") + "</ol>";
   }
   /* 写真なし、文字だけの目録（問いと、ひとことの答え） */
@@ -483,19 +483,18 @@
   function catBody(c, list) {
     var sorted = list.filter(function (t) { return t.status === "published"; }).sort(byNew).concat(list.filter(function (t) { return t.status !== "published"; }));
     var col = COL[c.id];
-    var head = sorted.slice(0, 5), rest = sorted.slice(5);
-    var hasF = function (t) { return HL[t.slug] && HL[t.slug].f; };
-    var hls = rest.filter(hasF).concat(head.filter(hasF)).slice(0, 8);
-    return (hls.length ? '<section class="sec">' + secHead("Highlights", "記事のハイライト") + '<p class="sec-note">各記事の「ここが面白い！」から。</p><div class="hl-rail">' + hls.map(function (t) {
+    var news = sorted.filter(function (t) { return t.status === "published"; }).slice(0, 5);
+    var head = sorted.slice(news.length, news.length + 5), rest = sorted.slice(news.length + 5);
+    return (news.length ? '<section class="sec">' + secHead("New Arrivals", "新着") + '<div class="hl-rail">' + news.map(function (t) {
         var p = topicPhoto(t);
-        return '<a class="hlcard" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(p.small) : "") + '</span><span class="hl-f">' + esc(HL[t.slug].f) + '</span><span class="hl-q">' + qh(t.q) + svg("arrow") + "</span></a>";
+        return '<a class="hlcard is-new" href="' + articleUrl(t) + '"><span class="thumb">' + (p ? img(p.small) : "") + newBadge(t) + '</span><span class="hl-f">' + qh(t.q) + '</span><span class="hl-q"><span>' + (t.series ? epLabel(t) + " ・ " : "") + (t.date ? fmtDate(t.date) + " UP" : "") + "</span>" + svg("arrow") + "</span></a>";
       }).join("") + "</div></section>" : "") +
-      '<section class="sec">' + secHead("Stories", list.length + "の疑問") + mosaic(head, true) + "</section>" +
+      (head.length ? '<section class="sec">' + secHead("Stories", list.length + "の疑問") + mosaic(head) + "</section>" : "") +
       (col ? '<section class="sec column dark-band"><div class="col-head"><span class="col-en">Column</span><span>編集部コラム</span></div><h2>' + esc(col.title) + "</h2>" +
         col.body.map(function (b, i) { return "<p" + (i === 0 ? ' class="col-lead"' : "") + ">" + esc(b) + "</p>"; }).join("") +
-        '<div class="col-links"><span>この話を読む</span>' + col.links.map(topic).filter(Boolean).map(function (t) { return '<a href="' + articleUrl(t) + '">' + qh(t.q) + svg("arrow") + "</a>"; }).join("") + "</div>" +
+        '<div class="col-links"><span>この話を読む</span>' + col.links.map(topic).filter(Boolean).map(function (t) { return '<a href="' + articleUrl(t) + '"><span>' + qh(t.q) + "</span>" + svg("arrow") + "</a>"; }).join("") + "</div>" +
         '<p class="col-sign">文：SOMOSOMO編集部</p></section>' : "") +
-      (rest.length ? '<section class="sec">' + secHead("More in " + c.en.split(" ")[0], c.name + "のほかの疑問") + vlist(rest, true, 5) + "</section>" : "");
+      (rest.length ? '<section class="sec">' + secHead("More in " + c.en.split(" ")[0], c.name + "のほかの疑問") + vlist(rest, false, 0, true) + "</section>" : "");
   }
 
   /* ---------- 特集一覧 ---------- */
