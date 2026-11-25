@@ -209,7 +209,8 @@ window.ZUKAN = {
       cover: { src: "images/wh33-ww2/cover.jpg", small: "images/wh33-ww2/cover_s.jpg", title: "Westerplatte Monument", artist: "Medicaster40", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Westerplatte_Monument.jpg" } },
     { no: 119, slug: "wh34-cold-war", cat: "history", series: "world-history", ep: 34, q: "冷戦は、なぜ「冷たい」まま終わった？", sub: "現代 ― 1945〜1991年・世界", minutes: 8, tags: ["世界史", "現代"], related: ["wh33-ww2", "wh35-decolonization"], status: "published", date: "2026-11-25",
       cover: { src: "images/wh34-cold-war/cover.jpg", small: "images/wh34-cold-war/cover_s.jpg", title: "Berlin Wall Memorial site Bernauer Straße 03", artist: "Mini1300", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Berlin_Wall_Memorial_site_Bernauer_Stra%C3%9Fe_03.jpg" } },
-    { no: 120, slug: "wh35-decolonization", cat: "history", series: "world-history", ep: 35, q: "植民地は、どうやって独立した？", sub: "現代 ― 1945〜1975年・アジアとアフリカ", minutes: 8, tags: ["世界史", "現代"], related: ["wh34-cold-war", "wh36-after-cold-war"] },
+    { no: 120, slug: "wh35-decolonization", cat: "history", series: "world-history", ep: 35, q: "植民地は、どうやって独立した？", sub: "現代 ― 1945〜1975年・アジアとアフリカ", minutes: 8, tags: ["世界史", "現代"], related: ["wh34-cold-war", "wh36-after-cold-war"], status: "published", date: "2026-11-25",
+      cover: { src: "images/wh35-decolonization/cover.jpg", small: "images/wh35-decolonization/cover_s.jpg", title: "Red Fort 2", artist: "Svnitbharath", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:Red_Fort_2.jpg" } },
     { no: 121, slug: "wh36-after-cold-war", cat: "history", series: "world-history", ep: 36, q: "冷戦のあと、世界はなぜいまの形になった？", sub: "現代 ― 1991年〜現在・世界", minutes: 8, tags: ["世界史", "現代"], related: ["wh35-decolonization"] }
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };
