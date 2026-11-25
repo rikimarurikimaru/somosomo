@@ -240,6 +240,8 @@
 .recap .en, .to-next .en { font-size: 11px; color: var(--red); }
 .recap p, .to-next p { font-size: 14.5px; line-height: 1.9; }
 .to-next { border-color: var(--ink); }
+.to-next.is-end { padding: 34px 20px 30px; gap: 14px; }
+.to-next.is-end .en { font-size: 36px; line-height: 1; font-style: italic; letter-spacing: .01em; }
 .ep-link { display: grid; grid-template-columns: 1fr 20px; gap: 2px 10px; align-items: center; border-top: 1px dashed var(--line); padding-top: 12px; text-decoration: none; }
 .ep-link small { grid-column: 1; font-size: 11px; color: var(--muted); }
 .ep-link b { grid-column: 1; font-family: var(--display); font-weight: 800; font-size: 16px; line-height: 1.5; }
