@@ -37,6 +37,8 @@
   function topic(slug) { return Z.topics.filter(function (t) { return t.slug === slug; })[0]; }
   function topicsOf(id) { return Z.topics.filter(function (t) { return t.cat === id; }); }
   function feature(id) { return F.filter(function (f) { return f.id === id; })[0]; }
+  function liveF(f) { return f.articles.some(function (s) { var t = topic(s); return t && t.status === "published"; }); }
+  function deepsFrom(slug) { return F.filter(function (f) { return f.kind === "deep" && f.roots && f.roots.indexOf(slug) >= 0 && liveF(f); }); }
   function featuresWith(slug) { return F.filter(function (f) { return f.articles.indexOf(slug) >= 0; }); }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   function u(path) { return ROOT + path; }
@@ -47,7 +49,10 @@
     return '<img class="' + (cls || "") + '" src="' + esc(u(src)) + '" alt=""' + (eager ? "" : ' loading="lazy"') + ' decoding="async">';
   }
   function topicPhoto(t) { return t.cover || (t.status === "published" ? photo(t.cat, t.no) : null); }  /* 準備中の記事は写真なし（中身と合わない写真を出さない） */  /* 公開済みの記事は自分の写真を使う */
-  function featurePhoto(f) { return photo(f.cover, parseInt(f.no, 10) * 3); }
+  function featurePhoto(f) {
+    if (f.kind === "deep") { var c = f.articles.map(topic).filter(function (t) { return t && t.status === "published" && t.cover; })[0]; if (c) return c.cover; }
+    return photo(f.cover, parseInt(f.no, 10) * 3);
+  }
   function readLabel(t) { return t.status === "published" ? "約" + t.minutes + "分で読める" : '<span class="soon">準備中</span>'; }
 
   var I = {
@@ -89,7 +94,7 @@
     var p = featurePhoto(f);
     return '<a class="fcard" href="' + featureUrl(f.id) + '">' + (p ? img(p.small, "bg") : "") + '<span class="shade"></span>' +
       '<span class="fcard-no">' + f.no + "</span>" + '<span class="vlabel" aria-hidden="true">' + f.en + "</span>" +
-      '<span class="fcard-in"><span class="en">Special ・ ' + f.en + "</span><h3>" + esc(f.title) + "</h3><small>全" + f.articles.length + (f.parts ? "話" : "記事") + "を読む</small></span></a>";
+      '<span class="fcard-in"><span class="en">' + (f.kind === "deep" ? "Deep Dive" : "Special") + ' ・ ' + f.en + "</span><h3>" + esc(f.title) + "</h3><small>全" + f.articles.length + (f.parts ? "話" : "記事") + "を読む</small></span></a>";
   }
   function catRow(c, big) {
     var p = photo(c.id, 5);
@@ -224,7 +229,7 @@
       '<section class="statement" aria-label="SOMOSOMOについて"><p class="statement-lead">そもそも、<br>なぜだろう？</p>' +
       '<p class="statement-tate">身の回りの当たり前には、たいてい驚くような理由があります。写真と図解で、その理由をのぞいてみませんか。</p></section>' +
       ticker() +
-      '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.map(fcard).join("") + "</div></section>" +
+      '<section class="sec dark-band zig">' + secHead("Special", "特集", u("features.html")) + '<div class="feature-rail">' + F.filter(function (f) { return f.kind !== "deep" || liveF(f); }).map(fcard).join("") + "</div></section>" +
       seriesSec() +
       '<section class="sec genre-chapter">' + secHead("Categories", "ジャンルから読む") + "</section>" +
       Z.categories.map(function (c, k) { return genreSec(c, k); }).join("");
@@ -347,7 +352,7 @@
   function feedBreak(k) {
     var shownF = {};
     document.querySelectorAll('a[href*="feature.html#"]').forEach(function (a) { shownF[a.getAttribute("href").split("#")[1]] = 1; });
-    var freeF = F.filter(function (f) { return !shownF[f.id]; });
+    var freeF = F.filter(function (f) { return !shownF[f.id] && (f.kind !== "deep" || liveF(f)); });
     if (k % 2 === 0 && freeF.length) { var f = freeF[(k / 2) % freeF.length]; return '<div class="feed-break dark-band">' + fcard(f) + "</div>"; }
     var nb = document.querySelectorAll("#feed-box .cat-band").length;
     var c = Z.categories[nb % Z.categories.length], p = photo(c.id, k + 3);
@@ -499,8 +504,10 @@
 
   /* ---------- 特集一覧 ---------- */
   function renderFeatures() {
+    var deep = F.filter(function (f) { return f.kind === "deep" && liveF(f); }), rest = F.filter(function (f) { return f.kind !== "deep"; });
     main.innerHTML = '<header class="page-head"><span class="en">Special</span><h1>特集</h1><p>関連する疑問を読む順番に並べました。1つのテーマを、深く掘り下げる。</p></header>' +
-      '<div class="fstack">' + F.map(fcard).join("") + "</div>";
+      '<div class="fstack">' + rest.map(fcard).join("") + "</div>" +
+      (deep.length ? '<section class="sec">' + secHead("Deep Dive", "世界史から伸びる深掘り") + '<p class="sec-note">ニュースでよく聞くあの問題を、世界史の流れの1話から枝分かれさせて、図と写真でたどります。</p><div class="fstack">' + deep.map(fcard).join("") + "</div></section>" : "");
   }
 
   /* ---------- 特集 ---------- */
@@ -560,11 +567,13 @@
       '<section class="cover">' + (p ? img(p.src, "bg kb", true) : "") + '<span class="shade"></span>' +
       '<div class="cover-in"><span class="big-no">' + f.no + '</span><span class="en">Special ・ ' + f.en + "</span><h1><span class=\"band\">" + esc(f.title) + "</span></h1><p>" + esc(f.lead) + '</p><span class="meta">' + (f.parts ? "全" + list.length + "話 ・ " + f.parts.length + "部" : "全" + list.length + "記事") + "</span></div>" + credit(p) + "</section>" +
       (f.intro ? '<section class="sec feature-intro"><span class="fi-en">About this special</span>' + f.intro.map(function (x, i) { return "<p" + (i === 0 ? ' class="fi-lead"' : "") + ">" + esc(x) + "</p>"; }).join("") + "</section>" : "") +
-      (f.parts ? seriesBody(f, list) :
+      (f.kind === "deep" && f.roots ? '<section class="sec">' + secHead("Roots", "世界史の流れから") + '<p class="sec-note">この特集は、連載「世界史の流れ」の次の話から枝分かれしています。先に読むと、背景がつかみやすくなります。</p><div class="rows two">' +
+        f.roots.map(topic).filter(function (x) { return x && x.status === "published"; }).map(row).join("") + "</div></section>" : "") +
+      (f.parts ? seriesBody(f, list) + (F.some(function (x) { return x.kind === "deep" && liveF(x); }) ? '<section class="sec">' + secHead("Deep Dive", "世界史から伸びる深掘り") + '<div class="feature-rail">' + F.filter(function (x) { return x.kind === "deep" && liveF(x); }).map(fcard).join("") + "</div></section>" : "") :
       '<section class="sec">' + secHead("How to Read", "この特集の読み方") +
       '<ol class="steps">' + list.map(function (t, i) { return stepItem(t, i); }).join("") + "</ol></section>") +
       '<section class="sec">' + secHead("More Specials", "ほかの特集", u("features.html")) +
-      '<div class="feature-rail">' + F.filter(function (x) { return x.id !== f.id; }).map(fcard).join("") + "</div></section>";
+      '<div class="feature-rail">' + F.filter(function (x) { return x.id !== f.id && (x.kind !== "deep" || liveF(x)); }).map(fcard).join("") + "</div></section>";
     window.scrollTo(0, 0);
   }
 
@@ -598,7 +607,9 @@
     var branches = Z.topics.filter(function (x) { return x.trunk === t.slug && x.status === "published"; });
     var trunk = t.trunk && topic(t.trunk);
     if (trunk && trunk.status !== "published") trunk = null;
+    var deeps = deepsFrom(t.slug);
     return nextStory(t) +
+      (deeps.length ? '<section class="sec">' + secHead("Deep Dive", "この話から伸びる深掘り") + '<p class="sec-note">この時代から、いまのニュースにつながる問題を、別の特集でたどれます。</p><div class="feature-rail">' + deeps.map(fcard).join("") + "</div></section>" : "") +
       (branches.length ? '<section class="sec">' + secHead("Branches", "いまにつながる話") + '<p class="sec-note">この時代から、いまの暮らしにつながっているもの。</p><div class="rows two">' + branches.map(row).join("") + "</div></section>" : "") +
       (trunk ? '<section class="sec">' + secHead("Main Line", esc(feature(trunk.series) ? feature(trunk.series).title.split("　")[0] : "本線") + "に戻る") + '<div class="rows two">' + row(trunk) + "</div></section>" : "") +
       (feats.length ? '<section class="sec">' + secHead("Special", "この疑問が入っている特集") + '<div class="feature-rail">' + feats.map(fcard).join("") + "</div></section>" : "") +

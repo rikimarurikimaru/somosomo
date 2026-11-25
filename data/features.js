@@ -61,4 +61,12 @@ window.ZUKAN_FEATURES = [
     intro: ["世界史は、覚えることが多すぎて苦手だった。そんな人にこそ読んでほしい連載です。", "最初の都市が生まれた紀元前から、冷戦が終わったあとの今まで。1話に1つの「なぜ？」を追いかけながら、36話を順に読むと、ばらばらだった出来事が1本の流れにつながるように作っています。", "各話の最初に「前回のあらすじ」、最後に「次の話へ」があるので、どこからでも戻れます。まずは第1話から、気軽に読み始めてください。"],
     articles: ["wh01-river-civilizations", "wh02-egypt", "wh03-kanji-origin", "wh04-alphabet", "wh05-persia", "wh06-axial-age", "wh07-athens-democracy", "wh08-alexander", "wh09-rome-rise", "wh10-qin-han", "wh11-han-and-rome", "wh12-fall-of-rome", "wh13-islam", "wh14-tang-changan", "wh15-medieval-church", "wh16-song-china", "wh17-crusades", "wh18-mongol-empire", "wh19-plague-renaissance", "wh20-inca-aztec", "wh21-columbus", "wh22-reformation", "wh23-asian-empires", "wh24-edo-silver", "wh25-scientific-revolution", "wh26-revolutions", "wh27-nations", "wh28-industrial-revolution", "wh29-imperialism", "wh30-meiji-opium", "wh31-ww1", "wh32-depression", "wh33-ww2", "wh34-cold-war", "wh35-decolonization", "wh36-after-cold-war"]
   }
+  ,{
+    /* kind: "deep" は深掘り特集（世界史の流れ＝幹から伸びる枝）。roots は枝分かれする本線の話。本線の記事の下と、世界史の特集のページに出る（公開済みの記事が1本以上あるときだけ） */
+    id: "euro", no: "08", en: "THE EURO", cover: "society", kind: "deep", roots: ["wh34-cold-war", "wh36-after-cold-war"],
+    title: "1つのお金で、ヨーロッパはまとまれる？",
+    lead: "ヨーロッパの多くの国で使われるお金、ユーロ。生まれた理由から、危機、イギリスの離脱、これからまで。ニュースでよく聞くヨーロッパの話を、図と写真で4本にまとめました。",
+    intro: ["フランスで買ったパンも、イタリアで飲んだコーヒーも、同じお金で払える。ヨーロッパを旅すると、国境を越えても財布の中身が変わらないことに驚きます。", "でも、言葉も歴史もちがう国々が、なぜ自分のお金を手放したのでしょう。そして、そのお金はなぜ何度も「崩れるかもしれない」と言われてきたのでしょう。", "世界史の流れの第34話・第36話から伸びる枝です。1本目から順に読むと、ニュースに出てくるユーロやEUの話が、ぐっと身近になるはずです。"],
+    articles: ["euro-birth", "euro-greece", "brexit", "euro-vs-dollar"]
+  }
 ];
