@@ -279,5 +279,11 @@ window.ZUKAN_HL = {
 },
 "money-inflation": {
 "f": "物価の「買い物かご」に、グミが入った"
+},
+"money-central-bank": {
+"f": "本店を空から見ると、「円」の字が現れる"
+},
+"money-weak-yen": {
+"f": "ハンバーガーで測ると、1ドルは約80円"
 }
 };
