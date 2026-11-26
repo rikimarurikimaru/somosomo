@@ -222,5 +222,12 @@ window.ZUKAN = {
       cover: { src: "images/brexit/cover.jpg", small: "images/brexit/cover_s.jpg", title: "Palace of Westminster and Big Ben seen from Westminster Bridge, 2024", artist: "Hotolmo22", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Palace_of_Westminster_and_Big_Ben_seen_from_Westminster_Bridge,_2024.jpg" } },
     { no: 125, slug: "euro-vs-dollar", trunk: "wh36-after-cold-war", cat: "society", q: "ユーロは、ドルに代われる？", tags: ["ユーロ", "ドル", "お金", "EU"], related: ["euro-birth", "brexit", "bank-money"], status: "published", date: "2026-11-26",
       cover: { src: "images/euro-vs-dollar/cover.jpg", small: "images/euro-vs-dollar/cover_s.jpg", title: "0280 July 2017 in Montenegro", artist: "Rakoon", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:0280_July_2017_in_Montenegro.jpg" } },
+    /* 深掘り特集「お金のしくみ」（2026-11-26） */
+    { no: 126, slug: "money-paper", trunk: "wh16-song-china", cat: "society", q: "ただの紙が、なぜお金として使える？", tags: ["お金", "紙幣", "信用"], related: ["money-inflation", "wh16-song-china", "bank-money"], status: "published", date: "2026-11-27",
+      cover: { src: "images/money-paper/cover.jpg", small: "images/money-paper/cover_s.jpg", title: "Yap stone money 3", artist: "Scot Nelson", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Yap_stone_money_3.jpg" } },
+    { no: 127, slug: "money-inflation", trunk: "wh32-depression", cat: "society", q: "物の値段は、なぜ少しずつ上がっていく？", tags: ["お金", "インフレ", "物価"], related: ["money-central-bank", "money-paper", "pricing"], status: "published", date: "2026-11-27",
+      cover: { src: "images/money-inflation/cover.jpg", small: "images/money-inflation/cover_s.jpg", title: "The Japanese-style Chinese noodle RAMEN of the restaurant RAIRAIKEN at Yutenji Tokyo", artist: "ウィキ太郎", license: "Public domain", page: "https://commons.wikimedia.org/wiki/File:The_Japanese-style_Chinese_noodle_RAMEN_of_the_restaurant_RAIRAIKEN_at_Yutenji_Tokyo.jpg" } },
+    { no: 128, slug: "money-central-bank", trunk: "wh32-depression", cat: "society", q: "日本銀行は、何をしている？", tags: ["お金", "日本銀行", "金利"], related: ["money-weak-yen", "money-inflation", "bank-money"] },
+    { no: 129, slug: "money-weak-yen", trunk: "wh36-after-cold-war", cat: "society", q: "円安になると、なぜ物が高くなる？", tags: ["お金", "円安", "為替"], related: ["money-paper", "euro-vs-dollar", "money-central-bank"] },
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };
