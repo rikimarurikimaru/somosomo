@@ -285,5 +285,11 @@ window.ZUKAN_HL = {
 },
 "money-weak-yen": {
 "f": "ハンバーガーで測ると、1ドルは約80円"
+},
+"religion-one-god": {
+"f": "コーランで名前が出る女性は、マリアただ1人"
+},
+"religion-split": {
+"f": "クリスマスのずれは、教皇の新しい暦から"
 }
 };
