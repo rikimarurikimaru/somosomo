@@ -39,6 +39,13 @@
   function feature(id) { return F.filter(function (f) { return f.id === id; })[0]; }
   function liveF(f) { return f.articles.some(function (s) { var t = topic(s); return t && t.status === "published"; }); }
   function deepsFrom(slug) { return F.filter(function (f) { return f.kind === "deep" && f.roots && f.roots.indexOf(slug) >= 0 && liveF(f); }); }
+  /* ホーム画面に追加（PWA） */
+  var installPrompt = null;
+  function installed() { return (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; }
+  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); installPrompt = e; });
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    window.addEventListener("load", function () { navigator.serviceWorker.register(u("sw.js")).catch(function () {}); });
+  }
   function featuresWith(slug) { return F.filter(function (f) { return f.articles.indexOf(slug) >= 0; }); }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   function u(path) { return ROOT + path; }
@@ -145,10 +152,12 @@
       '<a class="item"' + st() + ' href="' + u("categories.html") + '"><span class="item-no">02</span>カテゴリ<span class="item-en">Category</span></a>' +
       '<div class="sub"' + st() + ">" + Z.categories.map(function (c) { return '<a href="' + catUrl(c.id) + '">' + esc(c.name) + "</a>"; }).join("") + "</div>" +
       '<a class="item"' + st() + ' href="' + u("features.html") + '"><span class="item-no">03</span>特集<span class="item-en">Special</span></a>' +
-      '<div class="sub"' + st() + ">" + F.map(function (f) { return '<a href="' + featureUrl(f.id) + '">' + esc(f.title) + "</a>"; }).join("") + "</div>" +
+      '<div class="sub"' + st() + ">" + F.filter(function (f) { return f.kind !== "deep" || liveF(f); }).map(function (f) { return '<a href="' + featureUrl(f.id) + '">' + esc(f.title) + "</a>"; }).join("") + "</div>" +
       '<a class="item"' + st() + ' href="' + u("search.html") + '"><span class="item-no">04</span>検索<span class="item-en">Search</span></a>' +
       "<h3" + st() + '>人気のキーワード</h3><div class="chips"' + st() + ">" + Z.keywords.map(function (k, i) { return '<a href="' + u("search.html#k" + i) + '">' + esc(k) + "</a>"; }).join("") + "</div>" +
-      '<p class="menu-foot"' + st() + '><a href="' + u("credits.html") + '">写真クレジット</a></p></div>';
+      '<p class="menu-foot"' + st() + '><a href="' + u("credits.html") + '">写真クレジット</a>' +
+      (installed() ? "" : '<button type="button" class="a2hs" id="a2hs">ホーム画面に追加</button>') + "</p>" +
+      '<p class="a2hs-help" id="a2hs-help" hidden></p></div>';
     document.body.appendChild(menu);
     var openBtn = document.getElementById("menu-open");
     function setMenu(open) {
@@ -160,6 +169,14 @@
     }
     openBtn.addEventListener("click", function () { setMenu(true); });
     document.getElementById("menu-close").addEventListener("click", function () { setMenu(false); });
+    /* ホーム画面に追加：Android などは端末の案内を出し、iPhone は手順を見せる */
+    var a2 = document.getElementById("a2hs");
+    if (a2) a2.addEventListener("click", function () {
+      if (installPrompt) { installPrompt.prompt(); installPrompt = null; return; }
+      var h = document.getElementById("a2hs-help"), ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+      h.textContent = ios ? "Safari の下の共有ボタン（四角から上向きの矢印）を押し、「ホーム画面に追加」を選んでください。" : "ブラウザのメニュー（︙）から「ホーム画面に追加」または「アプリをインストール」を選んでください。";
+      h.hidden = false;
+    });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) setMenu(false); });
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) { menu.hidden = true; menu.classList.remove("is-open"); document.documentElement.style.overflow = ""; } });
 
