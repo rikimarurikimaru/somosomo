@@ -231,5 +231,10 @@ window.ZUKAN = {
       cover: { src: "images/money-central-bank/cover.jpg", small: "images/money-central-bank/cover_s.jpg", title: "Bank of Japan building (97735)", artist: "Syced", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:Bank_of_Japan_building_(97735).jpg" } },
     { no: 129, slug: "money-weak-yen", trunk: "wh36-after-cold-war", cat: "society", q: "円安になると、なぜ物が高くなる？", tags: ["お金", "円安", "為替"], related: ["money-paper", "euro-vs-dollar", "money-central-bank"], status: "published", date: "2026-11-27",
       cover: { src: "images/money-weak-yen/cover.jpg", small: "images/money-weak-yen/cover_s.jpg", title: "HK SW 上環 Sheung Wan 急庇利街 Cleverly Street shop FX 外匯找換店 Money Exchange July 2024 R12S 05", artist: "PIEEOM MKA 100 HArwm", license: "CC0", page: "https://commons.wikimedia.org/wiki/File:HK_SW_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E6%80%A5%E5%BA%87%E5%88%A9%E8%A1%97_Cleverly_Street_shop_FX_%E5%A4%96%E5%8C%AF%E6%89%BE%E6%8F%9B%E5%BA%97_Money_Exchange_July_2024_R12S_05.jpg" } },
+    /* 深掘り特集「世界の宗教」（2026-11-27） */
+    { no: 130, slug: "religion-one-god", trunk: "wh13-islam", cat: "culture", q: "キリスト教とイスラム教は、なぜ同じ神を信じている？", tags: ["宗教", "キリスト教", "イスラム教", "ユダヤ教"], related: ["religion-split", "wh13-islam", "wh17-crusades"] },
+    { no: 131, slug: "religion-split", trunk: "wh22-reformation", cat: "culture", q: "同じ宗教なのに、なぜいくつにも分かれる？", tags: ["宗教", "宗派", "キリスト教", "イスラム教"], related: ["religion-buddhism-india", "religion-one-god", "wh22-reformation"] },
+    { no: 132, slug: "religion-buddhism-india", trunk: "wh06-axial-age", cat: "culture", q: "仏教は、なぜ生まれたインドで少ない？", tags: ["宗教", "仏教", "インド"], related: ["religion-japan", "religion-split", "wh06-axial-age"] },
+    { no: 133, slug: "religion-japan", trunk: "wh06-axial-age", cat: "culture", q: "日本人は、なぜ初詣もクリスマスも祝う？", tags: ["宗教", "日本", "神道", "仏教"], related: ["religion-one-god", "kfc-christmas", "religion-buddhism-india"] },
   ].map(function (t) { t.status = t.status || "soon"; t.minutes = t.minutes || 5; t.tags = t.tags || []; return t; })
 };
